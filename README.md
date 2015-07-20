@@ -1,5 +1,5 @@
-#basiux
-##Benevolent Artificial Super Intelligence User eXperience
+# basiux
+### Benevolent Artificial Super Intelligence User eXperience
 
 [Go to site](http://www.basiux.com)
 
