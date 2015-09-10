@@ -158,5 +158,5 @@ $('header .carousel').carousel({
 })
 
 $('.detail .carousel').carousel({
-  interval: 4000
+  interval: false
 })
