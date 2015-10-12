@@ -155,8 +155,8 @@ $(window).resize(function () {
 
 $('header .carousel').carousel({
   interval: 3000
-})
+});
 
 $('.detail .carousel').carousel({
   interval: false
-})
+});
