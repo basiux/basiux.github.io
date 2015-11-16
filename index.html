@@ -78,10 +78,60 @@
 	  <!-- PAYOFF
 	      ================================================== -->
 	  <section class="payoff">
-		<div class="container">
+		  <div class="container">
 			  <div class="row">
 				  <div class="col-md-12">
-					  <h1>More comming soon . . .</h1>
+
+            <div id="emulator"></div>
+
+            <h2>Controls</h2>
+            <table id="controls">
+                <tr>
+                    <th>Button</th>
+                    <th>Player 1</th>
+                    <th>Player 2</th>
+                </tr>
+                <tr>
+                    <td>Left</td>
+                    <td>Left</td>
+                    <td>Num-4</td>
+                <tr>
+                    <td>Right</td>
+                    <td>Right</td>
+                    <td>Num-6</td>
+                </tr>
+                <tr>
+                    <td>Up</td>
+                    <td>Up</td>
+                    <td>Num-8</td>
+                </tr>
+                <tr>
+                    <td>Down</td>
+                    <td>Down</td>
+                    <td>Num-2</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>X</td>
+                    <td>Num-7</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>Z/Y</td>
+                    <td>Num-9</td>
+                </tr>
+                <tr>
+                    <td>Start</td>
+                    <td>Enter</td>
+                    <td>Num-1</td>
+                </tr>
+                <tr>
+                    <td>Select</td>
+                    <td>Ctrl</td>
+                    <td>Num-3</td>
+                </tr>
+            </table>
+
             Go talk to cregox for <b>news</b> <i>written by humans (for now)</i>.
             <br><br>
             <form action="http://talk.cregox.com/c/basiux" method="get" novalidate>
@@ -307,5 +357,40 @@
       ga('create', 'UA-4687862-11', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <!-- MARIOX
+         ================================================== -->
+    <!--script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script-->
+    <script src="jsnes/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/nes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/cpu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/keyboard.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/mappers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/papu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/ppu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/rom.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/source/ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jsnes/lib/jsnes.min.js"></script>
+    <script src="mariox.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var nes;
+        $(function() {
+            nes = new JSNES({
+                'ui': $('#emulator').JSNESUI({
+                    "Homebrew": [
+                        ['Concentration Room', 'roms/croom/croom.nes'],
+                        ['LJ65', 'roms/lj65/lj65.nes'],
+                    ],
+                    "Working": [
+                        ['Super Mario Bros.', 'jsnes/Super Mario Bros. (Japan, USA).nes'],
+                    ],
+                })
+            });
+        });
+    </script>
+    <!--[if IE]>
+        <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
+    <![endif]-->
 
 </html>
