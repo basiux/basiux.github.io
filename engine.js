@@ -1,10 +1,10 @@
 $('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
 
+// usage:
+//   engine.keyPress(self.nes.keyboard.state1_keys.KEY_START);
 var engine = {
   keyDown: function (key) {
     self.nes.keyboard.setKey(key, 0x41);
-    //var e = self.nes.keyboard.keys;
-    //self.nes.keyboard.keyDown(e);
   },
 
   keyUp: function (key) {
