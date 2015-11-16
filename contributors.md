@@ -1,0 +1,1 @@
+- 2015-11-16 russell.leggett@gmail.com contributed with 1 hour "helpdesk": http://discourse.codenewbie.org/t/figuring-out-how-to-simulate-key-press-on-jsnes/1352/3
