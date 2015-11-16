@@ -1,17 +1,18 @@
-function simulateKeyPress(character) {
-  jQuery.event.trigger({ type : 'keypress', which : character.charCodeAt(0) });
-}
-
 $('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
 
-$('body').keypress(function(e) {
-  $('canvas.nes-screen').trigger({
-    type: 'keypress',
-    which: String.prototype.charCodeAt(e)
-  });
-});
+var engine = {
+  keyDown: function (key) {
+    self.nes.keyboard.setKey(key, 0x41);
+    //var e = self.nes.keyboard.keys;
+    //self.nes.keyboard.keyDown(e);
+  },
 
-$(function() {
+  keyUp: function (key) {
+    self.nes.keyboard.setKey(key, 0x40);
+  },
 
-  simulateKeyPress("\n");
-});
+  keyPress: function (key) {
+    this.keyDown(key);
+    setTimeout( function () {engine.keyUp(key)}, 500 );
+  }
+};
