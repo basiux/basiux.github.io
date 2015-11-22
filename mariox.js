@@ -9,4 +9,8 @@ setTimeout( function pressStart () {
 
 jQuery.getScript("mariox/configuration.js");
 
+jQuery.getScript("mariox/toolbox.js");
+
+jQuery.getScript("mariox/functions.js");
+
 jQuery.getScript("mariox/main.js");
