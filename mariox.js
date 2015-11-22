@@ -1,4 +1,11 @@
-jQuery.getScript("engine.js");
+// load Mario and controls
+$('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
+jQuery.getScript("simulate.js");
+
+// this will need to go away soon, as it should be pressed by the Ai
+setTimeout( function pressStart () {
+  simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
+}, 2100);
 
 // Configuration
 
@@ -6,7 +13,7 @@ BoxRadius = 6;
 InputSize = (BoxRadius*2+1)*(BoxRadius*2+1);
 
 Inputs = InputSize+1;
-//Outputs = self.nes.keyboard.state1_keys;
+Outputs = self.nes.keyboard.state1_keys;
 
 Population = 300;
 DeltaDisjoint = 2.0;
