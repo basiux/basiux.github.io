@@ -11,7 +11,7 @@ function newInnovation () {
 
 function newPool () {
         var pool = {};
-        pool.species = {};
+        pool.species = [];
         pool.generation = 0;
         pool.innovation = Outputs;
         pool.currentSpecies = 1;
@@ -26,7 +26,7 @@ function newSpecies () {
         var species = {};
         species.topFitness = 0;
         species.staleness = 0;
-        species.genomes = {};
+        species.genomes = [];
         species.averageFitness = 0;
 
         return species;
@@ -34,7 +34,7 @@ function newSpecies () {
 
 function newGenome () {
         var genome = {};
-        genome.genes = {};
+        genome.genes = [];
         genome.fitness = 0;
         genome.adjustedFitness = 0;
         genome.network = {};
