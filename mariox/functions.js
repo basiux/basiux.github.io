@@ -54,9 +54,10 @@ function newGenome () {
 
 function copyGenome (genome) {
         var genome2 = newGenome();
-        for (g=1; g<genome.genes.length; g++) {
-                table.insert(genome2.genes, copyGene(genome.genes[g]));
-        }
+        genome2.genes.concat( copyGene(genome.genes) ); // review
+        /*for (g=1; g<genome.genes.length; g++) {
+                genome2.genes.push( copyGene(genome.genes[g]) );
+        }*/
         genome2.maxneuron = genome.maxneuron;
         genome2.mutationRates["connections"] = genome.mutationRates["connections"];
         genome2.mutationRates["link"] = genome.mutationRates["link"];
@@ -120,8 +121,8 @@ function generateNetwork (genome) {
                 network.neurons[MaxNodes+o] = newNeuron();
         }
 
-        table.sort(genome.genes, function (a,b) { // review
-                return (a.out < b.out);
+        genome.genes.sort(function (a, b) {
+                return (a.out - b.out);
         })
         for (i=1; i<genome.genes.length; i++) {
                 var gene = genome.genes[i];
@@ -130,7 +131,7 @@ function generateNetwork (genome) {
                                 network.neurons[gene.out] = newNeuron();
                         }
                         var neuron = network.neurons[gene.out];
-                        table.insert(neuron.incoming, gene);
+                        neuron.incoming.push(gene);
                         if (network.neurons[gene.into] === null) { // review
                                 network.neurons[gene.into] = newNeuron();
                         }
@@ -141,7 +142,7 @@ function generateNetwork (genome) {
 }
 
 function evaluateNetwork (network, inputs) {
-        table.insert(inputs, 1);
+        inputs.push(1);
         if (inputs.length != Inputs) {
                 console.log("Incorrect number of neural network inputs.");
                 return {};
@@ -198,9 +199,9 @@ function crossover (g1, g2) {
                 var gene1 = g1.genes[i];
                 var gene2 = innovations2[gene1.innovation];
                 if (gene2 != null && Math.random(2) == 1 && gene2.enabled) {
-                        table.insert(child.genes, copyGene(gene2));
+                        child.genes.concat( copyGene(gene2) );
                 } else {
-                        table.insert(child.genes, copyGene(gene1));
+                        child.genes.concat( copyGene(gene1) );
                 }
         }
 
@@ -300,7 +301,7 @@ function linkMutate (genome, forceBias) {
         newLink.innovation = newInnovation();
         newLink.weight = Math.random()*4-2;
 
-        table.insert(genome.genes, newLink);
+        genome.genes.concat(newLink);
 }
 
 function nodeMutate (genome) {
@@ -321,13 +322,13 @@ function nodeMutate (genome) {
         gene1.weight = 1.0;
         gene1.innovation = newInnovation();
         gene1.enabled = true;
-        table.insert(genome.genes, gene1);
+        genome.genes.concat(gene1);
 
         var gene2 = copyGene(gene);
         gene2.into = genome.maxneuron;
         gene2.innovation = newInnovation();
         gene2.enabled = true;
-        table.insert(genome.genes, gene2);
+        genome.genes.concat(gene2);
 }
 
 function enableDisableMutate (genome, enable) {
@@ -335,7 +336,7 @@ function enableDisableMutate (genome, enable) {
         for (_=0; _<genome.genes; _++) {
                 var gene = genome.genes[_];
                 if (gene.enabled == !enable) {
-                        table.insert(candidates, gene);
+                        candidates.concat(gene);
                 }
         }
 
@@ -467,11 +468,11 @@ function rankGlobally () {
         for (s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
                 for (g = 1; g <species.genomes.length; g ++) {
-                        table.insert(global, species.genomes[g]);
+                        global.concat(species.genomes[g]);
                 }
         }
-        table.sort(global, function (a,b) { // review
-                return (a.fitness < b.fitness);
+        global.sort(function (a, b) {
+                return (a.fitness - b.fitness);
         })
 
         for (g=1; g<global.length; g++) {
@@ -504,8 +505,8 @@ function cullSpecies (cutToOne) {
         for (s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
 
-                table.sort(species.genomes, function (a,b) { // review
-                        return (a.fitness > b.fitness);
+                species.genomes.sort(function (a, b) {
+                        return (b.fitness - a.fitness);
                 })
 
                 var remaining = Math.ceil(species.genomes.length/2);
@@ -513,7 +514,7 @@ function cullSpecies (cutToOne) {
                         remaining = 1;
                 }
                 while (species.genomes.length > remaining) {
-                        table.remove(species.genomes);
+                        table.remove(species.genomes); // review
                 }
         }
 }
@@ -540,8 +541,8 @@ function removeStaleSpecies () {
         for (s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
 
-                table.sort(species.genomes, function (a,b) { // review
-                        return (a.fitness > b.fitness);
+                species.genomes.sort(function (a, b) {
+                        return (b.fitness - a.fitness);
                 })
 
                 if (species.genomes[1].fitness > species.topFitness) {
@@ -551,7 +552,7 @@ function removeStaleSpecies () {
                         species.staleness = species.staleness + 1;
                 }
                 if (species.staleness < StaleSpecies || species.topFitness >= pool.maxFitness) {
-                        table.insert(survived, species);
+                        survived.concat(species);
                 }
         }
 
@@ -566,7 +567,7 @@ function removeWeakSpecies () {
                 var species = pool.species[s];
                 breed = Math.floor(species.averageFitness / sum * Population);
                 if (breed >= 1) {
-                        table.insert(survived, species);
+                        survived.concat(species);
                 }
         }
 
@@ -578,15 +579,15 @@ function addToSpecies (child) {
         for (s=1; s<pool.species.length; s++) {
                 var species = pool.species[s];
                 if ( !foundSpecies && sameSpecies(child, species.genomes[1]) ) {
-                        table.insert(species.genomes, child);
+                        species.genomes.concat(child);
                         foundSpecies = true;
                 }
         }
 
         if (!foundSpecies) {
                 var childSpecies = newSpecies();
-                table.insert(childSpecies.genomes, child);
-                table.insert(pool.species, childSpecies);
+                childSpecies.genomes.concat(child);
+                pool.species.concat(childSpecies);
         }
 }
 
@@ -606,13 +607,13 @@ function newGeneration () {
                 var species = pool.species[s];
                 breed = Math.floor(species.averageFitness / sum * Population) - 1;
                 for (i=1; i<breed; i++) {
-                        table.insert(children, breedChild(species));
+                        children.concat( breedChild(species) );
                 }
         }
         cullSpecies(true); // Cull all but the top member of each species
         while (children.length + pool.species.length < Population) {
                 var species = pool.species[Math.random(1, pool.species.length)];
-                table.insert(children, breedChild(species));
+                children.concat( breedChild(species) );
         }
         for (c=1; c<children.length; c++) {
                 var child = children[c];
