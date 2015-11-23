@@ -49,4 +49,6 @@ jQuery.getScript("mariox/memory.js");
 
 jQuery.getScript("mariox/functions.js");
 
+jQuery.getScript("mariox/files.js");
+
 jQuery.getScript("mariox/main.js");
