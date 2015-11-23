@@ -312,7 +312,7 @@ function nodeMutate (genome) {
         genome.maxneuron = genome.maxneuron + 1;
 
         var gene = genome.genes[Math.random(1,genome.genes.length)];
-        if ( !gene.enabled ) {
+        if ( !gene || !gene.enabled ) {
                 return;
         }
         gene.enabled = false;
@@ -345,6 +345,9 @@ function enableDisableMutate (genome, enable) {
         }
 
         var gene = candidates[Math.random(1,candidates.length)];
+
+        if ( !gene ) return;
+
         gene.enabled = !gene.enabled;
 }
 
