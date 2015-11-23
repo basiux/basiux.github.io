@@ -73,7 +73,7 @@ function getSprites () {/*
         }
 */}
 
-function getExt}edSprites () {/*
+function getExtedSprites () {/*
         if gameinfo.getromname() == "Super Mario World (USA)" {
                 var ext}ed = {}
                 for slot=0,11 {
