@@ -4,7 +4,7 @@ if ( isEmpty(pool) ) {
 
 //writeFile("temp.pool")
 
-//event.onexit(onExit)
+//event.onexit(onExit) // review
 
 $form = $('<form id="fitness"><h1>Fitness</h1></form>').appendTo('#emulator');
 $form.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" value="'+ Math.floor(pool.maxFitness) +'"></label>');
@@ -19,7 +19,7 @@ $form.append('<input id="playTopButton" type="button" value="Play Top">').click(
 $form.append('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>');
 
 /*
-while true do
+while true do // review
         local backgroundColor = 0xD0FFFFFF
         if not forms.ischecked(hideBanner) then
                 gui.drawBox(0, 0, 300, 26, backgroundColor, backgroundColor)

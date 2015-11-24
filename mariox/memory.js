@@ -1,4 +1,4 @@
-// probably need to adapt a lot of things here
+// review - probably need to adapt a lot of things here
 
 function getPositions () {/*
           marioX = memory.read_s16_le(0x94);
