@@ -37,7 +37,7 @@ function newGenome () {
         genome.genes = [];
         genome.fitness = 0;
         genome.adjustedFitness = 0;
-        genome.network = {};
+        genome.network = [];
         genome.maxneuron = 0;
         genome.globalRank = 0;
         genome.mutationRates = {};
@@ -103,7 +103,7 @@ function copyGene (gene) {
 
 function newNeuron () {
         var neuron = {};
-        neuron.incoming = {};
+        neuron.incoming = [];
         neuron.value = 0.0;
 
         return neuron;
@@ -111,7 +111,7 @@ function newNeuron () {
 
 function generateNetwork (genome) {
         var network = {};
-        network.neurons = {};
+        network.neurons = [];
 
         for (i=1; i<Inputs; i++) {
                 network.neurons[i] = newNeuron();
@@ -142,10 +142,12 @@ function generateNetwork (genome) {
 }
 
 function evaluateNetwork (network, inputs) {
+        var outputs = {};
+
         inputs.push(1);
         if (inputs.length != Inputs) {
                 console.log("Incorrect number of neural network inputs.");
-                return {};
+                return outputs;
         }
 
         for (i=1; i<Inputs; i++) {
@@ -166,7 +168,6 @@ function evaluateNetwork (network, inputs) {
                 }
         }
 
-        var outputs = {};
         for (o=1; o<Outputs; o++) {
                 var button = "P1 " + ButtonNames[o];
                 if (network.neurons[MaxNodes+o].value > 0) {
@@ -216,7 +217,7 @@ function crossover (g1, g2) {
 }
 
 function randomNeuron (genes, nonInput) {
-        var neurons = {};
+        var neurons = [];
         if ( !nonInput ) {
                 for (i=1; i<Inputs; i++) {
                         neurons[i] = true;
@@ -332,7 +333,7 @@ function nodeMutate (genome) {
 }
 
 function enableDisableMutate (genome, enable) {
-        var candidates = {};
+        var candidates = [];
         for (_=0; _<genome.genes; _++) {
                 var gene = genome.genes[_];
                 if (gene.enabled == !enable) {
@@ -407,13 +408,13 @@ function mutate (genome) {
 }
 
 function disjoint (genes1, genes2) {
-        var i1 = {};
+        var i1 = [];
         for (i = 1; i <genes1.length; i ++) {
                 var gene = genes1[i];
                 i1[gene.innovation] = true;
         }
 
-        var i2 = {};
+        var i2 = [];
         for (i = 1; i <genes2.length; i ++) {
                 var gene = genes2[i];
                 i2[gene.innovation] = true;
@@ -440,7 +441,7 @@ function disjoint (genes1, genes2) {
 }
 
 function weights (genes1, genes2) {
-        var i2 = {};
+        var i2 = [];
         for (i = 1; i <genes2.length; i ++) {
                 var gene = genes2[i];
                 i2[gene.innovation] = gene;
@@ -467,7 +468,7 @@ function sameSpecies (genome1, genome2) {
 }
 
 function rankGlobally () {
-        var global = {};
+        var global = [];
         for (s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
                 for (g = 1; g <species.genomes.length; g ++) {
@@ -539,7 +540,7 @@ function breedChild (species) {
 }
 
 function removeStaleSpecies () {
-        var survived = {};
+        var survived = [];
 
         for (s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
@@ -563,7 +564,7 @@ function removeStaleSpecies () {
 }
 
 function removeWeakSpecies () {
-        var survived = {};
+        var survived = [];
 
         var sum = totalAverageFitness();
         for (s = 1; s <pool.species.length; s ++) {
@@ -605,7 +606,7 @@ function newGeneration () {
         }
         removeWeakSpecies();
         var sum = totalAverageFitness();
-        var children = {};
+        var children = [];
         for (s = 1; s<pool.species.length; s++) {
                 var species = pool.species[s];
                 breed = Math.floor(species.averageFitness / sum * Population) - 1;
@@ -701,7 +702,7 @@ function fitnessAlreadyMeasured () {
 
 function displayGenome (genome) {
         var network = genome.network;
-        var cells = {};
+        var cells = [];
         var i = 1;
         var cell = {};
         for (dy=-BoxRadius; dy<BoxRadius; dy++) {
