@@ -2,7 +2,7 @@ if ( isEmpty(pool) ) {
         initializePool();
 }
 
-//writeFile("temp.pool")
+writeFile("temp.pool")
 
 //event.onexit(onExit) // review
 
