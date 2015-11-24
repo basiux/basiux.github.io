@@ -625,7 +625,7 @@ function newGeneration () {
 
         pool.generation = pool.generation + 1;
 
-        writeFile("backup." + pool.generation + "." + forms.gettext(saveLoadFile)); // review
+        writeFile("backup." + pool.generation + "." + forms.gettext(saveLoadFile));
 }
 
 function initializePool () {
