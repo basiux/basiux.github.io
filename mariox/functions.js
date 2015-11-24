@@ -54,10 +54,9 @@ function newGenome () {
 
 function copyGenome (genome) {
         var genome2 = newGenome();
-        genome2.genes.concat( copyGene(genome.genes) ); // review
-        /*for (g=1; g<genome.genes.length; g++) {
+        for (g=1; g<genome.genes.length; g++) {
                 genome2.genes.push( copyGene(genome.genes[g]) );
-        }*/
+        }
         genome2.maxneuron = genome.maxneuron;
         genome2.mutationRates["connections"] = genome.mutationRates["connections"];
         genome2.mutationRates["link"] = genome.mutationRates["link"];
