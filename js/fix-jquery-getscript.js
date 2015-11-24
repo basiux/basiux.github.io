@@ -31,3 +31,28 @@ jQuery.extend({
       return undefined;
    },
 });
+
+// Now add a "jQuery getScript" equivalent function with one that will load
+// scripts synchronously. Each include will only begin when the previous one
+// have finished.
+jQuery.extend({
+  includeStack: [],
+  includeScript: function (url) {
+    if (url === false) {
+      url = jQuery.includeStack[0];
+    } else {
+      jQuery.includeStack.push(url);
+      //console.log('stacking '+ url +' #stack '+ jQuery.includeStack.length);
+    }
+    if (jQuery.includeStack.length > 0 && jQuery.includeStack[0] !== true) {
+      jQuery.getScript(url, function includeScriptCallback () {
+        //console.log('included and executed '+ url +' #stack '+ jQuery.includeStack.length);
+        jQuery.includeStack.shift();
+        if (jQuery.includeStack.length > 0) {
+          jQuery.includeScript( false );
+        }
+      });
+      jQuery.includeStack[0] = true; // soon to be shifted
+    }
+  },
+});
