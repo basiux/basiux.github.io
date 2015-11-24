@@ -517,7 +517,7 @@ function cullSpecies (cutToOne) {
                         remaining = 1;
                 }
                 while (species.genomes.length > remaining) {
-                        table.remove(species.genomes); // review
+                        species.genomes.pop();
                 }
         }
 }
