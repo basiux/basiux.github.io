@@ -1,3 +1,7 @@
+function isEmpty (foo) {
+  return (foo == null); // should work for undefined as well
+}
+
 // load Mario and controls
 $('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
 jQuery.includeScript("simulate.js");

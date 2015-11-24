@@ -1,4 +1,4 @@
-if (!pool || pool === null || typeof pool === 'undefined') {
+if ( isEmpty(pool) ) {
         initializePool();
 }
 

@@ -126,12 +126,12 @@ function generateNetwork (genome) {
         for (i=1; i<genome.genes.length; i++) {
                 var gene = genome.genes[i];
                 if (gene.enabled) {
-                        if (network.neurons[gene.out] === null) { // review
+                        if ( isEmpty(network.neurons[gene.out]) ) {
                                 network.neurons[gene.out] = newNeuron();
                         }
                         var neuron = network.neurons[gene.out];
                         neuron.incoming.push(gene);
-                        if (network.neurons[gene.into] === null) { // review
+                        if ( isEmpty(network.neurons[gene.into]) ) {
                                 network.neurons[gene.into] = newNeuron();
                         }
                 }
