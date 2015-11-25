@@ -1,5 +1,10 @@
 // this should probably go on the toolbox, but while we got no sections there...
 
+//-- For SMW, make sure you have a save state named "DP1.state" at the beginning of a level,
+//-- and put a copy in both the Lua folder and the root directory of BizHawk.
+// above, original comments about SavestateFilename, so it's probably not needed.
+//SavestateFilename = "mariox.state"
+
 BoxRadius = 6;
 InputSize = (BoxRadius*2+1)*(BoxRadius*2+1);
 
