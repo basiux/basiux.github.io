@@ -3,16 +3,16 @@ function writeFile (filename) { // review
         file:write(pool.generation + "\n");
         file:write(pool.maxFitness + "\n");
         file:write(pool.species.length + "\n");
-        for (n=0; n<pool.species.length; n++) {
+        for (var n=0; n<pool.species.length; n++) {
                 var species = pool.species[n];
                 file:write(species.topFitness + "\n");
                 file:write(species.staleness + "\n");
                 file:write(species.genomes.length + "\n");
-                for (m=0; m<species.genomes.length; m++) {
+                for (var m=0; m<species.genomes.length; m++) {
                         var genome = species.genomes[m];
                         file:write(genome.fitness + "\n");
                         file:write(genome.maxneuron + "\n");
-                        for (mutation=0; m<genome.mutationRates.length; mutation++) {
+                        for (var mutation=0; m<genome.mutationRates.length; mutation++) {
                                 var rate = genome.mutationRates[mutation];
                                 file:write(mutation + "\n");
                                 file:write(rate + "\n");
@@ -20,7 +20,7 @@ function writeFile (filename) { // review
                         file:write("{ne\n");
 
                         file:write(genome.genes.length + "\n");
-                        for (l=0; l<genome.genes.length; l++) {
+                        for (var l=0; l<genome.genes.length; l++) {
                                 var gene = genome.genes[l];
                                 file:write(gene.into + " ");
                                 file:write(gene.out + " ");
