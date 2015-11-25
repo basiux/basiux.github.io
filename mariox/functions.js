@@ -54,7 +54,7 @@ function newGenome () {
 
 function copyGenome (genome) {
         var genome2 = newGenome();
-        for (g=1; g<genome.genes.length; g++) {
+        for (var g=1; g<genome.genes.length; g++) {
                 genome2.genes.push( copyGene(genome.genes[g]) );
         }
         genome2.maxneuron = genome.maxneuron;
@@ -112,18 +112,18 @@ function generateNetwork (genome) {
         var network = {};
         network.neurons = [];
 
-        for (i=1; i<Inputs; i++) {
+        for (var i=1; i<Inputs; i++) {
                 network.neurons[i] = newNeuron();
         }
 
-        for (o=1; o<Outputs; o++) {
+        for (var o=1; o<Outputs; o++) {
                 network.neurons[MaxNodes+o] = newNeuron();
         }
 
         genome.genes.sort(function (a, b) {
                 return (a.out - b.out);
         })
-        for (i=1; i<genome.genes.length; i++) {
+        for (var i=1; i<genome.genes.length; i++) {
                 var gene = genome.genes[i];
                 if (gene.enabled) {
                         if ( isEmpty(network.neurons[gene.out]) ) {
@@ -149,14 +149,14 @@ function evaluateNetwork (network, inputs) {
                 return outputs;
         }
 
-        for (i=1; i<Inputs; i++) {
+        for (var i=1; i<Inputs; i++) {
                 network.neurons[i].value = inputs[i];
         }
 
-        for (_=0; _<network.neurons; _++) {
+        for (var _=0; _<network.neurons; _++) {
                 var neuron = network.neurons[_];
                 var sum = 0;
-                for (j = 1; j<neuron.incoming.length; j++) {
+                for (var j = 1; j<neuron.incoming.length; j++) {
                         var incoming = neuron.incoming[j];
                         var other = network.neurons[incoming.into];
                         sum = sum + incoming.weight * other.value;
@@ -167,7 +167,7 @@ function evaluateNetwork (network, inputs) {
                 }
         }
 
-        for (o=1; o<Outputs; o++) {
+        for (var o=1; o<Outputs; o++) {
                 var button = "P1 " + ButtonNames[o];
                 if (network.neurons[MaxNodes+o].value > 0) {
                         outputs[button] = true;
@@ -190,12 +190,12 @@ function crossover (g1, g2) {
         var child = newGenome();
 
         var innovations2 = {};
-        for (i=1; i<g2.genes.length; i++) {
+        for (var i=1; i<g2.genes.length; i++) {
                 var gene = g2.genes[i];
                 innovations2[gene.innovation] = gene;
         }
 
-        for (i=1; i<g1.genes.length; i++) {
+        for (var i=1; i<g1.genes.length; i++) {
                 var gene1 = g1.genes[i];
                 var gene2 = innovations2[gene1.innovation];
                 if (gene2 != null && Math.random(2) == 1 && gene2.enabled) {
@@ -207,7 +207,7 @@ function crossover (g1, g2) {
 
         child.maxneuron = Math.max(g1.maxneuron,g2.maxneuron);
 
-        for (mutation=0; mutation<g1.mutationRates; mutation++) {
+        for (var mutation=0; mutation<g1.mutationRates; mutation++) {
                 var rate = g1.mutationRates[mutation];
                 child.mutationRates[mutation] = rate;
         }
@@ -218,14 +218,14 @@ function crossover (g1, g2) {
 function randomNeuron (genes, nonInput) {
         var neurons = [];
         if ( !nonInput ) {
-                for (i=1; i<Inputs; i++) {
+                for (var i=1; i<Inputs; i++) {
                         neurons[i] = true;
                 }
         }
-        for (o=1; o<Outputs; o++) {
+        for (var o=1; o<Outputs; o++) {
                 neurons[MaxNodes+o] = true;
         }
-        for (i=1; i<genes.length; i++) {
+        for (var i=1; i<genes.length; i++) {
                 if ( !nonInput || genes[i].into > Inputs) {
                         neurons[genes[i].into] = true;
                 }
@@ -235,12 +235,12 @@ function randomNeuron (genes, nonInput) {
         }
 
         var count = 0;
-        for (_=0; _<neurons; _++) {
+        for (var _=0; _<neurons; _++) {
                 count = count + 1;
         }
         var n = Math.random(1, count);
 
-        for (k=0; k<neurons; k++) {
+        for (var k=0; k<neurons; k++) {
                 var v = neurons[k];
                 n = n-1;
                 if (n == 0) {
@@ -252,7 +252,7 @@ function randomNeuron (genes, nonInput) {
 }
 
 function containsLink (genes, link) {
-        for (i=1; i<genes.length; i++) {
+        for (var i=1; i<genes.length; i++) {
                 var gene = genes[i];
                 if (gene.into == link.into && gene.out == link.out) {
                         return true;
@@ -263,7 +263,7 @@ function containsLink (genes, link) {
 function pointMutate (genome) {
         var step = genome.mutationRates["step"];
 
-        for (i=1; i<genome.genes.length; i++) {
+        for (var i=1; i<genome.genes.length; i++) {
                 var gene = genome.genes[i];
                 if (Math.random() < PerturbChance) {
                         gene.weight = gene.weight + Math.random() * step*2 - step;
@@ -333,7 +333,7 @@ function nodeMutate (genome) {
 
 function enableDisableMutate (genome, enable) {
         var candidates = [];
-        for (_=0; _<genome.genes; _++) {
+        for (var _=0; _<genome.genes; _++) {
                 var gene = genome.genes[_];
                 if (gene.enabled == !enable) {
                         candidates.concat(gene);
@@ -352,7 +352,7 @@ function enableDisableMutate (genome, enable) {
 }
 
 function mutate (genome) {
-        for (mutation=0; mutation<genome.mutationRates; mutation++) {
+        for (var mutation=0; mutation<genome.mutationRates; mutation++) {
                 var rate = genome.mutationRates[mutation];
                 if (Math.random(1,2) == 1) {
                         genome.mutationRates[mutation] = 0.95*rate;
@@ -408,26 +408,26 @@ function mutate (genome) {
 
 function disjoint (genes1, genes2) {
         var i1 = [];
-        for (i = 1; i <genes1.length; i ++) {
+        for (var i = 1; i <genes1.length; i ++) {
                 var gene = genes1[i];
                 i1[gene.innovation] = true;
         }
 
         var i2 = [];
-        for (i = 1; i <genes2.length; i ++) {
+        for (var i = 1; i <genes2.length; i ++) {
                 var gene = genes2[i];
                 i2[gene.innovation] = true;
         }
 
         var disjointGenes = 0;
-        for (i = 1; i <genes1.length; i ++) {
+        for (var i = 1; i <genes1.length; i ++) {
                 var gene = genes1[i];
                 if (!i2[gene.innovation]) {
                         disjointGenes = disjointGenes+1;
                 }
         }
 
-        for (i = 1; i <genes2.length; i ++) {
+        for (var i = 1; i <genes2.length; i ++) {
                 var gene = genes2[i];
                 if (!i1[gene.innovation]) {
                         disjointGenes = disjointGenes+1;
@@ -441,14 +441,14 @@ function disjoint (genes1, genes2) {
 
 function weights (genes1, genes2) {
         var i2 = [];
-        for (i = 1; i <genes2.length; i ++) {
+        for (var i = 1; i <genes2.length; i ++) {
                 var gene = genes2[i];
                 i2[gene.innovation] = gene;
         }
 
         var sum = 0;
         var coincident = 0;
-        for (i = 1; i <genes1.length; i ++) {
+        for (var i = 1; i <genes1.length; i ++) {
                 var gene = genes1[i];
                 if (i2[gene.innovation] != null) {
                         var gene2 = i2[gene.innovation];
@@ -468,9 +468,9 @@ function sameSpecies (genome1, genome2) {
 
 function rankGlobally () {
         var global = [];
-        for (s = 1; s <pool.species.length; s ++) {
+        for (var s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
-                for (g = 1; g <species.genomes.length; g ++) {
+                for (var g = 1; g <species.genomes.length; g ++) {
                         global.concat(species.genomes[g]);
                 }
         }
@@ -478,7 +478,7 @@ function rankGlobally () {
                 return (a.fitness - b.fitness);
         })
 
-        for (g=1; g<global.length; g++) {
+        for (var g=1; g<global.length; g++) {
                 global[g].globalRank = g;
         }
 }
@@ -486,7 +486,7 @@ function rankGlobally () {
 function calculateAverageFitness (species) {
         var total = 0;
 
-        for (g=1; g<species.genomes.length; g++) {
+        for (var g=1; g<species.genomes.length; g++) {
                 var genome = species.genomes[g];
                 total = total + genome.globalRank;
         }
@@ -496,7 +496,7 @@ function calculateAverageFitness (species) {
 
 function totalAverageFitness () {
         var total = 0;
-        for (s = 1; s <pool.species.length; s ++) {
+        for (var s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
                 total = total + species.averageFitness;
         }
@@ -505,7 +505,7 @@ function totalAverageFitness () {
 }
 
 function cullSpecies (cutToOne) {
-        for (s = 1; s <pool.species.length; s ++) {
+        for (var s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
 
                 species.genomes.sort(function (a, b) {
@@ -541,7 +541,7 @@ function breedChild (species) {
 function removeStaleSpecies () {
         var survived = [];
 
-        for (s = 1; s <pool.species.length; s ++) {
+        for (var s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
 
                 species.genomes.sort(function (a, b) {
@@ -566,7 +566,7 @@ function removeWeakSpecies () {
         var survived = [];
 
         var sum = totalAverageFitness();
-        for (s = 1; s <pool.species.length; s ++) {
+        for (var s = 1; s <pool.species.length; s ++) {
                 var species = pool.species[s];
                 breed = Math.floor(species.averageFitness / sum * Population);
                 if (breed >= 1) {
@@ -579,7 +579,7 @@ function removeWeakSpecies () {
 
 function addToSpecies (child) {
         var foundSpecies = false;
-        for (s=1; s<pool.species.length; s++) {
+        for (var s=1; s<pool.species.length; s++) {
                 var species = pool.species[s];
                 if ( !foundSpecies && sameSpecies(child, species.genomes[1]) ) {
                         species.genomes.concat(child);
@@ -599,17 +599,17 @@ function newGeneration () {
         rankGlobally();
         removeStaleSpecies();
         rankGlobally();
-        for (s = 1; s<pool.species.length; s++) {
+        for (var s = 1; s<pool.species.length; s++) {
                 var species = pool.species[s];
                 calculateAverageFitness(species);
         }
         removeWeakSpecies();
         var sum = totalAverageFitness();
         var children = [];
-        for (s = 1; s<pool.species.length; s++) {
+        for (var s = 1; s<pool.species.length; s++) {
                 var species = pool.species[s];
                 breed = Math.floor(species.averageFitness / sum * Population) - 1;
-                for (i=1; i<breed; i++) {
+                for (var i=1; i<breed; i++) {
                         children.concat( breedChild(species) );
                 }
         }
@@ -618,7 +618,7 @@ function newGeneration () {
                 var species = pool.species[Math.random(1, pool.species.length)];
                 children.concat( breedChild(species) );
         }
-        for (c=1; c<children.length; c++) {
+        for (var c=1; c<children.length; c++) {
                 var child = children[c];
                 addToSpecies(child);
         }
@@ -631,7 +631,7 @@ function newGeneration () {
 function initializePool () {
         pool = newPool();
 
-        for (i=1; i<Population; i++) {
+        for (var i=1; i<Population; i++) {
                 basic = basicGenome();
                 addToSpecies(basic);
         }
@@ -641,7 +641,7 @@ function initializePool () {
 
 function clearJoypad () {
         controller = {};
-        for (b = 1; b<ButtonNames.length; b++) {
+        for (var b = 1; b<ButtonNames.length; b++) {
                 controller["P1 " + ButtonNames[b]] = false;
         }
         joypad.set(controller);
@@ -704,8 +704,8 @@ function displayGenome (genome) {
         var cells = [];
         var i = 1;
         var cell = {};
-        for (dy=-BoxRadius; dy<BoxRadius; dy++) {
-                for (dx=-BoxRadius; dx<BoxRadius; dx++) {
+        for (var dy=-BoxRadius; dy<BoxRadius; dy++) {
+                for (var dx=-BoxRadius; dx<BoxRadius; dx++) {
                         cell = {};
                         cell.x = 50+5*dx;
                         cell.y = 70+5*dy;
@@ -720,7 +720,7 @@ function displayGenome (genome) {
         biasCell.value = network.neurons[Inputs].value;
         cells[Inputs] = biasCell;
 
-        for (o = 1; o<Outputs; o++) {
+        for (var o = 1; o<Outputs; o++) {
                 cell = {};
                 cell.x = 220;
                 cell.y = 30 + 8 * o;
@@ -735,7 +735,7 @@ function displayGenome (genome) {
                 gui.drawText(223, 24+8*o, ButtonNames[o], color, 9);
         }
 
-        for (n = 0; n < network.neurons.length; n++) {
+        for (var n = 0; n < network.neurons.length; n++) {
                 var neuron = network.neurons[n];
                 cell = {};
                 if (n > Inputs && n <= MaxNodes) {
@@ -746,8 +746,8 @@ function displayGenome (genome) {
                 }
         }
 
-        for (n=1; n<4; n++) {
-                for (_ = 0; _ < genome.genes.length; _++) {
+        for (var n=1; n<4; n++) {
+                for (var _ = 0; _ < genome.genes.length; _++) {
                         var gene = genome.genes[_];
                         if (gene.enabled) {
                                 var c1 = cells[gene.into];
@@ -785,7 +785,7 @@ function displayGenome (genome) {
         }
 
         gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
-        for (n=0; n<cells.length; n++) {
+        for (var n=0; n<cells.length; n++) {
                 var cell = cells[n];
                 if (n > Inputs || cell.value != 0) {
                         var color = Math.floor((cell.value+1)/2*256);
@@ -799,7 +799,7 @@ function displayGenome (genome) {
                         gui.drawBox(cell.x-2,cell.y-2,cell.x+2,cell.y+2,opacity,color);
                 }
         }
-        for (_=0; _<genome.genes.length; _++) {
+        for (var _=0; _<genome.genes.length; _++) {
                 var gene = genome.genes[_];
                 if (gene.enabled) {
                         var c1 = cells[gene.into];
@@ -823,7 +823,7 @@ function displayGenome (genome) {
 
         if (forms.ischecked(showMutationRates)) {
                 var pos = 100;
-                for (mutation=0; mutation<genome.mutationRates.length; mutation++) {
+                for (var mutation=0; mutation<genome.mutationRates.length; mutation++) {
                         var rate = genome.mutationRates[mutation];
                         gui.drawText(100, pos, mutation + ": " + rate, 0xFF000000, 10);
                         pos = pos + 8;
@@ -834,9 +834,9 @@ function displayGenome (genome) {
 function playTop () {
         var maxfitness = 0;
         var maxs, maxg;
-        for (s=0; s<pool.species.length; s++) {
+        for (var s=0; s<pool.species.length; s++) {
                 var species = pool.species[s];
-                for (g=0; g<species.genomes.length; g++) {
+                for (var g=0; g<species.genomes.length; g++) {
                         var genome = species.genomes[g];
                         if (genome.fitness > maxfitness) {
                                 maxfitness = genome.fitness;
