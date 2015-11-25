@@ -168,7 +168,7 @@ function evaluateNetwork (network, inputs) {
         }
 
         for (var o=1; o<Outputs; o++) {
-                var button = "P1 " + ButtonNames[o];
+                var button = "KEY_" + ButtonNames[o];
                 if (network.neurons[MaxNodes+o].value > 0) {
                         outputs[button] = true;
                 } else {
@@ -642,7 +642,7 @@ function initializePool () {
 function clearJoypad () {
         controller = {};
         for (var b = 1; b<ButtonNames.length; b++) {
-                controller["P1 " + ButtonNames[b]] = false;
+                controller["KEY_" + ButtonNames[b]] = false;
         }
         joypad.set(controller);
 }

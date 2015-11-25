@@ -5,11 +5,22 @@
 // above, original comments about SavestateFilename, so it's probably not needed.
 //SavestateFilename = "mariox.state"
 
+// based mostly on self.nes.keyboard.state1_keys
+ButtonNames = [
+  'A',
+  'B',
+  'UP',
+  'DOWN',
+  'LEFT',
+  'RIGHT',
+  'START',
+];
+
 BoxRadius = 6;
 InputSize = (BoxRadius*2+1)*(BoxRadius*2+1);
 
 Inputs = InputSize+1;
-Outputs = self.nes.keyboard.state1_keys;
+Outputs = ButtonNames.length;
 
 Population = 600;
 DeltaDisjoint = 2.0;
