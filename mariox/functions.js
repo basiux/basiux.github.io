@@ -632,7 +632,7 @@ function initializePool () {
         pool = newPool();
 
         for (var i=0; i<Population; i++) {
-                basic = basicGenome();
+                var basic = basicGenome();
                 addToSpecies(basic);
         }
 
