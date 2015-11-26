@@ -1,3 +1,5 @@
+//var JJLCdict = {"\"into\":":"£a£","\"out\":":"£b£","\"weight\":":"£c£","\"enabled\":":"£d£","\"innovation\":":"£e£","\"topFitness\":":"£f£","\"genes\":":"£g£","\"averageFitness\":":"£h£","\"genomes\":":"£i£","\"fitness\":":"£j£","\"adjustedFitness\":":"£k£","\"network\":":"£l£","\"step\":":"£m£","\"staleness\":":"£n£","\"disable\":":"£o£","\"maxneuron\":":"£p£","\"globalRank\":":"£q£","\"mutationRates\":":"£r£","\"connections\":":"£s£","\"link\":":"£t£","\"bias\":":"£u£","\"node\":":"£v£","\"enable\":":"£w£","\"value\":":"£x£","\"incoming\":":"£y£","\"neurons\":":"£z£"};
+
 function writeFile (filename) { // actually using compressed localstorage instead of files
         var poolContent = [];
         poolContent.push(pool.generation);
@@ -5,8 +7,10 @@ function writeFile (filename) { // actually using compressed localstorage instea
         poolContent.push(pool.species);
         var content = JSON.stringify(poolContent); // might use just `pool` rather than poolContent
         //localStorage.setItem(filename, content);
-        var compressed = JJLC.setItem(filename, content); // compress and throw it on localStorage
-        console.log(pool +' pool size: '+ content.length +' compressed: '+ compressed.length);
+        //JJLC.setDict(filename, JJLCdict, 'no-localstorage');
+        var compressed = JJLC.setItem(filename, content);//, 'local-dict'); // compress and throw it on localStorage
+        //console.log(pool +' pool size: '+ content.length +' compressed: '+ compressed.length);
+        // var dict = JSON.stringify(JJLC.getDict(filename)); console.log(dict); // generate JJLCdict
 }
 
 function savePool () {
