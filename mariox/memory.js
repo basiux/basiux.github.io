@@ -48,18 +48,18 @@ function getInputs () {
 
         for (var dy=-BoxRadius*16; dy<=BoxRadius*16; dy+=16) {
                 for (var dx=-BoxRadius*16; dx<=BoxRadius*16; dx+=16) {
-                        inputs[inputs.length+1] = 0;
+                        inputs[inputs.length+0] = 0; // review - array, 1 or 0
 
                         tile = getTile(dx, dy);
                         if (tile == 1 && marioY+dy < 0x1B0) {
-                                inputs[inputs.length] = 1;
+                                inputs[inputs.length-1] = 1; // review 1 or 0
                         }
 
                         for (var i = 0; i<sprites.length; i++) { // review 1 or 0
                                 distx = Math.abs(sprites[i]["x"] - (marioX+dx));
                                 disty = Math.abs(sprites[i]["y"] - (marioY+dy));
                                 if (distx <= 8 && disty <= 8) {
-                                        inputs[inputs.length] = -1;
+                                        inputs[inputs.length-1] = -1; // review 1 or 0
                                 }
                         }
                 }
