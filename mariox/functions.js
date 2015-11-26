@@ -198,7 +198,7 @@ function crossover (g1, g2) {
         for (var i=0; i<g1.genes.length; i++) {
                 var gene1 = g1.genes[i];
                 var gene2 = innovations2[gene1.innovation];
-                if (gene2 != null && Math.random(2) == 1 && gene2.enabled) {
+                if (gene2 != null && mathRandom(2) == 1 && gene2.enabled) {
                         child.genes.concat( copyGene(gene2) );
                 } else {
                         child.genes.concat( copyGene(gene1) );
@@ -238,7 +238,7 @@ function randomNeuron (genes, nonInput) {
         for (var _ in neurons) { // in pairs
                 count = count + 1;
         }
-        var n = Math.random(1, count);
+        var n = mathRandom(1, count);
 
         for (var k in neurons) { // in pairs
                 var v = neurons[k];
@@ -265,10 +265,10 @@ function pointMutate (genome) {
 
         for (var i=0; i<genome.genes.length; i++) {
                 var gene = genome.genes[i];
-                if (Math.random() < PerturbChance) {
-                        gene.weight = gene.weight + Math.random() * step*2 - step;
+                if (mathRandom() < PerturbChance) {
+                        gene.weight = gene.weight + mathRandom() * step*2 - step;
                 } else {
-                        gene.weight = Math.random()*4-2;
+                        gene.weight = mathRandom()*4-2;
                 }
         }
 }
@@ -299,7 +299,7 @@ function linkMutate (genome, forceBias) {
                 return;
         }
         newLink.innovation = newInnovation();
-        newLink.weight = Math.random()*4-2;
+        newLink.weight = mathRandom()*4-2;
 
         genome.genes.concat(newLink);
 }
@@ -311,7 +311,7 @@ function nodeMutate (genome) {
 
         genome.maxneuron = genome.maxneuron + 1;
 
-        var gene = genome.genes[Math.random(1,genome.genes.length)];
+        var gene = genome.genes[mathRandom(1,genome.genes.length)];
         if ( !gene || !gene.enabled ) {
                 return;
         }
@@ -344,7 +344,7 @@ function enableDisableMutate (genome, enable) {
                 return;
         }
 
-        var gene = candidates[Math.random(1,candidates.length)];
+        var gene = candidates[mathRandom(1,candidates.length)];
 
         if ( !gene ) return;
 
@@ -354,20 +354,20 @@ function enableDisableMutate (genome, enable) {
 function mutate (genome) {
         for (var mutation in genome.mutationRates) { // in pairs
                 var rate = genome.mutationRates[mutation];
-                if (Math.random(1,2) == 1) {
+                if (mathRandom(1,2) == 1) {
                         genome.mutationRates[mutation] = 0.95*rate;
                 } else {
                         genome.mutationRates[mutation] = 1.05263*rate;
                 }
         }
 
-        if (Math.random() < genome.mutationRates["connections"]) {
+        if (mathRandom() < genome.mutationRates["connections"]) {
                 pointMutate(genome);
         }
 
         var p = genome.mutationRates["link"];
         while (p > 0) {
-                if (Math.random() < p) {
+                if (mathRandom() < p) {
                         linkMutate(genome, false);
                 }
                 p = p - 1;
@@ -375,7 +375,7 @@ function mutate (genome) {
 
         p = genome.mutationRates["bias"];
         while (p > 0) {
-                if (Math.random() < p) {
+                if (mathRandom() < p) {
                         linkMutate(genome, true);
                 }
                 p = p - 1;
@@ -383,7 +383,7 @@ function mutate (genome) {
 
         p = genome.mutationRates["node"];
         while (p > 0) {
-                if (Math.random() < p) {
+                if (mathRandom() < p) {
                         nodeMutate(genome);
                 }
                 p = p - 1;
@@ -391,7 +391,7 @@ function mutate (genome) {
 
         p = genome.mutationRates["enable"]
         while (p > 0) {
-                if (Math.random() < p) {
+                if (mathRandom() < p) {
                         enableDisableMutate(genome, true);
                 }
                 p = p - 1;
@@ -399,7 +399,7 @@ function mutate (genome) {
 
         p = genome.mutationRates["disable"]
         while (p > 0) {
-                if (Math.random() < p) {
+                if (mathRandom() < p) {
                         enableDisableMutate(genome, false);
                 }
                 p = p - 1;
@@ -524,12 +524,12 @@ function cullSpecies (cutToOne) {
 
 function breedChild (species) {
         var child = {};
-        if (Math.random() < CrossoverChance) {
-                g1 = species.genomes[Math.random(1, species.genomes.length)];
-                g2 = species.genomes[Math.random(1, species.genomes.length)];
+        if (mathRandom() < CrossoverChance) {
+                g1 = species.genomes[mathRandom(1, species.genomes.length)];
+                g2 = species.genomes[mathRandom(1, species.genomes.length)];
                 child = crossover(g1, g2);
         } else {
-                g = species.genomes[Math.random(1, species.genomes.length)];
+                g = species.genomes[mathRandom(1, species.genomes.length)];
                 child = copyGenome(g);
         }
 
@@ -615,7 +615,7 @@ function newGeneration () {
         }
         cullSpecies(true); // Cull all but the top member of each species
         while (children.length + pool.species.length < Population) {
-                var species = pool.species[Math.random(1, pool.species.length)];
+                var species = pool.species[mathRandom(1, pool.species.length)];
                 children.concat( breedChild(species) );
         }
         for (var c=0; c<children.length; c++) {
