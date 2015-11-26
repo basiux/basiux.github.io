@@ -1,8 +1,8 @@
-// review - probably need to adapt a lot of things here
+// review - maybe there's nothing more to adapt here! :o
 
 function getPositions () {
-          marioX = 0;//memory.readbyte(0x6D) * 0x100 + memory.readbyte(0x86);
-          marioY = 0;//memory.readbyte(0x03B8)+16;
+          marioX = self.nes.cpu.mem[0x6D]*0x100 + self.nes.cpu.mem[0x86];
+          marioY = self.nes.cpu.mem[0x03B8] + 16;
 }
 
 function getTile (dx, dy) {
@@ -18,7 +18,7 @@ function getTile (dx, dy) {
                   return 0;
           }
 
-          if (false) {// (memory.readbyte(addr) != 0) {
+          if (self.nes.cpu.mem[addr] != 0) {
                   return 1;
           } else {
                   return 0;
@@ -28,11 +28,11 @@ function getTile (dx, dy) {
 function getSprites () {
         var sprites = [];
         for (var slot=0; slot<=4; slot++) {
-                var enemy = 0;//memory.readbyte(0xF+slot);
+                var enemy = self.nes.cpu.mem[0xF+slot];
                 if (enemy != 0) {
-                        var ex = 0;//memory.readbyte(0x6E + slot)*0x100 + memory.readbyte(0x87+slot)
-                        var ey = 0;//memory.readbyte(0xCF + slot)+24
-                        sprites.push({"x":ex,"y":ey});//sprites[sprites.length+1] = {"x":ex,"y":ey};
+                        var ex = self.nes.cpu.mem[0x6E+slot]*0x100 + self.nes.cpu.mem[0x87+slot];
+                        var ey = self.nes.cpu.mem[0xCF+slot] + 24;
+                        sprites.push( {"x":ex,"y":ey} );
                 }
         }
 
