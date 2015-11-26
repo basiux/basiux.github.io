@@ -14,8 +14,8 @@ function newPool () {
         pool.species = [];
         pool.generation = 0;
         pool.innovation = Outputs;
-        pool.currentSpecies = 1;
-        pool.currentGenome = 1;
+        pool.currentSpecies = 0; // review 1 or 0
+        pool.currentGenome = 0; // review 1 or 0
         pool.currentFrame = 0;
         pool.maxFitness = 0;
 
@@ -70,7 +70,7 @@ function copyGenome (genome) {
 
 function basicGenome () {
         var genome = newGenome();
-        var innovation = 1;
+        //var innovation = 1; // review 1 or 0 - probably useless
 
         genome.maxneuron = Inputs;
         mutate(genome);
@@ -548,8 +548,8 @@ function removeStaleSpecies () {
                         return (b.fitness - a.fitness);
                 })
 
-                if (species.genomes[0].fitness > species.topFitness) {
-                        species.topFitness = species.genomes[0].fitness;
+                if (species.genomes[0].fitness > species.topFitness) { // review 1 or 0
+                        species.topFitness = species.genomes[0].fitness; // review 1 or 0
                         species.staleness = 0;
                 } else {
                         species.staleness = species.staleness + 1;
@@ -581,7 +581,7 @@ function addToSpecies (child) {
         var foundSpecies = false;
         for (var s=0; s<pool.species.length; s++) {
                 var species = pool.species[s];
-                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) {
+                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) { // review 1 or 0
                         species.genomes.push(child); // table.insert
                         foundSpecies = true;
                 }
@@ -684,11 +684,11 @@ function evaluateCurrent() {
 function nextGenome () {
         pool.currentGenome = pool.currentGenome + 1;
         if (pool.currentGenome > pool.species[pool.currentSpecies].genomes.length) {
-                pool.currentGenome = 1;
+                pool.currentGenome = 0; // review 1 or 0
                 pool.currentSpecies = pool.currentSpecies+1;
                 if (pool.currentSpecies > pool.species.length) {
                         newGeneration();
-                        pool.currentSpecies = 1;
+                        pool.currentSpecies = 0; // review 1 or 0
                 }
         }
 }
@@ -703,7 +703,7 @@ function fitnessAlreadyMeasured () {
 function displayGenome (genome) {
         var network = genome.network;
         var cells = [];
-        var i = 1;
+        var i = 0; // review 1 or 0
         var cell = {};
         for (var dy=-BoxRadius; dy<BoxRadius; dy++) {
                 for (var dx=-BoxRadius; dx<BoxRadius; dx++) {
