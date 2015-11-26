@@ -548,8 +548,8 @@ function removeStaleSpecies () {
                         return (b.fitness - a.fitness);
                 })
 
-                if (species.genomes[1].fitness > species.topFitness) {
-                        species.topFitness = species.genomes[1].fitness;
+                if (species.genomes[0].fitness > species.topFitness) {
+                        species.topFitness = species.genomes[0].fitness;
                         species.staleness = 0;
                 } else {
                         species.staleness = species.staleness + 1;
@@ -581,7 +581,7 @@ function addToSpecies (child) {
         var foundSpecies = false;
         for (var s=0; s<pool.species.length; s++) {
                 var species = pool.species[s];
-                if ( !foundSpecies && sameSpecies(child, species.genomes[1]) ) {
+                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) {
                         species.genomes.push(child); // table.insert
                         foundSpecies = true;
                 }
