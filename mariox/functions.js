@@ -145,7 +145,7 @@ function evaluateNetwork (network, inputs) {
 
         inputs.push(1); // table.insert
         if (inputs.length != Inputs) {
-                console.log("Incorrect number of neural network inputs.");
+                console.error("Incorrect number of neural network inputs: "+ inputs.length +" (expected "+ Inputs +")");
                 return outputs;
         }
 
