@@ -4,8 +4,9 @@ function writeFile (filename) { // actually using compressed localstorage instea
         poolContent.push(pool.maxFitness);
         poolContent.push(pool.species);
         var content = JSON.stringify(poolContent); // might use just `pool` rather than poolContent
-        console.log(pool +' pool size: '+ content.length);
-        localStorage.setItem(filename, content);
+        //localStorage.setItem(filename, content);
+        var compressed = JJLC.setItem(filename, content); // compress and throw it on localStorage
+        console.log(pool +' pool size: '+ content.length +' compressed: '+ compressed.length);
 }
 
 function savePool () {
@@ -14,7 +15,8 @@ function savePool () {
 }
 
 function loadFile (filename) {
-        var json = localStorage.getItem(filename);
+        //var json = localStorage.getItem(filename);
+        var json = JJLC.getItem(filename); // decompress from localStorage
         parsedContent = jQuery.parseJSON(json); // might use straight `pool` rather than parsedContent
         pool.species = parsedContent.pop();
         pool.maxFitness = parsedContent.pop();

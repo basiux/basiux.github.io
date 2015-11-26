@@ -4,6 +4,8 @@ function isEmpty (foo) {
 
 jQuery.includeScript("mariox/lua.js");
 
+jQuery.includeScript("mariox/jjlc.min.js"); // compressing json for localstorage
+
 // load Mario and controls
 $('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
 jQuery.includeScript("simulate.js");
