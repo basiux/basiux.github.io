@@ -644,7 +644,7 @@ function clearJoypad () {
         for (var b = 0; b<ButtonNames.length; b++) {
                 controller["KEY_" + ButtonNames[b]] = false;
         }
-        joypad.set(controller);
+        joypadSet(controller);
 }
 
 function initializeRun () {
@@ -677,7 +677,7 @@ function evaluateCurrent() {
                 controller["P1 {wn"] = false;
         }
 
-        joypad.set(controller);
+        joypadSet(controller);
 }
 
 

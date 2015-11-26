@@ -10,3 +10,8 @@ function mathRandom (min, max) {
   }
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+function joypadSet (controller) { // review
+  // no idea what this should do yet!
+  console.log('called joypad.set')
+}
