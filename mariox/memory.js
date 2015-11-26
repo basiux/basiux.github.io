@@ -29,7 +29,7 @@ function getTile (dx, dy) {
 }
 
 function getSprites () {
-        var sprites = {};
+        var sprites = [];
         for (var slot=0; slot<=4; slot++) {
                 var enemy = 0;//memory.readbyte(0xF+slot);
                 if (enemy != 0) {
@@ -45,12 +45,12 @@ function getSprites () {
 function getInputs () {
         getPositions();
 
-        sprites = getSprites();
+        var sprites = getSprites();
 
-        var inputs = {};
+        var inputs = [];
 
-        for (dy=-BoxRadius*16; dy<=BoxRadius*16; dy+=16) {
-                for (dx=-BoxRadius*16; dx<=BoxRadius*16; dx+=16) {
+        for (var dy=-BoxRadius*16; dy<=BoxRadius*16; dy+=16) {
+                for (var dx=-BoxRadius*16; dx<=BoxRadius*16; dx+=16) {
                         inputs[inputs.length+1] = 0;
 
                         tile = getTile(dx, dy);
@@ -58,7 +58,7 @@ function getInputs () {
                                 inputs[inputs.length] = 1;
                         }
 
-                        for (i = 0; i<sprites.length; i++) { // review 1 or 0
+                        for (var i = 0; i<sprites.length; i++) { // review 1 or 0
                                 distx = Math.abs(sprites[i]["x"] - (marioX+dx));
                                 disty = Math.abs(sprites[i]["y"] - (marioY+dy));
                                 if (distx <= 8 && disty <= 8) {
