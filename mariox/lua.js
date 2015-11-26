@@ -12,6 +12,5 @@ function mathRandom (min, max) {
 }
 
 function joypadSet (controller) { // review
-  // no idea what this should do yet!
-  console.log('called joypad.set')
+  console.warn('called joypad.set - no idea what this should do yet!')
 }
