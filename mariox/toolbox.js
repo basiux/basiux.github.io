@@ -5,5 +5,3 @@ var pool;
 // from getPositions
 var marioX;
 var marioY;
-var screenX;
-var screenY;

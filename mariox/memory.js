@@ -3,9 +3,6 @@
 function getPositions () {
           marioX = 0;//memory.readbyte(0x6D) * 0x100 + memory.readbyte(0x86);
           marioY = 0;//memory.readbyte(0x03B8)+16;
-
-          screenX = 0;//memory.readbyte(0x03AD);
-          screenY = 0;//memory.readbyte(0x03B8);
 }
 
 function getTile (dx, dy) {
