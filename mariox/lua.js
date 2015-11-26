@@ -12,5 +12,6 @@ function mathRandom (min, max) {
 }
 
 function joypadSet (controller) { // review
-  console.warn('called joypad.set - no idea what this should do yet!')
+  console.warn('called joypad.set - probably need to press buttons here');
+  // simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
 }

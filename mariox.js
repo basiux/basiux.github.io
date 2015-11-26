@@ -10,11 +10,6 @@ jQuery.includeScript("mariox/jjlc.min.js"); // compressing json for localstorage
 $('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
 jQuery.includeScript("simulate.js");
 
-// this will need to go away soon, as it should be pressed by the Ai
-setTimeout( function pressStart () {
-//  simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
-}, 2100);
-
 jQuery.includeScript("mariox/configuration.js");
 
 jQuery.includeScript("mariox/toolbox.js");
