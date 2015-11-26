@@ -14,7 +14,7 @@ function writeFile (filename) { // actually using compressed localstorage instea
 }
 
 function savePool () {
-        var filename = forms.gettext(saveLoadFile);
+        var filename = $form.find('input#saveLoadFile').val();
         writeFile(filename);
 }
 
@@ -36,6 +36,6 @@ function loadFile (filename) {
 }
 
 function loadPool () {
-        var filename = forms.gettext(saveLoadFile);
+        var filename = $form.find('input#saveLoadfile').val();
         loadFile(filename);
 }

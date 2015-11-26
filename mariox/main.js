@@ -13,8 +13,7 @@ $form.append('<label for="showMutationRates"><input id="showMutationRates" type=
 $form.append('<input id="restartButton" type="button" value="Restart">').click(initializePool);
 $form.append('<input id="saveButton" type="button" value="Save">').click(savePool);
 $form.append('<input id="loadButton" type="button" value="Load">').click(loadPool);
-//saveLoadFile = forms.textbox(form, Filename .. ".pool", 170, 25, nil, 5, 148)
-//saveLoadLabel = forms.label(form, "Save/Load:", 5, 129)
+$form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
 $form.append('<input id="playTopButton" type="button" value="Play Top">').click(playTop);
 $form.append('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>');
 
