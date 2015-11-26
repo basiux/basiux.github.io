@@ -153,7 +153,7 @@ function evaluateNetwork (network, inputs) {
                 network.neurons[i].value = inputs[i];
         }
 
-        for (var _=0; _<network.neurons; _++) {
+        for (var _ in network.neurons) { // in pairs
                 var neuron = network.neurons[_];
                 var sum = 0;
                 for (var j = 0; j<neuron.incoming.length; j++) {
@@ -207,7 +207,7 @@ function crossover (g1, g2) {
 
         child.maxneuron = Math.max(g1.maxneuron,g2.maxneuron);
 
-        for (var mutation=0; mutation<g1.mutationRates; mutation++) {
+        for (var mutation in g1.mutationRates) { // in pairs
                 var rate = g1.mutationRates[mutation];
                 child.mutationRates[mutation] = rate;
         }
@@ -235,12 +235,12 @@ function randomNeuron (genes, nonInput) {
         }
 
         var count = 0;
-        for (var _=0; _<neurons; _++) {
+        for (var _ in neurons) { // in pairs
                 count = count + 1;
         }
         var n = Math.random(1, count);
 
-        for (var k=0; k<neurons; k++) {
+        for (var k in neurons) { // in pairs
                 var v = neurons[k];
                 n = n-1;
                 if (n == 0) {
@@ -333,7 +333,7 @@ function nodeMutate (genome) {
 
 function enableDisableMutate (genome, enable) {
         var candidates = [];
-        for (var _=0; _<genome.genes; _++) {
+        for (var _ in genome.genes) { // in pairs
                 var gene = genome.genes[_];
                 if (gene.enabled == !enable) {
                         candidates.concat(gene);
@@ -352,7 +352,7 @@ function enableDisableMutate (genome, enable) {
 }
 
 function mutate (genome) {
-        for (var mutation=0; mutation<genome.mutationRates; mutation++) {
+        for (var mutation in genome.mutationRates) { // in pairs
                 var rate = genome.mutationRates[mutation];
                 if (Math.random(1,2) == 1) {
                         genome.mutationRates[mutation] = 0.95*rate;
@@ -736,7 +736,7 @@ function displayGenome (genome) {
                 gui.drawText(223, 24+8*o, ButtonNames[o], color, 9);
         }
 
-        for (var n = 0; n < network.neurons.length; n++) {
+        for (var n in network.neurons) { // in pairs
                 var neuron = network.neurons[n];
                 cell = {};
                 if (n > Inputs && n <= MaxNodes) {
@@ -748,7 +748,7 @@ function displayGenome (genome) {
         }
 
         for (var n=0; n<4; n++) {
-                for (var _ = 0; _ < genome.genes.length; _++) {
+                for (var _ in genome.genes) { // in pairs
                         var gene = genome.genes[_];
                         if (gene.enabled) {
                                 var c1 = cells[gene.into];
@@ -786,7 +786,7 @@ function displayGenome (genome) {
         }
 
         gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
-        for (var n=0; n<cells.length; n++) {
+        for (var n in cells) { // in pairs
                 var cell = cells[n];
                 if (n > Inputs || cell.value != 0) {
                         var color = Math.floor((cell.value+1)/2*256);
@@ -800,7 +800,7 @@ function displayGenome (genome) {
                         gui.drawBox(cell.x-2,cell.y-2,cell.x+2,cell.y+2,opacity,color);
                 }
         }
-        for (var _=0; _<genome.genes.length; _++) {
+        for (var _ in genome.genes) { // in pairs
                 var gene = genome.genes[_];
                 if (gene.enabled) {
                         var c1 = cells[gene.into];
@@ -824,7 +824,7 @@ function displayGenome (genome) {
 
         if (forms.ischecked(showMutationRates)) {
                 var pos = 100;
-                for (var mutation=0; mutation<genome.mutationRates.length; mutation++) {
+                for (var mutation in genome.mutationRates) { // in pairs
                         var rate = genome.mutationRates[mutation];
                         gui.drawText(100, pos, mutation + ": " + rate, 0xFF000000, 10);
                         pos = pos + 8;
@@ -835,9 +835,9 @@ function displayGenome (genome) {
 function playTop () {
         var maxfitness = 0;
         var maxs, maxg;
-        for (var s=0; s<pool.species.length; s++) {
+        for (var s in pool.species) { // in pairs
                 var species = pool.species[s];
-                for (var g=0; g<species.genomes.length; g++) {
+                for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
                         if (genome.fitness > maxfitness) {
                                 maxfitness = genome.fitness;
