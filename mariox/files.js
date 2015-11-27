@@ -27,7 +27,7 @@ function loadFile (filename) {
         pool.maxFitness = poolContent.pop();
         pool.generation = poolContent.pop();
 
-        //forms.settext(maxFitnessLabel, "Max Fitness: " .. math.floor(pool.maxFitness))
+        $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
         while ( fitnessAlreadyMeasured() ) {
                 nextGenome();
