@@ -20,7 +20,7 @@ InputSize = (BoxRadius*2+1)*(BoxRadius*2+1);
 Inputs = InputSize+1;
 Outputs = ButtonNames.length;
 
-Population = 600;
+Population = 300; // species
 DeltaDisjoint = 2.0;
 DeltaWeights = 0.4;
 DeltaThreshold = 1.0;
