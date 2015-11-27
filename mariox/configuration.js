@@ -11,8 +11,8 @@ ButtonNames = [
   'START',
   'RIGHT',
   'LEFT',
-  'DOWN', // last command is being ignored, right now! :(
-//  'UP',
+//  'DOWN',
+  'UP', // last command is being ignored, right now! :(
 ];
 
 BoxRadius = 6;
