@@ -37,6 +37,6 @@ function loadFile (filename) {
 }
 
 function loadPool () {
-        var filename = $form.find('input#saveLoadfile').val();
+        var filename = $form.find('input#saveLoadFile').val();
         loadFile(filename);
 }
