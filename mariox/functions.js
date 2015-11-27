@@ -568,7 +568,7 @@ function removeWeakSpecies () {
         var sum = totalAverageFitness();
         for (var s = 0; s <pool.species.length; s ++) {
                 var species = pool.species[s];
-                breed = Math.floor(species.averageFitness / sum * Population);
+                var breed = Math.floor(species.averageFitness / sum * Population);
                 if (breed >= 1) {
                         survived.push(species); // table.insert
                 }
@@ -608,7 +608,7 @@ function newGeneration () {
         var children = [];
         for (var s = 0; s<pool.species.length; s++) {
                 var species = pool.species[s];
-                breed = Math.floor(species.averageFitness / sum * Population) - 1;
+                var breed = Math.floor(species.averageFitness / sum * Population) - 1;
                 for (var i=0; i<breed; i++) {
                         children.push( breedChild(species) ); // table.insert
                 }
