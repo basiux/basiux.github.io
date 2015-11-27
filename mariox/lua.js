@@ -11,7 +11,16 @@ function mathRandom (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function joypadSet (controller) { // review
-  console.warn('called joypad.set - probably need to press buttons here');
+function joypadSet (controller) {
   // simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
+  for (var button in controller) {
+    if (controller[button]) {
+      //console.log(button +' down');
+      simulate.keyDown(self.nes.keyboard.state1_keys[button]);
+    } else {
+      //console.log(button +' up');
+      simulate.keyUp(self.nes.keyboard.state1_keys[button]);
+    }
+  }
+  //console.log('joypad.set: '+ JSON.stringify(controller));
 }
