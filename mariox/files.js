@@ -1,95 +1,41 @@
-function writeFile (filename) { // review
-        var file = io.open(filename, "w");
-        file:write(pool.generation + "\n");
-        file:write(pool.maxFitness + "\n");
-        file:write(pool.species.length + "\n");
-        for (n=0; n<pool.species.length; n++) {
-                var species = pool.species[n];
-                file:write(species.topFitness + "\n");
-                file:write(species.staleness + "\n");
-                file:write(species.genomes.length + "\n");
-                for (m=0; m<species.genomes.length; m++) {
-                        var genome = species.genomes[m];
-                        file:write(genome.fitness + "\n");
-                        file:write(genome.maxneuron + "\n");
-                        for (mutation=0; m<genome.mutationRates.length; mutation++) {
-                                var rate = genome.mutationRates[mutation];
-                                file:write(mutation + "\n");
-                                file:write(rate + "\n");
-                        }
-                        file:write("{ne\n");
-
-                        file:write(genome.genes.length + "\n");
-                        for (l=0; l<genome.genes.length; l++) {
-                                var gene = genome.genes[l];
-                                file:write(gene.into + " ");
-                                file:write(gene.out + " ");
-                                file:write(gene.weight + " ");
-                                file:write(gene.innovation + " ");
-                                if (gene.enabled) {
-                                        file:write("1\n");
-                                } else {
-                                        file:write("0\n");
-                                }
-                        }
-                }
-        }
-        file:close();
+function writeFile (filename) { // actually using compressed localstorage instead of files
+        // using poolContent rather than `pool` for strict lua adaptation
+        var poolContent = [];
+        poolContent.push(pool.generation);
+        poolContent.push(pool.maxFitness);
+        poolContent.push(pool.species);
+        //setTimeout(function(){
+          var content = JSON.stringify(poolContent);
+          var compressed = LZString.compressToUTF16(content); // review - very, very slow bottleneck
+          console.log('writing file '+ filename +' - pool size: '+ content.length +' compressed: '+ compressed.length);
+          localStorage.setItem(filename, compressed);
+        //},0);
 }
 
 function savePool () {
-        var filename = forms.gettext(saveLoadFile); // review
+        var filename = $form.find('input#saveLoadFile').val();
         writeFile(filename);
 }
 
-function loadFile (filename) {/*
-        var file = io.open(filename, "r");
-        pool = newPool();
-        pool.generation = file:read("*number")
-        pool.maxFitness = file:read("*number")
-        forms.settext(maxFitnessLabel, "Max Fitness: " + Math.floor(pool.maxFitness))
-        var numSpecies = file:read("*number")
-        for s=1,numSpecies {
-                var species = newSpecies()
-                table.insert(pool.species, species)
-                species.topFitness = file:read("*number")
-                species.staleness = file:read("*number")
-                var numGenomes = file:read("*number")
-                for g=1,numGenomes {
-                        var genome = newGenome()
-                        table.insert(species.genomes, genome)
-                        genome.fitness = file:read("*number")
-                        genome.maxneuron = file:read("*number")
-                        var line = file:read("*line")
-                        while line != "{ne" {
-                                genome.mutationRates[line] = file:read("*number")
-                                line = file:read("*line")
-                        }
-                        var numGenes = file:read("*number")
-                        for n=1,numGenes {
-                                var gene = newGene()
-                                table.insert(genome.genes, gene)
-                                var enabled
-                                gene.into, gene.out, gene.weight, gene.innovation, enabled = file:read("*number", "*number", "*number", "*number", "*number")
-                                if enabled == 0 {
-                                        gene.enabled = false
-                                } else {
-                                        gene.enabled = true
-                                }
+function loadFile (filename) {
+        var compressed = localStorage.getItem(filename);
+        var content = LZString.decompressFromUTF16(compressed);
+        var poolContent = jQuery.parseJSON(content);
+        console.log('loading '+ filename +' - pool size: '+ content.length +' compressed: '+ compressed.length);
+        pool.species = poolContent.pop();
+        pool.maxFitness = poolContent.pop();
+        pool.generation = poolContent.pop();
 
-                        }
-                }
-        }
-        file:close()
+        $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
-        while fitnessAlreadyMeasured() {
-                nextGenome()
+        while ( fitnessAlreadyMeasured() ) {
+                nextGenome();
         }
-        initializeRun()
-        pool.currentFrame = pool.currentFrame + 1
-*/}
+        initializeRun();
+        pool.currentFrame = pool.currentFrame + 1;
+}
 
 function loadPool () {
-        var filename = forms.gettext(saveLoadFile); // review
+        var filename = $form.find('input#saveLoadFile').val();
         loadFile(filename);
 }

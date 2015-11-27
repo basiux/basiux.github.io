@@ -1,10 +1,11 @@
 // ok, not quite a toolbox yet, not even a singleton, but we'll get there (if needed)
 
 var pool;
-var basic;
+var $form; // jQuery's
+var $aigui;
+var rightmost;
+var timeout;
 
 // from getPositions
 var marioX;
 var marioY;
-var screenX;
-var screenY;
