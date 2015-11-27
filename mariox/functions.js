@@ -311,7 +311,7 @@ function nodeMutate (genome) {
 
         genome.maxneuron = genome.maxneuron + 1;
 
-        var gene = genome.genes[mathRandom(1,genome.genes.length)];
+        var gene = genome.genes[mathRandom(0,genome.genes.length-1)];
         if ( !gene || !gene.enabled ) {
                 return;
         }
@@ -344,7 +344,7 @@ function enableDisableMutate (genome, enable) {
                 return;
         }
 
-        var gene = candidates[mathRandom(1,candidates.length)];
+        var gene = candidates[mathRandom(0,candidates.length-1)];
 
         if ( !gene ) return;
 
@@ -434,7 +434,7 @@ function disjoint (genes1, genes2) {
                 }
         }
 
-        var n = Math.max(genes1.length, genes2.length);
+        var n = Math.max(genes1.length-1, genes2.length-1);
 
         return disjointGenes / n;
 }
@@ -525,11 +525,11 @@ function cullSpecies (cutToOne) {
 function breedChild (species) {
         var child = {};
         if (mathRandom() < CrossoverChance) {
-                g1 = species.genomes[mathRandom(1, species.genomes.length)];
-                g2 = species.genomes[mathRandom(1, species.genomes.length)];
+                g1 = species.genomes[mathRandom(0, species.genomes.length-1)];
+                g2 = species.genomes[mathRandom(0, species.genomes.length-1)];
                 child = crossover(g1, g2);
         } else {
-                g = species.genomes[mathRandom(1, species.genomes.length)];
+                g = species.genomes[mathRandom(0, species.genomes.length-1)];
                 child = copyGenome(g);
         }
 
@@ -614,8 +614,8 @@ function newGeneration () {
                 }
         }
         cullSpecies(true); // Cull all but the top member of each species
-        while (children.length + pool.species.length < Population) {
-                var species = pool.species[mathRandom(1, pool.species.length)];
+        while (children.length + pool.species.length <= Population) {
+                var species = pool.species[mathRandom(0, pool.species.length-1)];
                 children.push( breedChild(species) ); // table.insert
         }
         for (var c=0; c<children.length; c++) {
