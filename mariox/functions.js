@@ -471,7 +471,7 @@ function rankGlobally () {
         for (var s = 0; s <pool.species.length; s ++) {
                 var species = pool.species[s];
                 for (var g = 0; g <species.genomes.length; g ++) {
-                        global.concat(species.genomes[g]); // table.insert
+                        global.push(species.genomes[g]); // table.insert
                 }
         }
         global.sort(function (a, b) {
@@ -555,7 +555,7 @@ function removeStaleSpecies () {
                         species.staleness = species.staleness + 1;
                 }
                 if (species.staleness < StaleSpecies || species.topFitness >= pool.maxFitness) {
-                        survived.concat(species); // table.insert
+                        survived.push(species); // table.insert
                 }
         }
 
@@ -570,7 +570,7 @@ function removeWeakSpecies () {
                 var species = pool.species[s];
                 breed = Math.floor(species.averageFitness / sum * Population);
                 if (breed >= 1) {
-                        survived.concat(species); // table.insert
+                        survived.push(species); // table.insert
                 }
         }
 
