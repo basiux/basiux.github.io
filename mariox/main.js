@@ -74,9 +74,9 @@ setInterval(function asyncInfiniteLoop () {
                 }
         }
 
-        $aigui.find('#banner input#gen').val( pool.generation + ' species ' + pool.currentSpecies + ' genome ' + pool.currentGenome + ' (' + Math.floor(measured/total*100) + '%)' );
-        $aigui.find('#banner input#fitness').val( Math.floor(rightmost - (pool.currentFrame) / 2 - (timeout + timeoutBonus)*2/3) );
-        $aigui.find('#banner input#maxFitness').val( Math.floor(pool.maxFitness) );
+        $aigui.find('#banner #gen').text( pool.generation + ' species ' + pool.currentSpecies + ' genome ' + pool.currentGenome + ' (' + Math.floor(measured/total*100) + '%)' );
+        $aigui.find('#banner #fitness').text( Math.floor(rightmost - (pool.currentFrame) / 2 - (timeout + timeoutBonus)*2/3) );
+        $aigui.find('#banner #maxFitness').text( Math.floor(pool.maxFitness) );
 
         pool.currentFrame = pool.currentFrame + 1;
 

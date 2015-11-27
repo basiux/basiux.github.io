@@ -131,16 +131,16 @@ function displayGenome (genome) { // review - at least the `gui.`
 }
 
 function displayBanner () {
-  $aigui.find('div#banner').toggle($form.find('input#hideBanner')[0].checked);
+  $aigui.find('div#banner').toggle(!$form.find('input#hideBanner')[0].checked);
 }
 
 function createAiGUI () {
   $aigui = $('<div id="aigui"></div>').appendTo('#emulator');
 
   var $banner = $('<div id="banner" style="background: 0xD0FFFFFF"></div>').appendTo($aigui);
-  $banner.append('<label for="gen">Gen <input id="gen" type="text" class="noborder"></label>');
-  $banner.append('<label for="fitness">Fitness: <input id="fitness" type="text" class="noborder"></label>');
-  $banner.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" class="noborder"></label>');
+  $banner.append('<label for="gen">Gen <span id="gen" class="data"></span></label>');
+  $banner.append('<label for="fitness">Fitness: <span id="fitness" class="data"></span></label>');
+  $banner.append('<label for="maxFitness">Max Fitness: <span id="maxFitness" class="data"></span></label>');
 
   $form = $('<form id="fitness"><h1>Fitness</h1></form>').appendTo('#emulator');
 
