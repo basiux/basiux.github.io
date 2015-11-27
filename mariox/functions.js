@@ -709,7 +709,7 @@ function playTop () {
                 var species = pool.species[s];
                 for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
-                        if (genome.fitness >= maxFitness) {
+                        if (genome.fitness > maxFitness) {
                                 maxFitness = genome.fitness;
                                 maxSpecies = s;
                                 maxGenome = g;
