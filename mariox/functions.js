@@ -475,7 +475,7 @@ function rankGlobally () {
                 }
         }
         global.sort(function (a, b) {
-                return (a.fitness - b.fitness);
+                return (a.fitness - b.fitness); // from less to more fit
         })
 
         for (var g=0; g<global.length; g++) {
