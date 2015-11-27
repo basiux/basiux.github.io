@@ -6,16 +6,7 @@ if ( isEmpty(pool) ) {
 
 //event.onexit(onExit) // review
 
-$form = $('<form id="fitness"><h1>Fitness</h1></form>').appendTo('#emulator');
-$form.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" value="'+ Math.floor(pool.maxFitness) +'"></label>');
-$form.append('<label for="showNetwork"><input id="showNetwork" type="checkbox"> Show Map</label>');
-$form.append('<label for="showMutationRates"><input id="showMutationRates" type="checkbox"> Show M-Rates</label>');
-$form.append( $('<input id="restartButton" type="button" value="Restart">').click(initializePool) );
-$form.append( $('<input id="saveButton" type="button" value="Save">').click(savePool) );
-$form.append( $('<input id="loadButton" type="button" value="Load">').click(loadPool) );
-$form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
-$form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
-$form.append('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>');
+createForm();
 
 /*
 while true do // review
