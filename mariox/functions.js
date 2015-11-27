@@ -625,7 +625,7 @@ function newGeneration () {
 
         pool.generation = pool.generation + 1;
 
-        writeFile("backup." + pool.generation + "." + forms.gettext(saveLoadFile));
+        writeFile("backup." + pool.generation + "." + $form.find('input#saveLoadFile').val());
 }
 
 function initializePool () {
@@ -822,7 +822,7 @@ function displayGenome (genome) {
 
         gui.drawBox(49,71,51,78,0x00000000,0x80FF0000);
 
-        if (forms.ischecked(showMutationRates)) {
+        if ($form.find('input#showMutationRates')[0].checked) {
                 var pos = 100;
                 for (var mutation in genome.mutationRates) { // in pairs
                         var rate = genome.mutationRates[mutation];
@@ -850,7 +850,7 @@ function playTop () {
         pool.currentSpecies = maxs;
         pool.currentGenome = maxg;
         pool.maxFitness = maxfitness;
-        forms.settext(maxFitnessLabel, "Max Fitness: " + Math.floor(pool.maxFitness));
+        $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
         initializeRun();
         pool.currentFrame = pool.currentFrame + 1;
         return;
