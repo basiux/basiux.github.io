@@ -37,7 +37,7 @@ function displayGenome (genome) { // review - at least the `gui.`
         for (var n in network.neurons) { // in pairs
                 var neuron = network.neurons[n];
                 cell = {};
-                if (n > Inputs && n <= MaxNodes) {
+                if (n >= Inputs && n <= MaxNodes) {
                         cell.x = 140;
                         cell.y = 40;
                         cell.value = neuron.value;
@@ -51,7 +51,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                         if (gene.enabled) {
                                 var c1 = cells[gene.into];
                                 var c2 = cells[gene.out];
-                                if (gene.into > Inputs && gene.into <= MaxNodes) {
+                                if (gene.into >= Inputs && gene.into <= MaxNodes) {
                                         c1.x = 0.75*c1.x + 0.25*c2.x;
                                         if (c1.x >= c2.x) {
                                                 c1.x = c1.x - 40;
@@ -66,7 +66,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                                         c1.y = 0.75*c1.y + 0.25*c2.y;
 
                                 }
-                                if (gene.out > Inputs && gene.out <= MaxNodes) {
+                                if (gene.out >= Inputs && gene.out <= MaxNodes) {
                                         c2.x = 0.25*c1.x + 0.75*c2.x;
                                         if (c1.x >= c2.x) {
                                                 c2.x = c2.x + 40;
@@ -86,7 +86,7 @@ function displayGenome (genome) { // review - at least the `gui.`
         gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
         for (var n in cells) { // in pairs
                 var cell = cells[n];
-                if (n > Inputs || cell.value != 0) {
+                if (n >= Inputs || cell.value != 0) {
                         var color = Math.floor((cell.value+1)/2*256);
                         if (color > 255) { color = 255 };
                         if (color < 0) { color = 0 };

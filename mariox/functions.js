@@ -226,10 +226,10 @@ function randomNeuron (genes, nonInput) {
                 neurons[MaxNodes+o] = true;
         }
         for (var i=0; i<genes.length; i++) {
-                if ( !nonInput || genes[i].into > Inputs) {
+                if ( !nonInput || genes[i].into >= Inputs) {
                         neurons[genes[i].into] = true;
                 }
-                if ( !nonInput || genes[i].out > Inputs) {
+                if ( !nonInput || genes[i].out >= Inputs) {
                         neurons[genes[i].out] = true;
                 }
         }
@@ -514,7 +514,7 @@ function cullSpecies (cutToOne) {
 
                 var remaining = Math.ceil(species.genomes.length/2);
                 if (cutToOne) {
-                        remaining = 1;
+                        remaining = 0; // review 1 or 0
                 }
                 while (species.genomes.length > remaining) {
                         species.genomes.pop();
@@ -708,7 +708,7 @@ function playTop () {
                 var species = pool.species[s];
                 for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
-                        if (genome.fitness > maxFitness) {
+                        if (genome.fitness >= maxFitness) {
                                 maxFitness = genome.fitness;
                                 maxSpecies = s;
                                 maxGenome = g;
