@@ -8,7 +8,7 @@ jQuery.includeScript("mariox/lz-string.min.js"); // compressing json for localst
 
 // load Mario and controls
 $('.nes-roms select').val('jsnes/Super Mario Bros. (Japan, USA).nes').change();
-jQuery.includeScript("simulate.js");
+jQuery.includeScript("mariox/simulate.js");
 
 jQuery.includeScript("mariox/configuration.js");
 
