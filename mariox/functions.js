@@ -514,7 +514,7 @@ function cullSpecies (cutToOne) {
 
                 var remaining = Math.ceil(species.genomes.length/2);
                 if (cutToOne) {
-                        remaining = 0; // review 1 or 0
+                        remaining = 1; // review 1 or 0
                 }
                 while (species.genomes.length > remaining) {
                         species.genomes.pop();
