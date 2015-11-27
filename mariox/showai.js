@@ -142,7 +142,7 @@ function createAiGUI () {
   $banner.append('<label for="fitness">Fitness: <span id="fitness" class="data"></span></label>');
   $banner.append('<label for="maxFitness">Max Fitness: <span id="maxFitness" class="data"></span></label>');
 
-  $form = $('<form id="fitness"><h1>Fitness</h1></form>').appendTo('#emulator');
+  $form = $('<form id="fitnessSettings"><h1>Fitness Settings</h1></form>').appendTo('#emulator');
 
   $form.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" value="'+ Math.floor(pool.maxFitness) +'"></label>');
   $form.append('<label for="showNetwork"><input id="showNetwork" type="checkbox"> Show Map</label>');
