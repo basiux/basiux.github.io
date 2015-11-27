@@ -154,9 +154,3 @@ function createAiGUI () {
   $form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
   $form.append( $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').click(displayBanner) );
 }
-
-function keepMaxFitnessUpdated () { // review
-  setInterval(function(){
-    $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
-  }, 1000);
-}

@@ -6,8 +6,6 @@ if ( isEmpty(pool) ) {
 
 //event.onexit(onExit) // review
 
-
-keepMaxFitnessUpdated(); // just in case
 createAiGUI();
 
 setInterval(function asyncInfiniteLoop () {
