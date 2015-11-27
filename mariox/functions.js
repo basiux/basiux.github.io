@@ -833,23 +833,24 @@ function displayGenome (genome) {
 }
 
 function playTop () {
-        var maxfitness = 0;
-        var maxs, maxg;
+        var maxFitness = 0;
+        var maxSpecies = 0;
+        var maxGenome = 0;
         for (var s in pool.species) { // in pairs
                 var species = pool.species[s];
                 for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
-                        if (genome.fitness > maxfitness) {
-                                maxfitness = genome.fitness;
-                                maxs = s;
-                                maxg = g;
+                        if (genome.fitness > maxFitness) {
+                                maxFitness = genome.fitness;
+                                maxSpecies = s;
+                                maxGenome = g;
                         }
                 }
         }
 
-        pool.currentSpecies = maxs;
-        pool.currentGenome = maxg;
-        pool.maxFitness = maxfitness;
+        pool.currentSpecies = maxSpecies;
+        pool.currentGenome = maxGenome;
+        pool.maxFitness = maxFitness;
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
         initializeRun();
         pool.currentFrame = pool.currentFrame + 1;
