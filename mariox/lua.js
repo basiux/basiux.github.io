@@ -29,7 +29,10 @@ function loadState (stateName) { // review
   // there is no state saving for now. we will need to build something
   // at least to get out from menu screen, by pressing start at it.
   // for now, it can be called just once, or else there's a risk of pause
+  // AND...
+  // it ended up being easier to just let Mario press START after all! :D :)
+  // this is not even being used anymore (for now anyway).
   setTimeout(function () {
-    simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
+//    simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
   }, 2100)
 }

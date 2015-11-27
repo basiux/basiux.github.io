@@ -1,4 +1,4 @@
-loadState(); // for now, it can be called just once, or else there's a risk of pause
+//loadState(); // for now, it can be called just once, or else there's a risk of pause
 
 if ( isEmpty(pool) ) {
         initializePool();
