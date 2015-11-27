@@ -2,7 +2,7 @@ if ( isEmpty(pool) ) {
         initializePool();
 }
 
-writeFile("temp.pool")
+// writeFile("temp.pool") // review - removed for testing, due to slow compression
 
 //event.onexit(onExit) // review
 
