@@ -682,11 +682,11 @@ function evaluateCurrent() {
 
 
 function nextGenome () {
-        pool.currentGenome = pool.currentGenome + 1;
-        if (pool.currentGenome > pool.species[pool.currentSpecies].genomes.length) {
+        pool.currentGenome++;
+        if (pool.currentGenome >= pool.species[pool.currentSpecies].genomes.length) {
                 pool.currentGenome = 0; // review 1 or 0
-                pool.currentSpecies = pool.currentSpecies+1;
-                if (pool.currentSpecies > pool.species.length) {
+                pool.currentSpecies++;
+                if (pool.currentSpecies >= pool.species.length) {
                         newGeneration();
                         pool.currentSpecies = 0; // review 1 or 0
                 }
