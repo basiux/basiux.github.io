@@ -20,4 +20,6 @@ jQuery.includeScript("mariox/functions.js");
 
 jQuery.includeScript("mariox/files.js");
 
+jQuery.includeScript("mariox/showai.js");
+
 jQuery.includeScript("mariox/main.js");
