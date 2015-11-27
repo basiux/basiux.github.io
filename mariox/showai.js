@@ -130,7 +130,18 @@ function displayGenome (genome) { // review - at least the `gui.`
         }
 }
 
-function createForm () {
+function displayBanner () {
+  $aigui.find('div#banner').toggle($form.find('input#hideBanner')[0].checked);
+}
+
+function createAiGUI () {
+  $aigui = $('<div id="aigui"></div>').appendTo('#emulator');
+
+  var $banner = $('<div id="banner" style="background: 0xD0FFFFFF"></div>').appendTo($aigui);
+  $banner.append('<label for="gen">Gen <input id="gen" type="text" class="noborder"></label>');
+  $banner.append('<label for="fitness">Fitness: <input id="fitness" type="text" class="noborder"></label>');
+  $banner.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" class="noborder"></label>');
+
   $form = $('<form id="fitness"><h1>Fitness</h1></form>').appendTo('#emulator');
 
   $form.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" value="'+ Math.floor(pool.maxFitness) +'"></label>');
@@ -141,7 +152,7 @@ function createForm () {
   $form.append( $('<input id="loadButton" type="button" value="Load">').click(loadPool) );
   $form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
   $form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
-  $form.append('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>');
+  $form.append( $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').click(displayBanner) );
 }
 
 function keepMaxFitnessUpdated () { // review

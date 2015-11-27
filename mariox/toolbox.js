@@ -2,6 +2,7 @@
 
 var pool;
 var $form; // jQuery's
+var $aigui;
 var rightmost;
 var timeout;
 
