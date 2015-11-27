@@ -7,7 +7,7 @@ function writeFile (filename) { // actually using compressed localstorage instea
         var zipped = unzipped.zip();
         var content = JSON.stringify(zipped);
         var uncompressedContent = JSON.stringify(poolContent); // just for log
-        console.log('writing file - pool size: '+ uncompressedContent.length +' compressed: '+ content.length);
+        console.log('writing file '+ filename +' - pool size: '+ uncompressedContent.length +' compressed: '+ content.length);
         localStorage.setItem(filename, content);
 }
 
@@ -21,8 +21,8 @@ function loadFile (filename) {
         var content = jQuery.parseJSON(storage);
         var zipped = new jsonZipper(content, true);
         var poolContent = zipped.unzip(); // unzipped
-        var uncompressedContent = JSON.stringify(pool); // just for log
-        console.log('loading - pool size: '+ uncompressedContent.length +' compressed: '+ content.length);
+        var uncompressedContent = JSON.stringify(poolContent); // just for log (and size check)
+        console.log('loading '+ filename +' - pool size: '+ uncompressedContent.length +' compressed: '+ content.length);
         pool.species = poolContent.pop();
         pool.maxFitness = poolContent.pop();
         pool.generation = poolContent.pop();
