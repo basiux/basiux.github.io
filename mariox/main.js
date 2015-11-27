@@ -52,7 +52,7 @@ setInterval(function asyncInfiniteLoop () {
                         //writeFile( "backup." + pool.generation + "." + $form.find('input#saveLoadFile').val() );
                 }
 
-                console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
+                //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
                 pool.currentSpecies = 0; // review 1 or 0
                 pool.currentGenome = 0; // review 1 or 0
                 while ( fitnessAlreadyMeasured() ) {
