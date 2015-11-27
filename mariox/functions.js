@@ -584,6 +584,7 @@ function addToSpecies (child) {
                 if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) { // review 1 or 0
                         species.genomes.push(child); // table.insert
                         foundSpecies = true;
+                        break; //for
                 }
         }
 
