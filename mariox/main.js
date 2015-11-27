@@ -8,6 +8,8 @@ if ( isEmpty(pool) ) {
 
 createForm();
 
+keepMaxFitnessUpdated(); // just in case
+
 /*
 while true do // review
         local backgroundColor = 0xD0FFFFFF
