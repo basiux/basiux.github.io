@@ -552,7 +552,7 @@ function removeStaleSpecies () {
                         species.topFitness = species.genomes[0].fitness; // review 1 or 0
                         species.staleness = 0;
                 } else {
-                        species.staleness = species.staleness + 1;
+                        species.staleness++;
                 }
                 if (species.staleness < StaleSpecies || species.topFitness >= pool.maxFitness) {
                         survived.push(species); // table.insert
