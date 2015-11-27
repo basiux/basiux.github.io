@@ -17,9 +17,9 @@ function savePool () {
 }
 
 function loadFile (filename) {
-        var storage = localStorage.getItem(filename);
-        var content = jQuery.parseJSON(storage);
-        var zipped = new jsonZipper(content, true);
+        var content = localStorage.getItem(filename);
+        var parsed = jQuery.parseJSON(content);
+        var zipped = new jsonZipper(parsed, true);
         var poolContent = zipped.unzip(); // unzipped
         var uncompressedContent = JSON.stringify(poolContent); // just for log (and size check)
         console.log('loading '+ filename +' - pool size: '+ uncompressedContent.length +' compressed: '+ content.length);
