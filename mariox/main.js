@@ -1,3 +1,7 @@
+setTimeout(function () {
+  simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
+}, 2100)
+
 if ( isEmpty(pool) ) {
         initializePool();
 }

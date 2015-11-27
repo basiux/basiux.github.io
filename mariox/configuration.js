@@ -12,7 +12,6 @@ ButtonNames = [
   'DOWN',
   'LEFT',
   'RIGHT',
-  'START',
 ];
 
 BoxRadius = 6;
