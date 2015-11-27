@@ -649,8 +649,8 @@ function clearJoypad () {
 }
 
 function initializeRun () {
-        // probably not needed - the idea here was starting at a given stage
-        //savestate.load(SavestateFilename);
+        // review - probably something like savestate will be needed
+        //loadState(Filename); // for now, it can be called just once, or else there's a risk of pause
         rightmost = 0;
         pool.currentFrame = 0;
         timeout = TimeoutConstant;
