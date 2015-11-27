@@ -8,10 +8,11 @@ Filename = "mariox.state"
 ButtonNames = [
   'A',
   'B',
-  'UP',
-  'DOWN',
-  'LEFT',
+  'START',
   'RIGHT',
+  'LEFT',
+  'DOWN', // last command is being ignored, right now! :(
+//  'UP',
 ];
 
 BoxRadius = 6;
