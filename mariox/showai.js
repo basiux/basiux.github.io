@@ -1,4 +1,4 @@
-function displayGenome (genome) {
+function displayGenome (genome) { // review - at least the `gui.`
         var network = genome.network;
         var cells = [];
         var i = 0; // review 1 or 0
