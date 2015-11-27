@@ -2,6 +2,8 @@
 
 var pool;
 var $form; // jQuery's
+var rightmost;
+var timeout;
 
 // from getPositions
 var marioX;
