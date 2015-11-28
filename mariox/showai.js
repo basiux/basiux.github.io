@@ -10,7 +10,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                         cell.y = 70+5*dy;
                         cell.value = network.neurons[i].value;
                         cells[i] = cell;
-                        i = i + 1;
+                        i++;
                 }
         }
         var biasCell = {};
