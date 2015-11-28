@@ -3,8 +3,8 @@ function displayGenome (genome) { // review - at least the `gui.`
         var cells = [];
         var i = 0; // array bonds
         var cell = {};
-        for (var dy=-BoxRadius; dy<BoxRadius; dy++) {
-                for (var dx=-BoxRadius; dx<BoxRadius; dx++) {
+        for (var dy=-BoxRadius; dy<=BoxRadius; dy++) {
+                for (var dx=-BoxRadius; dx<=BoxRadius; dx++) {
                         cell = {};
                         cell.x = 50+5*dx;
                         cell.y = 70+5*dy;
@@ -17,7 +17,7 @@ function displayGenome (genome) { // review - at least the `gui.`
         biasCell.x = 80;
         biasCell.y = 110;
         biasCell.value = network.neurons[Inputs-1].value; // array bonds
-        cells[Inputs] = biasCell;
+        cells[Inputs-1] = biasCell; // array bonds
 
         for (var o = 0; o<Outputs; o++) {
                 cell = {};
