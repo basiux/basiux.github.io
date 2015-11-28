@@ -53,8 +53,8 @@ setInterval(function asyncInfiniteLoop () {
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
-                pool.currentSpecies = 0; // review 1 or 0
-                pool.currentGenome = 0; // review 1 or 0
+                pool.currentSpecies = 0; // upper / lower or min / max bound (might need to review)
+                pool.currentGenome = 0; // upper / lower or min / max bound (might need to review)
                 while ( fitnessAlreadyMeasured() ) {
                         nextGenome();
                 }

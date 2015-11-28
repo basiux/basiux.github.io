@@ -1,7 +1,7 @@
 function displayGenome (genome) { // review - at least the `gui.`
         var network = genome.network;
         var cells = [];
-        var i = 0; // review 1 or 0
+        var i = 0; // upper / lower or min / max bound (might need to review)
         var cell = {};
         for (var dy=-BoxRadius; dy<BoxRadius; dy++) {
                 for (var dx=-BoxRadius; dx<BoxRadius; dx++) {
