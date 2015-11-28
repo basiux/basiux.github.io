@@ -77,9 +77,9 @@ function asyncMainLoop () { // infinite, async equivalent
                 var species = pool.species[s];
                 for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
-                        total = total + 1;
+                        total++;
                         if (genome.fitness != 0) {
-                                measured = measured + 1;
+                                measured++;
                         }
                 }
         }
@@ -88,7 +88,7 @@ function asyncMainLoop () { // infinite, async equivalent
         $aigui.find('#banner #fitness').text( Math.floor(rightmost - (pool.currentFrame) / 2 - (timeout + timeoutBonus)*2/3) );
         $aigui.find('#banner #maxFitness').text( Math.floor(pool.maxFitness) );
 
-        pool.currentFrame = pool.currentFrame + 1;
+        pool.currentFrame++;
 
         self.nes.frame();
 }
