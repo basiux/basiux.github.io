@@ -6,8 +6,6 @@ if ( isEmpty(pool) ) {
 
 // writeFile("temp.pool") // review - removed for testing, due to slow compression
 
-//event.onexit(onExit) // review
-
 createAiGUI();
 
 self.nes.stop();

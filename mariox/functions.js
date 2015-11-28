@@ -726,7 +726,3 @@ function playTop () {
         pool.currentFrame = pool.currentFrame + 1;
         return;
 }
-
-function onExit () {
-//        forms.destroy(form)
-}
