@@ -61,8 +61,8 @@ function asyncMainLoop () { // infinite, async equivalent
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
-                pool.currentSpecies = 0; // array bound
-                pool.currentGenome = 0; // array bound
+                pool.currentSpecies = 0; // array bonds
+                pool.currentGenome = 0; // array bonds
                 while ( fitnessAlreadyMeasured() ) {
                         nextGenome();
                 }

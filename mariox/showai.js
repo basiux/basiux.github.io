@@ -1,7 +1,7 @@
 function displayGenome (genome) { // review - at least the `gui.`
         var network = genome.network;
         var cells = [];
-        var i = 0; // array bound
+        var i = 0; // array bonds
         var cell = {};
         for (var dy=-BoxRadius; dy<BoxRadius; dy++) {
                 for (var dx=-BoxRadius; dx<BoxRadius; dx++) {
@@ -16,7 +16,7 @@ function displayGenome (genome) { // review - at least the `gui.`
         var biasCell = {};
         biasCell.x = 80;
         biasCell.y = 110;
-        biasCell.value = network.neurons[Inputs-1].value; // array bound
+        biasCell.value = network.neurons[Inputs-1].value; // array bonds
         cells[Inputs] = biasCell;
 
         for (var o = 0; o<Outputs; o++) {
@@ -52,7 +52,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                         if (gene.enabled) {
                                 var c1 = cells[gene.into];
                                 var c2 = cells[gene.out];
-                                if (gene.into > Inputs && gene.into <= MaxNodes) { // array bound
+                                if (gene.into > Inputs && gene.into <= MaxNodes) { // array bonds
                                         c1.x = 0.75*c1.x + 0.25*c2.x;
                                         if (c1.x >= c2.x) {
                                                 c1.x = c1.x - 40;

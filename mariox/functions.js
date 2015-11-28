@@ -14,8 +14,8 @@ function newPool () {
         pool.species = [];
         pool.generation = 0;
         pool.innovation = Outputs;
-        pool.currentSpecies = 0; // array bound
-        pool.currentGenome = 0; // array bound
+        pool.currentSpecies = 0; // array bonds
+        pool.currentGenome = 0; // array bonds
         pool.currentFrame = 0;
         pool.maxFitness = 0;
 
@@ -70,9 +70,9 @@ function copyGenome (genome) {
 
 function basicGenome () {
         var genome = newGenome();
-        //var innovation = 1; // array bound - probably useless
+        //var innovation = 1; // array bonds - probably useless
 
-        genome.maxneuron = Inputs - 1; // array bound
+        genome.maxneuron = Inputs - 1; // array bonds
         mutate(genome);
 
         return genome;
@@ -278,11 +278,11 @@ function linkMutate (genome, forceBias) {
         var neuron2 = randomNeuron(genome.genes, true);
 
         var newLink = newGene();
-        if (neuron1 < Inputs && neuron2 < Inputs) { // array bound
+        if (neuron1 < Inputs && neuron2 < Inputs) { // array bonds
                 // Both input nodes
                 return;
         }
-        if (neuron2 < Inputs) { // array bound
+        if (neuron2 < Inputs) { // array bonds
                 // Swap output and input
                 var temp = neuron1;
                 neuron1 = neuron2;
@@ -292,7 +292,7 @@ function linkMutate (genome, forceBias) {
         newLink.into = neuron1;
         newLink.out = neuron2;
         if (forceBias) {
-                newLink.into = Inputs - 1; // array bound
+                newLink.into = Inputs - 1; // array bonds
         }
 
         if ( containsLink(genome.genes, newLink) ) {
@@ -514,7 +514,7 @@ function cullSpecies (cutToOne) {
 
                 var remaining = Math.ceil(species.genomes.length/2);
                 if (cutToOne) {
-                        remaining = 1; // array bound
+                        remaining = 1; // array bonds
                 }
                 while (species.genomes.length > remaining) {
                         species.genomes.pop();
@@ -548,8 +548,8 @@ function removeStaleSpecies () {
                         return (b.fitness - a.fitness);
                 })
 
-                if (species.genomes[0].fitness > species.topFitness) { // array bound
-                        species.topFitness = species.genomes[0].fitness; // array bound
+                if (species.genomes[0].fitness > species.topFitness) { // array bonds
+                        species.topFitness = species.genomes[0].fitness; // array bonds
                         species.staleness = 0;
                 } else {
                         species.staleness++;
@@ -581,7 +581,7 @@ function addToSpecies (child) {
         var foundSpecies = false;
         for (var s=0; s<pool.species.length; s++) {
                 var species = pool.species[s];
-                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) { // array bound
+                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) { // array bonds
                         species.genomes.push(child); // table.insert
                         foundSpecies = true;
                         break; //for
@@ -684,11 +684,11 @@ function evaluateCurrent() {
 function nextGenome () {
         pool.currentGenome++;
         if (pool.currentGenome >= pool.species[pool.currentSpecies].genomes.length) {
-                pool.currentGenome = 0; // array bound
+                pool.currentGenome = 0; // array bonds
                 pool.currentSpecies++;
                 if (pool.currentSpecies >= pool.species.length) {
                         newGeneration();
-                        pool.currentSpecies = 0; // array bound
+                        pool.currentSpecies = 0; // array bonds
                 }
         }
 }

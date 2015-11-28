@@ -52,14 +52,14 @@ function getInputs () {
 
                         tile = getTile(dx, dy);
                         if (tile == 1 && marioY+dy < 0x1B0) {
-                                inputs[inputs.length-1] = 1; // array bound
+                                inputs[inputs.length-1] = 1; // array bonds
                         }
 
-                        for (var i = 0; i<sprites.length; i++) { // array bound
+                        for (var i = 0; i<sprites.length; i++) { // array bonds
                                 distx = Math.abs(sprites[i]["x"] - (marioX+dx));
                                 disty = Math.abs(sprites[i]["y"] - (marioY+dy));
                                 if (distx <= 8 && disty <= 8) {
-                                        inputs[inputs.length-1] = -1; // array bound
+                                        inputs[inputs.length-1] = -1; // array bonds
                                 }
                         }
                 }
