@@ -671,8 +671,8 @@ function evaluateCurrent() {
         controller = evaluateNetwork(genome.network, inputs);
 
         if (controller["KEY_LEFT"] && controller["KEY_RIGHT"]) {
-                controller["KEY_LEFTLeft"] = false;
-                controller["KEY_RIGHTRight"] = false;
+                controller["KEY_LEFT"] = false;
+                controller["KEY_RIGHT"] = false;
         }
         if (controller["KEY_UP"] && controller["KEY_DOWN"]) {
                 controller["KEY_UP"] = false;
