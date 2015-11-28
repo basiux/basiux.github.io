@@ -678,8 +678,6 @@ function evaluateCurrent() {
                 controller["KEY_UP"] = false;
                 controller["KEY_DOWN"] = false;
         }
-
-        joypadSet(controller);
 }
 
 
