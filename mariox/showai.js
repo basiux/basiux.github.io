@@ -31,7 +31,8 @@ function displayGenome (genome) { // review - at least the `gui.`
                 } else {
                         color = 0xFF000000;
                 }
-                gui.drawText(223, 24+8*o, ButtonNames[o], color, 9);
+                $aigui.find('#show #buttonNames').html( ButtonNames[o] +'<br>' );
+                //gui.drawText(223, 24+8*o, ButtonNames[o], color, 9);
         }
 
         for (var n in network.neurons) { // in pairs
@@ -124,7 +125,8 @@ function displayGenome (genome) { // review - at least the `gui.`
                 var pos = 100;
                 for (var mutation in genome.mutationRates) { // in pairs
                         var rate = genome.mutationRates[mutation];
-                        gui.drawText(100, pos, mutation + ": " + rate, 0xFF000000, 10);
+                        $aigui.find('#show #mutation').html( mutation +': '+ rate +'<br>' );
+                        //gui.drawText(100, pos, mutation + ": " + rate, 0xFF000000, 10);
                         pos = pos + 8;
                 }
         }
@@ -151,6 +153,10 @@ function createAiGUI () {
   $banner.append('<label for="gen">Gen <span id="gen" class="data"></span></label>');
   $banner.append('<label for="fitness">Fitness: <span id="fitness" class="data"></span></label>');
   $banner.append('<label for="maxFitness">Max Fitness: <span id="maxFitness" class="data"></span></label>');
+
+  var $show = $('<div id="show"></div>').appendTo($aigui);
+  $show.append('<span id="buttonNames" class="data"></span>');
+  $show.append('<span id="mutations" class="data"></span>');
 
   $form = $('<form id="fitnessSettings"><h1>Fitness Settings</h1></form>').appendTo('#emulator');
 
