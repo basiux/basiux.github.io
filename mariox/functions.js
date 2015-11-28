@@ -4,16 +4,11 @@ function sigmoid (x) {
         return 2/(1+Math.exp(-4.9*x))-1;
 }
 
-function newInnovation () {
-        pool.innovation = pool.innovation + 1;
-        return pool.innovation;
-}
-
 function newPool () {
         var pool = {};
         pool.species = [];
         pool.generation = 0;
-        pool.innovation = Outputs;
+        pool.innovation = Outputs - 1; // array bonds
         pool.currentSpecies = 0; // array bonds
         pool.currentGenome = 0; // array bonds
         pool.currentFrame = 0;
@@ -70,7 +65,7 @@ function copyGenome (genome) {
 
 function basicGenome () {
         var genome = newGenome();
-        //var innovation = 1; // array bonds - probably useless
+        //var innovation = 0; // array bonds - probably useless
 
         genome.maxneuron = Inputs - 1; // array bonds
         mutate(genome);
@@ -298,7 +293,7 @@ function linkMutate (genome, forceBias) {
         if ( containsLink(genome.genes, newLink) ) {
                 return;
         }
-        newLink.innovation = newInnovation();
+        newLink.innovation = ++pool.innovation;
         newLink.weight = mathRandom()*4-2;
 
         genome.genes.push(newLink); // table.insert
@@ -320,13 +315,13 @@ function nodeMutate (genome) {
         var gene1 = copyGene(gene);
         gene1.out = genome.maxneuron;
         gene1.weight = 1.0;
-        gene1.innovation = newInnovation();
+        gene1.innovation = ++pool.innovation;
         gene1.enabled = true;
         genome.genes.push(gene1); // table.insert
 
         var gene2 = copyGene(gene);
         gene2.into = genome.maxneuron;
-        gene2.innovation = newInnovation();
+        gene2.innovation = ++pool.innovation;
         gene2.enabled = true;
         genome.genes.push(gene2); // table.insert
 }
@@ -453,7 +448,7 @@ function weights (genes1, genes2) {
                 if (i2[gene.innovation] != null) {
                         var gene2 = i2[gene.innovation];
                         sum = sum + Math.abs(gene.weight - gene2.weight);
-                        coincident = coincident + 1;
+                        coincident++;
                 }
         }
 
