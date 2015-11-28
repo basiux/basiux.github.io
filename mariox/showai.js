@@ -161,8 +161,8 @@ function createAiGUI () {
   $form = $('<form id="fitnessSettings"><h1>Fitness Settings</h1></form>').appendTo('#emulator');
 
   $form.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" value="'+ Math.floor(pool.maxFitness) +'"></label>');
-  $form.append('<label for="showNetwork"><input id="showNetwork" type="checkbox"> Show Map</label>');
-  $form.append('<label for="showMutationRates"><input id="showMutationRates" type="checkbox"> Show M-Rates</label>');
+  $form.append('<label for="showNetwork"><input checked id="showNetwork" type="checkbox"> Show Map</label>');
+  $form.append('<label for="showMutationRates"><input checked id="showMutationRates" type="checkbox"> Show M-Rates</label>');
   $form.append( $('<input id="restartButton" type="button" value="Restart">').click(initializePool) );
   $form.append( $('<input disabled id="saveButton" type="button" value="Save">').click(savePool) );
   $form.append( $('<input disabled id="loadButton" type="button" value="Load">').click(loadPool) );
