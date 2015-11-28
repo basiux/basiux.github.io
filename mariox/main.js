@@ -11,8 +11,16 @@ if ( isEmpty(pool) ) {
 createAiGUI();
 
 self.nes.stop();
+self.nes.isRunning = true;
+self.nes.fpsInterval = setInterval(function() {
+    self.nes.printFps();
+}, self.nes.opts.fpsInterval);
 
-setInterval(function asyncInfiniteLoop () {
+fpsinterval = 0;
+
+mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+
+function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
 
@@ -83,4 +91,4 @@ setInterval(function asyncInfiniteLoop () {
         pool.currentFrame = pool.currentFrame + 1;
 
         self.nes.frame();
-}, 1); // async infinite loop equivalent
+}

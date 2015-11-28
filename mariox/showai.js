@@ -134,6 +134,16 @@ function displayBanner () {
   $aigui.find('div#banner').toggle(!$form.find('input#hideBanner')[0].checked);
 }
 
+function limitFPS () {
+  if ($form.find('input#limitFPS')[0].checked) {
+    fpsinterval = self.nes.frameTime;
+  } else {
+    fpsinterval = 0;
+  }
+  clearInterval(mainLoopInterval);
+  mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+}
+
 function createAiGUI () {
   $aigui = $('<div id="aigui"></div>').appendTo('#emulator');
 
@@ -153,4 +163,5 @@ function createAiGUI () {
   $form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
   $form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
   $form.append( $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').click(displayBanner) );
+  $form.append( $('<label for="limitFPS"><input id="limitFPS" type="checkbox"> Limit FPS</label>').click(limitFPS) );
 }

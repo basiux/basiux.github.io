@@ -5,6 +5,8 @@ var $form; // jQuery's
 var $aigui;
 var rightmost;
 var timeout;
+var fpsinterval;
+var mainLoopInterval;
 
 // from getPositions
 var marioX;
