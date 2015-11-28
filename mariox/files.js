@@ -32,7 +32,7 @@ function loadFile (filename) {
                 nextGenome();
         }
         initializeRun();
-        pool.currentFrame = pool.currentFrame + 1;
+        pool.currentFrame++;
 }
 
 function loadPool () {

@@ -721,6 +721,6 @@ function playTop () {
         pool.maxFitness = maxFitness;
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
         initializeRun();
-        pool.currentFrame = pool.currentFrame + 1;
+        pool.currentFrame++;
         return;
 }
