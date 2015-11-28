@@ -193,7 +193,7 @@ function crossover (g1, g2) {
         for (var i=0; i<g1.genes.length; i++) {
                 var gene1 = g1.genes[i];
                 var gene2 = innovations2[gene1.innovation];
-                if (gene2 != null && mathRandom(2) == 1 && gene2.enabled) {
+                if ( !isEmpty(gene2) && mathRandom(2) == 1 && gene2.enabled) {
                         child.genes.push( copyGene(gene2) ); // table.insert
                 } else {
                         child.genes.push( copyGene(gene1) ); // table.insert
@@ -445,7 +445,7 @@ function weights (genes1, genes2) {
         var coincident = 0;
         for (var i = 0; i <genes1.length; i ++) {
                 var gene = genes1[i];
-                if (i2[gene.innovation] != null) {
+                if ( !isEmpty(i2[gene.innovation]) ) {
                         var gene2 = i2[gene.innovation];
                         sum = sum + Math.abs(gene.weight - gene2.weight);
                         coincident++;
