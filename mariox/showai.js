@@ -84,7 +84,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                 }
         }
 
-        gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
+        // gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
         for (var n in cells) { // in pairs
                 var cell = cells[n];
                 if (n >= Inputs || cell.value != 0) {
@@ -96,7 +96,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                                 opacity = 0x50000000;
                         }
                         color = opacity + color*0x10000 + color*0x100 + color;
-                        gui.drawBox(cell.x-2,cell.y-2,cell.x+2,cell.y+2,opacity,color);
+                        // gui.drawBox(cell.x-2,cell.y-2,cell.x+2,cell.y+2,opacity,color);
                 }
         }
         for (var _ in genome.genes) { // in pairs
@@ -115,11 +115,11 @@ function displayGenome (genome) { // review - at least the `gui.`
                         } else {
                                 color = opacity + 0x800000 + 0x100*color;
                         }
-                        gui.drawLine(c1.x+1, c1.y, c2.x-3, c2.y, color);
+                        // gui.drawLine(c1.x+1, c1.y, c2.x-3, c2.y, color);
                 }
         }
 
-        gui.drawBox(49,71,51,78,0x00000000,0x80FF0000);
+        // gui.drawBox(49,71,51,78,0x00000000,0x80FF0000);
 
         if ($form.find('input#showMutationRates')[0].checked) {
                 var pos = 100;
