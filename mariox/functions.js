@@ -309,7 +309,7 @@ function nodeMutate (genome) {
                 return;
         }
 
-        genome.maxneuron = genome.maxneuron + 1;
+        genome.maxneuron++;
 
         var gene = genome.genes[mathRandom(1,genome.genes.length)-1];
         if ( !gene || !gene.enabled ) {
