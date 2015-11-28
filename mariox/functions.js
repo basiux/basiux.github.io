@@ -365,7 +365,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         linkMutate(genome, false);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["bias"];
@@ -373,7 +373,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         linkMutate(genome, true);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["node"];
@@ -381,7 +381,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         nodeMutate(genome);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["enable"]
@@ -389,7 +389,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         enableDisableMutate(genome, true);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["disable"]
@@ -397,7 +397,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         enableDisableMutate(genome, false);
                 }
-                p = p - 1;
+                p--;
         }
 }
 
