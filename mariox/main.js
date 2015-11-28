@@ -10,6 +10,8 @@ if ( isEmpty(pool) ) {
 
 createAiGUI();
 
+self.nes.stop();
+
 setInterval(function asyncInfiniteLoop () {
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
@@ -80,5 +82,5 @@ setInterval(function asyncInfiniteLoop () {
 
         pool.currentFrame = pool.currentFrame + 1;
 
-        //emu.frameadvance(); // review - hopefully not needed
+        self.nes.frame();
 }, 1); // async infinite loop equivalent
