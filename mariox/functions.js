@@ -340,9 +340,6 @@ function enableDisableMutate (genome, enable) {
         }
 
         var gene = candidates[mathRandom(1,candidates.length)-1];
-
-        if ( !gene ) return;
-
         gene.enabled = !gene.enabled;
 }
 
