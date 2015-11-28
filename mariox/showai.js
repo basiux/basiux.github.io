@@ -16,7 +16,7 @@ function displayGenome (genome) { // review - at least the `gui.`
         var biasCell = {};
         biasCell.x = 80;
         biasCell.y = 110;
-        biasCell.value = network.neurons[Inputs].value;
+        biasCell.value = network.neurons[Inputs-1].value; // array bound
         cells[Inputs] = biasCell;
 
         for (var o = 0; o<Outputs; o++) {

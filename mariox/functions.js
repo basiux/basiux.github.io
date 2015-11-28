@@ -72,7 +72,7 @@ function basicGenome () {
         var genome = newGenome();
         //var innovation = 1; // array bound - probably useless
 
-        genome.maxneuron = Inputs;
+        genome.maxneuron = Inputs - 1; // array bound
         mutate(genome);
 
         return genome;
@@ -278,11 +278,11 @@ function linkMutate (genome, forceBias) {
         var neuron2 = randomNeuron(genome.genes, true);
 
         var newLink = newGene();
-        if (neuron1 <= Inputs && neuron2 <= Inputs) {
+        if (neuron1 < Inputs && neuron2 < Inputs) { // array bound
                 // Both input nodes
                 return;
         }
-        if (neuron2 <= Inputs) {
+        if (neuron2 < Inputs) { // array bound
                 // Swap output and input
                 var temp = neuron1;
                 neuron1 = neuron2;
@@ -292,7 +292,7 @@ function linkMutate (genome, forceBias) {
         newLink.into = neuron1;
         newLink.out = neuron2;
         if (forceBias) {
-                newLink.into = Inputs;
+                newLink.into = Inputs - 1; // array bound
         }
 
         if ( containsLink(genome.genes, newLink) ) {
