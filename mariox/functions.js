@@ -670,13 +670,13 @@ function evaluateCurrent() {
         inputs = getInputs();
         controller = evaluateNetwork(genome.network, inputs);
 
-        if (controller["P1 Left"] && controller["P1 Right"]) {
-                controller["P1 Left"] = false;
-                controller["P1 Right"] = false;
+        if (controller["KEY_LEFT"] && controller["KEY_RIGHT"]) {
+                controller["KEY_LEFTLeft"] = false;
+                controller["KEY_RIGHTRight"] = false;
         }
-        if (controller["P1 Up"] && controller["P1 {wn"]) {
-                controller["P1 Up"] = false;
-                controller["P1 {wn"] = false;
+        if (controller["KEY_UP"] && controller["KEY_DOWN"]) {
+                controller["KEY_UP"] = false;
+                controller["KEY_DOWN"] = false;
         }
 
         joypadSet(controller);
