@@ -618,8 +618,7 @@ function newGeneration () {
 
         pool.generation = pool.generation + 1;
 
-        // review - removed for testing, due to slow compression
-        //writeFile("backup." + pool.generation + "." + $form.find('input#saveLoadFile').val());
+        writeFile("backup." + pool.generation + "." + $form.find('input#saveLoadFile').val());
 }
 
 function initializePool () {

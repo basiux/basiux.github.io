@@ -4,7 +4,7 @@ if ( isEmpty(pool) ) {
         initializePool();
 }
 
-// writeFile("temp.pool") // review - removed for testing, due to slow compression
+writeFile("temp.pool")
 
 createAiGUI();
 
@@ -56,8 +56,7 @@ function asyncMainLoop () { // infinite, async equivalent
                         pool.maxFitness = fitness;
                         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
-                        // review - removed for testing, due to slow compression
-                        //writeFile( "backup." + pool.generation + "." + $form.find('input#saveLoadFile').val() );
+                        writeFile( "backup." + pool.generation + "." + $form.find('input#saveLoadFile').val() );
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);

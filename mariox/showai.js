@@ -164,8 +164,8 @@ function createAiGUI () {
   $form.append('<label for="showNetwork"><input checked id="showNetwork" type="checkbox"> Show Map</label>');
   $form.append('<label for="showMutationRates"><input checked id="showMutationRates" type="checkbox"> Show M-Rates</label>');
   $form.append( $('<input id="restartButton" type="button" value="Restart">').click(initializePool) );
-  $form.append( $('<input disabled id="saveButton" type="button" value="Save">').click(savePool) );
-  $form.append( $('<input disabled id="loadButton" type="button" value="Load">').click(loadPool) );
+  $form.append( $('<input id="saveButton" type="button" value="Save">').click(savePool) );
+  $form.append( $('<input id="loadButton" type="button" value="Load">').click(loadPool) );
   $form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
   $form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
   $form.append( $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').click(displayBanner) );
