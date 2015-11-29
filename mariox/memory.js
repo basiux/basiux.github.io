@@ -48,7 +48,7 @@ function getInputs () {
 
         for (var dy=-BoxRadius*16; dy<=BoxRadius*16; dy+=16) {
                 for (var dx=-BoxRadius*16; dx<=BoxRadius*16; dx+=16) {
-                        inputs[inputs.length+0] = 0; // review - array, 1 or 0
+                        inputs[inputs.length+0] = 0; // array bonds
 
                         tile = getTile(dx, dy);
                         if (tile == 1 && marioY+dy < 0x1B0) {
