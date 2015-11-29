@@ -34,10 +34,9 @@ $('#emulator .nes-pause').click(function(){
   }
 });
 
-var gameState = null;
 loadIndexedDB('gameState', loadGameStateCallback);
 function loadGameStateCallback (filedata) {
-  gameState = filedata;
+  pool.gameState = filedata;
 }
 
 function asyncMainLoop () { // infinite, async equivalent
@@ -53,14 +52,14 @@ function asyncMainLoop () { // infinite, async equivalent
         }
 
         // is it in the beginning of a new game?
-        if (isPlayerPlaying() && gameClock < 401 && gameState === null) {
+        if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
           saveIndexedDB('gameState', self.nes.cpu.mem);
           loadIndexedDB('gameState', loadGameStateCallback);
         }
 
         if (isPlayerPlaying() && isPlayerObjPause()) {
           if (gameClock < 1) {
-            self.nes.cpu.mem = gameState;
+            self.nes.cpu.mem = pool.gameState;
           }
         }
 
