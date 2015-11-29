@@ -1,7 +1,7 @@
 // indexedDB code all based on https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
 
 function openIndexedDB () {
-  // This works on all devices/browsers, and uses IndexedDBShim as a final fallback 
+  // This works on all devices/browsers, and uses IndexedDBShim as a final fallback
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
   var openDB = indexedDB.open("marioxDB", 1);
@@ -55,12 +55,14 @@ function loadIndexedDB (filename, callback) {
 
 function writeFile (filename) { // using indexedDB for the win! :)
         // `poolContent` rather than `pool` for strict lua adaptation
-        var poolContent = [];
-        poolContent.push(pool.duration);
-        poolContent.push(pool.generation);
-        poolContent.push(pool.maxFitness);
-        poolContent.push(pool.species);
+        var poolContent = {};
+        poolContent.duration = [].push(pool.duration);
+        poolContent.generation = [].push(pool.generation);
+        poolContent.maxFitness = [].push(pool.maxFitness);
+        poolContent.species = [].push(pool.species);
+        //poolContent.gameState = [].push(pool.gameState);
         saveIndexedDB(filename, poolContent);
+        pool.state = [].push(poolContent);
         //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
         //console.log('writing file '+ filename);// +' - pool size: '+ fileSize);
 }
@@ -70,16 +72,32 @@ function savePool () {
         writeFile(filename);
 }
 
+function grabPoolContent (name) {
+  while (pool.state[name].length > 0) {
+    pool[name] = pool.state[name].pop();
+  }
+}
 function loadFile (filename) {
         loadIndexedDB(filename, loadFileCallback);
         //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
         //console.log('loading '+ filename);// +' - pool size: '+ fileSize);
 }
 function loadFileCallback (poolContent) {
-        pool.species = poolContent.pop();
-        pool.maxFitness = poolContent.pop();
-        pool.generation = poolContent.pop();
-        pool.duration = poolContent.pop();
+        if ( poolContent.length == 4 || ( poolContent.length == 5 && isEmpty(poolContent[4]) ) ) {
+          if (poolContent.length == 5) poolContent.pop();
+          pool.species = poolContent.pop();
+          pool.maxFitness = poolContent.pop();
+          pool.generation = poolContent.pop();
+          pool.duration = poolContent.pop();
+        } else {
+          pool.state = poolContent;
+          //grabPoolContent('gameState');
+          grabPoolContent('species');
+          grabPoolContent('maxFitness');
+          grabPoolContent('generation');
+          grabPoolContent('duration');
+          pool.state = [].push(poolContent);
+        }
 
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
@@ -87,6 +105,7 @@ function loadFileCallback (poolContent) {
                 nextGenome();
         }
         initializeRun();
+        //loadGameState();
         pool.currentFrame++;
 }
 
