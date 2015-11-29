@@ -70,3 +70,16 @@ function getInputs () {
 
         return inputs;
 }
+
+// figured out a few mario memory things below on google, then thealmightyguru.com
+
+function getTime () {
+  var time = self.nes.cpu.mem[0x7F8] * 100;
+  time += self.nes.cpu.mem[0x7F9] * 10;
+  time += self.nes.cpu.mem[0x7FA];
+  return time;
+}
+
+function isPlayerPlaying () {
+  return (self.nes.cpu.mem[0x770] == 1);
+}

@@ -38,6 +38,14 @@ function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
 
+        var gameClock = getTime();
+
+        // is it in the demo screen?
+        if (!isPlayerPlaying() && gameClock == 401) {
+          simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
+          setTimeout( function () {simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);}, 200 );
+        }
+
         if ($form.find('input#showNetwork')[0].checked) {
                 displayGenome(genome);
         }
