@@ -89,6 +89,7 @@ function loadFileCallback (poolContent) {
           pool.maxFitness = poolContent.pop();
           pool.generation = poolContent.pop();
           pool.duration = poolContent.pop();
+          pool.currentSpecies = 0;
         } else {
           pool.state = poolContent;
           //grabPoolContent('gameState');
