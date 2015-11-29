@@ -93,3 +93,8 @@ function loadPool () {
         var filename = $form.find('input#saveLoadFile').val();
         loadFile(filename);
 }
+
+function restartPool () {
+  savePool();
+  initializePool();
+}
