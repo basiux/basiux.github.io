@@ -169,6 +169,6 @@ function createAiGUI () {
   $form.append( $('<input id="loadButton" type="button" value="Load">').click(loadPool) );
   $form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
   $form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
-  $form.append( $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').click(displayBanner) );
-  $form.append( $('<label for="limitFPS"><input id="limitFPS" type="checkbox"> Limit FPS</label>').click(limitFPS) );
+  $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').appendTo($form).find('input').click(displayBanner);
+  $('<label for="limitFPS"><input id="limitFPS" type="checkbox"> Limit FPS</label>').appendTo($form).find('input').click(limitFPS);
 }
