@@ -18,16 +18,19 @@ fpsinterval = 0;
 
 mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
 
-var markDurationInterval = setInterval(function () {
+var markDurationInterval = setInterval(markDuration, 1000);
+function markDuration () {
   pool.duration += 1/3600; // in hours
   $aigui.find('#banner #duration').text( Math.round(pool.duration * 10000) / 10000 +' hours' );
-}, 1000);
+}
 
 $('#emulator .nes-pause').click(function(){
   if (self.nes.isRunning) {
     mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+    markDurationInterval = setInterval(markDuration, 1000);
   } else { // pause
     clearInterval(mainLoopInterval);
+    clearInterval(markDurationInterval);
   }
 });
 
