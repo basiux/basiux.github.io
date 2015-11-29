@@ -80,6 +80,14 @@ function getTime () {
   return time;
 }
 
+function getPlayerLives () {
+  return self.nes.cpu.mem[0x75A];
+}
+
+function isPlayerObjPause () {
+  return (self.nes.cpu.mem[0x747] > 0);
+}
+
 function isPlayerPlaying () {
   return (self.nes.cpu.mem[0x770] == 1);
 }

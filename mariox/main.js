@@ -34,6 +34,12 @@ $('#emulator .nes-pause').click(function(){
   }
 });
 
+var gameState = null;
+loadIndexedDB('gameState', loadGameStateCallback);
+function loadGameStateCallback (filedata) {
+  gameState = filedata;
+}
+
 function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
@@ -44,6 +50,18 @@ function asyncMainLoop () { // infinite, async equivalent
         if (!isPlayerPlaying() && gameClock == 401) {
           simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
           setTimeout( function () {simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);}, 200 );
+        }
+
+        // is it in the beginning of a new game?
+        if (isPlayerPlaying() && gameClock < 401 && gameState === null) {
+          saveIndexedDB('gameState', self.nes.cpu.mem);
+          loadIndexedDB('gameState', loadGameStateCallback);
+        }
+
+        if (isPlayerPlaying() && isPlayerObjPause()) {
+          if (gameClock < 1) {
+            self.nes.cpu.mem = gameState;
+          }
         }
 
         if ($form.find('input#showNetwork')[0].checked) {
