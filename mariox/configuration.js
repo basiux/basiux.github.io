@@ -8,7 +8,6 @@ Filename = "mariox.state"
 ButtonNames = [
   'A',
   'B',
-  'START',
   'RIGHT',
   'LEFT',
 //  'DOWN',

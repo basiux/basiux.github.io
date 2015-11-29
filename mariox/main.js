@@ -1,18 +1,62 @@
-//loadState(); // for now, it can be called just once, or else there's a risk of pause
-
 if ( isEmpty(pool) ) {
         initializePool();
 }
 
-// writeFile("temp.pool") // review - removed for testing, due to slow compression
-
-//event.onexit(onExit) // review
+writeFile("temp.pool")
+//loadIndexedDB('gameState', loadGameStateCallback);
 
 createAiGUI();
 
-setInterval(function asyncInfiniteLoop () {
+self.nes.stop();
+self.nes.isRunning = true;
+self.nes.fpsInterval = setInterval(function() {
+    self.nes.printFps();
+}, self.nes.opts.fpsInterval);
+
+// those are currently in the "global" scope, but only being used here
+var fpsinterval = 0;
+var mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+var markDurationInterval = setInterval(markDuration, 1000);
+
+function markDuration () {
+  pool.duration += 1/3600; // in hours
+  $aigui.find('#banner #duration').text( Math.round(pool.duration * 10000) / 10000 +' hours' );
+}
+
+$('#emulator .nes-pause').click(function(){
+  if (self.nes.isRunning) {
+    mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+    markDurationInterval = setInterval(markDuration, 1000);
+  } else { // pause
+    clearInterval(mainLoopInterval);
+    clearInterval(markDurationInterval);
+  }
+});
+
+function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
+
+        var gameClock = getTime();
+
+        // is it in the ...
+        // ... demo screen?
+        if (!isPlayerPlaying() && gameClock == 401) {
+          simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
+          setTimeout( function () {simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);}, 200 );
+        }
+
+        // ... beginning of a new game?
+        if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
+          saveGameState();
+        }
+
+        // ... dead?
+        if (isPlayerPlaying() && isPlayerObjPause()) {
+          if (gameClock < 1) {
+            loadGameState();
+          }
+        }
 
         if ($form.find('input#showNetwork')[0].checked) {
                 displayGenome(genome);
@@ -48,13 +92,12 @@ setInterval(function asyncInfiniteLoop () {
                         pool.maxFitness = fitness;
                         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
-                        // review - removed for testing, due to slow compression
-                        //writeFile( "backup." + pool.generation + "." + $form.find('input#saveLoadFile').val() );
+                        writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
-                pool.currentSpecies = 0; // review 1 or 0
-                pool.currentGenome = 0; // review 1 or 0
+                pool.currentSpecies = 0; // array bonds
+                pool.currentGenome = 0; // array bonds
                 while ( fitnessAlreadyMeasured() ) {
                         nextGenome();
                 }
@@ -67,9 +110,9 @@ setInterval(function asyncInfiniteLoop () {
                 var species = pool.species[s];
                 for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
-                        total = total + 1;
+                        total++;
                         if (genome.fitness != 0) {
-                                measured = measured + 1;
+                                measured++;
                         }
                 }
         }
@@ -78,7 +121,7 @@ setInterval(function asyncInfiniteLoop () {
         $aigui.find('#banner #fitness').text( Math.floor(rightmost - (pool.currentFrame) / 2 - (timeout + timeoutBonus)*2/3) );
         $aigui.find('#banner #maxFitness').text( Math.floor(pool.maxFitness) );
 
-        pool.currentFrame = pool.currentFrame + 1;
+        pool.currentFrame++;
 
-        //emu.frameadvance(); // review - hopefully not needed
-}, 1); // async infinite loop equivalent
+        self.nes.frame();
+}

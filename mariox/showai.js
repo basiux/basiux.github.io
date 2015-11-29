@@ -1,23 +1,23 @@
 function displayGenome (genome) { // review - at least the `gui.`
         var network = genome.network;
         var cells = [];
-        var i = 0; // review 1 or 0
+        var i = 0; // array bonds
         var cell = {};
-        for (var dy=-BoxRadius; dy<BoxRadius; dy++) {
-                for (var dx=-BoxRadius; dx<BoxRadius; dx++) {
+        for (var dy=-BoxRadius; dy<=BoxRadius; dy++) {
+                for (var dx=-BoxRadius; dx<=BoxRadius; dx++) {
                         cell = {};
                         cell.x = 50+5*dx;
                         cell.y = 70+5*dy;
                         cell.value = network.neurons[i].value;
                         cells[i] = cell;
-                        i = i + 1;
+                        i++;
                 }
         }
         var biasCell = {};
         biasCell.x = 80;
         biasCell.y = 110;
-        biasCell.value = network.neurons[Inputs].value;
-        cells[Inputs] = biasCell;
+        biasCell.value = network.neurons[Inputs-1].value; // array bonds
+        cells[Inputs-1] = biasCell; // array bonds
 
         for (var o = 0; o<Outputs; o++) {
                 cell = {};
@@ -31,13 +31,14 @@ function displayGenome (genome) { // review - at least the `gui.`
                 } else {
                         color = 0xFF000000;
                 }
-                gui.drawText(223, 24+8*o, ButtonNames[o], color, 9);
+                $aigui.find('#show #buttonNames').html( ButtonNames[o] +'<br>' );
+                //gui.drawText(223, 24+8*o, ButtonNames[o], color, 9);
         }
 
         for (var n in network.neurons) { // in pairs
                 var neuron = network.neurons[n];
                 cell = {};
-                if (n >= Inputs && n <= MaxNodes) {
+                if (n >= Inputs && n < MaxNodes) { // array bonds
                         cell.x = 140;
                         cell.y = 40;
                         cell.value = neuron.value;
@@ -51,7 +52,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                         if (gene.enabled) {
                                 var c1 = cells[gene.into];
                                 var c2 = cells[gene.out];
-                                if (gene.into >= Inputs && gene.into <= MaxNodes) {
+                                if (gene.into >= Inputs && gene.into < MaxNodes) { // array bonds
                                         c1.x = 0.75*c1.x + 0.25*c2.x;
                                         if (c1.x >= c2.x) {
                                                 c1.x = c1.x - 40;
@@ -66,7 +67,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                                         c1.y = 0.75*c1.y + 0.25*c2.y;
 
                                 }
-                                if (gene.out >= Inputs && gene.out <= MaxNodes) {
+                                if (gene.out >= Inputs && gene.out < MaxNodes) { // array bonds
                                         c2.x = 0.25*c1.x + 0.75*c2.x;
                                         if (c1.x >= c2.x) {
                                                 c2.x = c2.x + 40;
@@ -83,10 +84,10 @@ function displayGenome (genome) { // review - at least the `gui.`
                 }
         }
 
-        gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
+        // gui.drawBox(50-BoxRadius*5-3,70-BoxRadius*5-3,50+BoxRadius*5+2,70+BoxRadius*5+2,0xFF000000, 0x80808080);
         for (var n in cells) { // in pairs
                 var cell = cells[n];
-                if (n >= Inputs || cell.value != 0) {
+                if (n >= Inputs || cell.value != 0) { // array bonds
                         var color = Math.floor((cell.value+1)/2*256);
                         if (color > 255) { color = 255 };
                         if (color < 0) { color = 0 };
@@ -95,7 +96,7 @@ function displayGenome (genome) { // review - at least the `gui.`
                                 opacity = 0x50000000;
                         }
                         color = opacity + color*0x10000 + color*0x100 + color;
-                        gui.drawBox(cell.x-2,cell.y-2,cell.x+2,cell.y+2,opacity,color);
+                        // gui.drawBox(cell.x-2,cell.y-2,cell.x+2,cell.y+2,opacity,color);
                 }
         }
         for (var _ in genome.genes) { // in pairs
@@ -114,17 +115,18 @@ function displayGenome (genome) { // review - at least the `gui.`
                         } else {
                                 color = opacity + 0x800000 + 0x100*color;
                         }
-                        gui.drawLine(c1.x+1, c1.y, c2.x-3, c2.y, color);
+                        // gui.drawLine(c1.x+1, c1.y, c2.x-3, c2.y, color);
                 }
         }
 
-        gui.drawBox(49,71,51,78,0x00000000,0x80FF0000);
+        // gui.drawBox(49,71,51,78,0x00000000,0x80FF0000);
 
         if ($form.find('input#showMutationRates')[0].checked) {
                 var pos = 100;
                 for (var mutation in genome.mutationRates) { // in pairs
                         var rate = genome.mutationRates[mutation];
-                        gui.drawText(100, pos, mutation + ": " + rate, 0xFF000000, 10);
+                        $aigui.find('#show #mutation').html( mutation +': '+ rate +'<br>' );
+                        //gui.drawText(100, pos, mutation + ": " + rate, 0xFF000000, 10);
                         pos = pos + 8;
                 }
         }
@@ -134,6 +136,16 @@ function displayBanner () {
   $aigui.find('div#banner').toggle(!$form.find('input#hideBanner')[0].checked);
 }
 
+function limitFPS () {
+  if ($form.find('input#limitFPS')[0].checked) {
+    fpsinterval = self.nes.frameTime;
+  } else {
+    fpsinterval = 0;
+  }
+  clearInterval(mainLoopInterval);
+  mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+}
+
 function createAiGUI () {
   $aigui = $('<div id="aigui"></div>').appendTo('#emulator');
 
@@ -141,16 +153,22 @@ function createAiGUI () {
   $banner.append('<label for="gen">Gen <span id="gen" class="data"></span></label>');
   $banner.append('<label for="fitness">Fitness: <span id="fitness" class="data"></span></label>');
   $banner.append('<label for="maxFitness">Max Fitness: <span id="maxFitness" class="data"></span></label>');
+  $banner.append('<label for="duration">Duration: <span id="duration" class="data"></span></label>');
+
+  var $show = $('<div id="show"></div>').appendTo($aigui);
+  $show.append('<span id="buttonNames" class="data"></span>');
+  $show.append('<span id="mutations" class="data"></span>');
 
   $form = $('<form id="fitnessSettings"><h1>Fitness Settings</h1></form>').appendTo('#emulator');
 
   $form.append('<label for="maxFitness">Max Fitness: <input id="maxFitness" type="text" value="'+ Math.floor(pool.maxFitness) +'"></label>');
-  $form.append('<label for="showNetwork"><input id="showNetwork" type="checkbox"> Show Map</label>');
-  $form.append('<label for="showMutationRates"><input id="showMutationRates" type="checkbox"> Show M-Rates</label>');
-  $form.append( $('<input id="restartButton" type="button" value="Restart">').click(initializePool) );
-  $form.append( $('<input disabled id="saveButton" type="button" value="Save">').click(savePool) );
-  $form.append( $('<input disabled id="loadButton" type="button" value="Load">').click(loadPool) );
+  $form.append('<label for="showNetwork"><input checked id="showNetwork" type="checkbox"> Show Map</label>');
+  $form.append('<label for="showMutationRates"><input checked id="showMutationRates" type="checkbox"> Show M-Rates</label>');
+  $form.append( $('<input id="restartButton" type="button" value="Restart">').click(restartPool) );
+  $form.append( $('<input id="saveButton" type="button" value="Save">').click(savePool) );
+  $form.append( $('<input id="loadButton" type="button" value="Load">').click(loadPool) );
   $form.append('<label for="saveLoadFile">Save/Load: <input id="saveLoadFile" type="text" value="'+ Filename +'.pool"></label>');
   $form.append( $('<input id="playTopButton" type="button" value="Play Top">').click(playTop) );
   $form.append( $('<label for="hideBanner"><input id="hideBanner" type="checkbox"> Hide Banner</label>').click(displayBanner) );
+  $form.append( $('<label for="limitFPS"><input id="limitFPS" type="checkbox"> Limit FPS</label>').click(limitFPS) );
 }

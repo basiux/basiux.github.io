@@ -1,4 +1,15 @@
-// review - maybe there's nothing more to adapt here! :o
+function loadGameStateCallback (filedata) {
+  pool.gameState = filedata;
+}
+
+function loadGameState () {
+  self.nes.cpu.mem = pool.gameState;
+}
+
+function saveGameState () {
+  saveIndexedDB('gameState', self.nes.cpu.mem);
+  loadIndexedDB('gameState', loadGameStateCallback);
+}
 
 function getPositions () {
           marioX = self.nes.cpu.mem[0x6D]*0x100 + self.nes.cpu.mem[0x86];
@@ -48,18 +59,18 @@ function getInputs () {
 
         for (var dy=-BoxRadius*16; dy<=BoxRadius*16; dy+=16) {
                 for (var dx=-BoxRadius*16; dx<=BoxRadius*16; dx+=16) {
-                        inputs[inputs.length+0] = 0; // review - array, 1 or 0
+                        inputs[inputs.length+0] = 0; // array bonds
 
                         tile = getTile(dx, dy);
                         if (tile == 1 && marioY+dy < 0x1B0) {
-                                inputs[inputs.length-1] = 1; // review 1 or 0
+                                inputs[inputs.length-1] = 1; // array bonds
                         }
 
-                        for (var i = 0; i<sprites.length; i++) { // review 1 or 0
+                        for (var i = 0; i<sprites.length; i++) { // array bonds
                                 distx = Math.abs(sprites[i]["x"] - (marioX+dx));
                                 disty = Math.abs(sprites[i]["y"] - (marioY+dy));
                                 if (distx <= 8 && disty <= 8) {
-                                        inputs[inputs.length-1] = -1; // review 1 or 0
+                                        inputs[inputs.length-1] = -1; // array bonds
                                 }
                         }
                 }
@@ -69,4 +80,25 @@ function getInputs () {
         //mariovy = memory.read_s8(0x7D)
 
         return inputs;
+}
+
+// figured out a few mario memory things below on google, then thealmightyguru.com
+
+function getTime () {
+  var time = self.nes.cpu.mem[0x7F8] * 100;
+  time += self.nes.cpu.mem[0x7F9] * 10;
+  time += self.nes.cpu.mem[0x7FA];
+  return time;
+}
+
+function getPlayerLives () {
+  return self.nes.cpu.mem[0x75A];
+}
+
+function isPlayerObjPause () {
+  return (self.nes.cpu.mem[0x747] > 0);
+}
+
+function isPlayerPlaying () {
+  return (self.nes.cpu.mem[0x770] == 1);
 }

@@ -4,20 +4,18 @@ function sigmoid (x) {
         return 2/(1+Math.exp(-4.9*x))-1;
 }
 
-function newInnovation () {
-        pool.innovation = pool.innovation + 1;
-        return pool.innovation;
-}
-
 function newPool () {
         var pool = {};
         pool.species = [];
         pool.generation = 0;
-        pool.innovation = Outputs;
-        pool.currentSpecies = 0; // review 1 or 0
-        pool.currentGenome = 0; // review 1 or 0
+        pool.innovation = Outputs - 1; // array bonds
+        pool.currentSpecies = 0; // array bonds
+        pool.currentGenome = 0; // array bonds
         pool.currentFrame = 0;
         pool.maxFitness = 0;
+        pool.duration = 0;
+        pool.gameState = null;
+        pool.state = null;
 
         return pool;
 }
@@ -70,9 +68,9 @@ function copyGenome (genome) {
 
 function basicGenome () {
         var genome = newGenome();
-        //var innovation = 1; // review 1 or 0 - probably useless
+        //var innovation = 0; // array bonds - probably useless
 
-        genome.maxneuron = Inputs;
+        genome.maxneuron = Inputs - 1; // array bonds
         mutate(genome);
 
         return genome;
@@ -198,7 +196,7 @@ function crossover (g1, g2) {
         for (var i=0; i<g1.genes.length; i++) {
                 var gene1 = g1.genes[i];
                 var gene2 = innovations2[gene1.innovation];
-                if (gene2 != null && mathRandom(2) == 1 && gene2.enabled) {
+                if ( !isEmpty(gene2) && mathRandom(2) == 1 && gene2.enabled) {
                         child.genes.push( copyGene(gene2) ); // table.insert
                 } else {
                         child.genes.push( copyGene(gene1) ); // table.insert
@@ -278,11 +276,11 @@ function linkMutate (genome, forceBias) {
         var neuron2 = randomNeuron(genome.genes, true);
 
         var newLink = newGene();
-        if (neuron1 <= Inputs && neuron2 <= Inputs) {
+        if (neuron1 < Inputs && neuron2 < Inputs) { // array bonds
                 // Both input nodes
                 return;
         }
-        if (neuron2 <= Inputs) {
+        if (neuron2 < Inputs) { // array bonds
                 // Swap output and input
                 var temp = neuron1;
                 neuron1 = neuron2;
@@ -292,13 +290,13 @@ function linkMutate (genome, forceBias) {
         newLink.into = neuron1;
         newLink.out = neuron2;
         if (forceBias) {
-                newLink.into = Inputs;
+                newLink.into = Inputs - 1; // array bonds
         }
 
         if ( containsLink(genome.genes, newLink) ) {
                 return;
         }
-        newLink.innovation = newInnovation();
+        newLink.innovation = ++pool.innovation;
         newLink.weight = mathRandom()*4-2;
 
         genome.genes.push(newLink); // table.insert
@@ -309,7 +307,7 @@ function nodeMutate (genome) {
                 return;
         }
 
-        genome.maxneuron = genome.maxneuron + 1;
+        genome.maxneuron++;
 
         var gene = genome.genes[mathRandom(1,genome.genes.length)-1];
         if ( !gene || !gene.enabled ) {
@@ -320,13 +318,13 @@ function nodeMutate (genome) {
         var gene1 = copyGene(gene);
         gene1.out = genome.maxneuron;
         gene1.weight = 1.0;
-        gene1.innovation = newInnovation();
+        gene1.innovation = ++pool.innovation;
         gene1.enabled = true;
         genome.genes.push(gene1); // table.insert
 
         var gene2 = copyGene(gene);
         gene2.into = genome.maxneuron;
-        gene2.innovation = newInnovation();
+        gene2.innovation = ++pool.innovation;
         gene2.enabled = true;
         genome.genes.push(gene2); // table.insert
 }
@@ -345,9 +343,6 @@ function enableDisableMutate (genome, enable) {
         }
 
         var gene = candidates[mathRandom(1,candidates.length)-1];
-
-        if ( !gene ) return;
-
         gene.enabled = !gene.enabled;
 }
 
@@ -370,7 +365,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         linkMutate(genome, false);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["bias"];
@@ -378,7 +373,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         linkMutate(genome, true);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["node"];
@@ -386,7 +381,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         nodeMutate(genome);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["enable"]
@@ -394,7 +389,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         enableDisableMutate(genome, true);
                 }
-                p = p - 1;
+                p--;
         }
 
         p = genome.mutationRates["disable"]
@@ -402,7 +397,7 @@ function mutate (genome) {
                 if (mathRandom() < p) {
                         enableDisableMutate(genome, false);
                 }
-                p = p - 1;
+                p--;
         }
 }
 
@@ -450,10 +445,10 @@ function weights (genes1, genes2) {
         var coincident = 0;
         for (var i = 0; i <genes1.length; i ++) {
                 var gene = genes1[i];
-                if (i2[gene.innovation] != null) {
+                if ( !isEmpty(i2[gene.innovation]) ) {
                         var gene2 = i2[gene.innovation];
                         sum = sum + Math.abs(gene.weight - gene2.weight);
-                        coincident = coincident + 1;
+                        coincident++;
                 }
         }
 
@@ -514,7 +509,7 @@ function cullSpecies (cutToOne) {
 
                 var remaining = Math.ceil(species.genomes.length/2);
                 if (cutToOne) {
-                        remaining = 1; // review 1 or 0
+                        remaining = 1; // array bonds
                 }
                 while (species.genomes.length > remaining) {
                         species.genomes.pop();
@@ -548,8 +543,8 @@ function removeStaleSpecies () {
                         return (b.fitness - a.fitness);
                 })
 
-                if (species.genomes[0].fitness > species.topFitness) { // review 1 or 0
-                        species.topFitness = species.genomes[0].fitness; // review 1 or 0
+                if (species.genomes[0].fitness > species.topFitness) { // array bonds
+                        species.topFitness = species.genomes[0].fitness; // array bonds
                         species.staleness = 0;
                 } else {
                         species.staleness++;
@@ -581,7 +576,7 @@ function addToSpecies (child) {
         var foundSpecies = false;
         for (var s=0; s<pool.species.length; s++) {
                 var species = pool.species[s];
-                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) { // review 1 or 0
+                if ( !foundSpecies && sameSpecies(child, species.genomes[0]) ) { // array bonds
                         species.genomes.push(child); // table.insert
                         foundSpecies = true;
                         break; //for
@@ -624,10 +619,9 @@ function newGeneration () {
                 addToSpecies(child);
         }
 
-        pool.generation = pool.generation + 1;
+        pool.generation++;
 
-        // review - removed for testing, due to slow compression
-        //writeFile("backup." + pool.generation + "." + $form.find('input#saveLoadFile').val());
+        writeFile("autobackup.gen." + pool.generation + "." + $form.find('input#saveLoadFile').val());
 }
 
 function initializePool () {
@@ -650,8 +644,8 @@ function clearJoypad () {
 }
 
 function initializeRun () {
-        // review - probably something like savestate will be needed
-        //loadState(Filename); // for now, it can be called just once, or else there's a risk of pause
+        // review - something like savestate will be much needed
+        //loadState(Filename);
         rightmost = 0;
         pool.currentFrame = 0;
         timeout = TimeoutConstant;
@@ -670,27 +664,25 @@ function evaluateCurrent() {
         inputs = getInputs();
         controller = evaluateNetwork(genome.network, inputs);
 
-        if (controller["P1 Left"] && controller["P1 Right"]) {
-                controller["P1 Left"] = false;
-                controller["P1 Right"] = false;
+        if (controller["KEY_LEFT"] && controller["KEY_RIGHT"]) {
+                controller["KEY_LEFT"] = false;
+                controller["KEY_RIGHT"] = false;
         }
-        if (controller["P1 Up"] && controller["P1 {wn"]) {
-                controller["P1 Up"] = false;
-                controller["P1 {wn"] = false;
+        if (controller["KEY_UP"] && controller["KEY_DOWN"]) {
+                controller["KEY_UP"] = false;
+                controller["KEY_DOWN"] = false;
         }
-
-        joypadSet(controller);
 }
 
 
 function nextGenome () {
         pool.currentGenome++;
         if (pool.currentGenome >= pool.species[pool.currentSpecies].genomes.length) {
-                pool.currentGenome = 0; // review 1 or 0
+                pool.currentGenome = 0; // array bonds
                 pool.currentSpecies++;
                 if (pool.currentSpecies >= pool.species.length) {
                         newGeneration();
-                        pool.currentSpecies = 0; // review 1 or 0
+                        pool.currentSpecies = 0; // array bonds
                 }
         }
 }
@@ -723,10 +715,6 @@ function playTop () {
         pool.maxFitness = maxFitness;
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
         initializeRun();
-        pool.currentFrame = pool.currentFrame + 1;
+        pool.currentFrame++;
         return;
-}
-
-function onExit () {
-//        forms.destroy(form)
 }
