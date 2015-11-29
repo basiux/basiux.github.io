@@ -15,8 +15,18 @@ self.nes.fpsInterval = setInterval(function() {
 
 // those are currently in the "global" scope, but only being used here
 var fpsinterval = 0;
-var mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
-var markDurationInterval = setInterval(markDuration, 1000);
+var mainLoopInterval = null;
+var markDurationInterval = null;
+
+var badFixStartBug = setInterval(function(){
+  $('#emulator .nes-pause').click();
+  if (self.nes.isRunning) clearInterval(badFixStartBug);
+}, 100); // wait a bit to start main loop
+
+function startMainLoop () {
+  mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+  markDurationInterval = setInterval(markDuration, 1000);
+}
 
 function markDuration () {
   pool.duration += 1/3600; // in hours
@@ -25,8 +35,7 @@ function markDuration () {
 
 $('#emulator .nes-pause').click(function(){
   if (self.nes.isRunning) {
-    mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
-    markDurationInterval = setInterval(markDuration, 1000);
+    startMainLoop();
   } else { // pause
     clearInterval(mainLoopInterval);
     clearInterval(markDurationInterval);
