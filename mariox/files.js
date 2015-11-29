@@ -1,33 +1,37 @@
+// indexedDB code all based on https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
+
 function openIndexedDB () {
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
   var openDB = indexedDB.open("marioxDB", 1);
 
   openDB.onupgradeneeded = function() {
-    var db = openDB.result;
-    var store = db.createObjectStore("marioxOBJ", {keyPath: "id"});
-    //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+    var db = {}
+    db.result = openDB.result;
+    db.store = db.result.createObjectStore("marioxOBJ", {keyPath: "id"});
+    //db.index = db.store.createIndex("NameIndex", ["name.last", "name.first"]);
   };
 
   return openDB;
 }
 
 function getStoreIndexedDB (openDB) {
-  var db = openDB.result;
-  var tx = db.transaction("marioxOBJ", "readwrite");
-  var store = tx.objectStore("marioxOBJ");
-  //var index = store.index("NameIndex");
+  var db = {};
+  db.result = openDB.result;
+  db.tx = db.result.transaction("marioxOBJ", "readwrite");
+  db.store = db.tx.objectStore("marioxOBJ");
+  //db.index = db.store.index("NameIndex");
 
-  return store;
+  return db;
 }
 
 function saveIndexedDB (filename, filedata) {
   var openDB = openIndexedDB();
 
   openDB.onsuccess = function() {
-    var store = getStoreIndexedDB(openDB);
+    var db = getStoreIndexedDB(openDB);
 
-    store.put({id: filename, data: filedata});
+    db.store.put({id: filename, data: filedata});
   }
 }
 
@@ -35,18 +39,15 @@ function loadIndexedDB (filename, callback) {
   var openDB = openIndexedDB();
 
   openDB.onsuccess = function() {
-    var db = openDB.result;
-    var tx = db.transaction("marioxOBJ", "readwrite");
-    var store = tx.objectStore("marioxOBJ");
+    var db = getStoreIndexedDB(openDB);
 
-    var getData = store.get(filename);
-
+    var getData = db.store.get(filename);
     getData.onsuccess = function() {
       callback(getData.result.data);
     };
 
-    tx.oncomplete = function() {
-      db.close();
+    db.tx.oncomplete = function() {
+      db.result.close();
     };
   }
 }
@@ -58,14 +59,8 @@ function writeFile (filename) { // using indexedDB for the win! :)
         poolContent.push(pool.maxFitness);
         poolContent.push(pool.species);
         saveIndexedDB(filename, poolContent);
-        //var fileSize = poolContent; // just for log
+        //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
         //console.log('writing file '+ filename);// +' - pool size: '+ fileSize);
-        //setTimeout(function(){
-          //var content = JSON.stringify(poolContent);
-          //var compressed = LZString.compressToUTF16(content); // review - very, very slow bottleneck
-          //console.log('writing file '+ filename +' - pool size: '+ content.length +' compressed: '+ compressed.length);
-          //localStorage.setItem(filename, compressed);
-        //},0);
 }
 
 function savePool () {
@@ -74,13 +69,9 @@ function savePool () {
 }
 
 function loadFile (filename) {
-        //var compressed = localStorage.getItem(filename);
-        //var content = LZString.decompressFromUTF16(compressed);
-        //var poolContent = jQuery.parseJSON(content);
-        //console.log('loading '+ filename +' - pool size: '+ content.length +' compressed: '+ compressed.length);
         loadIndexedDB(filename, loadFileCallback);
-        //var content = JSON.stringify(poolContent); // just for log
-        //console.log('loading '+ filename);// +' - pool size: '+ content.length);
+        //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
+        //console.log('loading '+ filename);// +' - pool size: '+ fileSize);
 }
 function loadFileCallback (poolContent) {
         pool.species = poolContent.pop();
