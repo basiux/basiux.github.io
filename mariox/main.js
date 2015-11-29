@@ -14,11 +14,11 @@ self.nes.fpsInterval = setInterval(function() {
     self.nes.printFps();
 }, self.nes.opts.fpsInterval);
 
-fpsinterval = 0;
-
-mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
-
+// those are currently in the "global" scope, but only being used here
+var fpsinterval = 0;
+var mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
 var markDurationInterval = setInterval(markDuration, 1000);
+
 function markDuration () {
   pool.duration += 1/3600; // in hours
   $aigui.find('#banner #duration').text( Math.round(pool.duration * 10000) / 10000 +' hours' );
