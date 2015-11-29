@@ -617,9 +617,9 @@ function newGeneration () {
                 addToSpecies(child);
         }
 
-        pool.generation = pool.generation + 1;
+        pool.generation++;
 
-        writeFile("backup." + pool.generation + "." + $form.find('input#saveLoadFile').val());
+        writeFile("autobackup.gen." + pool.generation + "." + $form.find('input#saveLoadFile').val());
 }
 
 function initializePool () {

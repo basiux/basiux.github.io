@@ -61,7 +61,7 @@ function asyncMainLoop () { // infinite, async equivalent
                         pool.maxFitness = fitness;
                         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
-                        writeFile( "backup." + pool.generation + "." + $form.find('input#saveLoadFile').val() );
+                        writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
