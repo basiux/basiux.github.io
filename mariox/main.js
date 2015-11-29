@@ -45,18 +45,20 @@ function asyncMainLoop () { // infinite, async equivalent
 
         var gameClock = getTime();
 
-        // is it in the demo screen?
+        // is it in the ...
+        // ... demo screen?
         if (!isPlayerPlaying() && gameClock == 401) {
           simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
           setTimeout( function () {simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);}, 200 );
         }
 
-        // is it in the beginning of a new game?
+        // ... beginning of a new game?
         if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
           saveIndexedDB('gameState', self.nes.cpu.mem);
           loadIndexedDB('gameState', loadGameStateCallback);
         }
 
+        // ... dead?
         if (isPlayerPlaying() && isPlayerObjPause()) {
           if (gameClock < 1) {
             self.nes.cpu.mem = pool.gameState;
