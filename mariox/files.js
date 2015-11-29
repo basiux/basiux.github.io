@@ -1,6 +1,7 @@
 // indexedDB code all based on https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
 
 function openIndexedDB () {
+  // This works on all devices/browsers, and uses IndexedDBShim as a final fallback 
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
   var openDB = indexedDB.open("marioxDB", 1);
