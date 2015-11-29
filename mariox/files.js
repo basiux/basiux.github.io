@@ -55,6 +55,7 @@ function loadIndexedDB (filename, callback) {
 function writeFile (filename) { // using indexedDB for the win! :)
         // `poolContent` rather than `pool` for strict lua adaptation
         var poolContent = [];
+        poolContent.push(pool.duration);
         poolContent.push(pool.generation);
         poolContent.push(pool.maxFitness);
         poolContent.push(pool.species);
@@ -77,6 +78,7 @@ function loadFileCallback (poolContent) {
         pool.species = poolContent.pop();
         pool.maxFitness = poolContent.pop();
         pool.generation = poolContent.pop();
+        pool.duration = poolContent.pop();
 
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 

@@ -153,6 +153,7 @@ function createAiGUI () {
   $banner.append('<label for="gen">Gen <span id="gen" class="data"></span></label>');
   $banner.append('<label for="fitness">Fitness: <span id="fitness" class="data"></span></label>');
   $banner.append('<label for="maxFitness">Max Fitness: <span id="maxFitness" class="data"></span></label>');
+  $banner.append('<label for="duration">Duration: <span id="duration" class="data"></span></label>');
 
   var $show = $('<div id="show"></div>').appendTo($aigui);
   $show.append('<span id="buttonNames" class="data"></span>');

@@ -18,6 +18,11 @@ fpsinterval = 0;
 
 mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
 
+var markDurationInterval = setInterval(function () {
+  pool.duration += 1/3600; // in hours
+  $aigui.find('#banner #duration').text( Math.round(pool.duration * 10000) / 10000 +' hours' );
+}, 1000);
+
 function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];

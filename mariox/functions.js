@@ -13,6 +13,7 @@ function newPool () {
         pool.currentGenome = 0; // array bonds
         pool.currentFrame = 0;
         pool.maxFitness = 0;
+        pool.duration = 0;
 
         return pool;
 }
