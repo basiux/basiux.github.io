@@ -2,10 +2,11 @@ if ( isEmpty(pool) ) {
         initializePool();
 }
 
-writeFile("temp.pool")
 //loadIndexedDB('gameState', loadGameStateCallback);
 
 createAiGUI();
+
+loadFile("autobackup.pool");
 
 self.nes.stop();
 self.nes.isRunning = true;
@@ -15,8 +16,20 @@ self.nes.fpsInterval = setInterval(function() {
 
 // those are currently in the "global" scope, but only being used here
 var fpsinterval = 0;
-var mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
-var markDurationInterval = setInterval(markDuration, 1000);
+var mainLoopInterval = null;
+var markDurationInterval = null;
+
+// review bug
+// without this, start button wasn't being activated for some reason
+var badFixStartBug = setInterval(function(){ // review bad fix
+  $('#emulator .nes-pause').click();
+  if (self.nes.isRunning) clearInterval(badFixStartBug);
+}, 100); // wait a bit to start main loop
+
+function startMainLoop () {
+  mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
+  markDurationInterval = setInterval(markDuration, 1000);
+}
 
 function markDuration () {
   pool.duration += 1/3600; // in hours
@@ -25,38 +38,41 @@ function markDuration () {
 
 $('#emulator .nes-pause').click(function(){
   if (self.nes.isRunning) {
-    mainLoopInterval = setInterval(asyncMainLoop, fpsinterval);
-    markDurationInterval = setInterval(markDuration, 1000);
+    startMainLoop();
   } else { // pause
     clearInterval(mainLoopInterval);
     clearInterval(markDurationInterval);
   }
 });
 
+function manageGameStates () {
+  var gameClock = getTime();
+
+  // is it in the ...
+  // ... demo screen?
+  if (!isPlayerPlaying() && gameClock == 401) {
+    simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
+    setTimeout(function () {
+      simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
+    }, 200);
+  }
+
+  // ... beginning of a new game?
+  if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
+    saveGameState();
+  }
+
+  // ... dead?
+  if (isPlayerPlaying() && isPlayerObjPause()) {
+    if (gameClock < 1) {
+      loadGameState();
+    }
+  }
+}
+
 function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
-
-        var gameClock = getTime();
-
-        // is it in the ...
-        // ... demo screen?
-        if (!isPlayerPlaying() && gameClock == 401) {
-          simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
-          setTimeout( function () {simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);}, 200 );
-        }
-
-        // ... beginning of a new game?
-        if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
-          saveGameState();
-        }
-
-        // ... dead?
-        if (isPlayerPlaying() && isPlayerObjPause()) {
-          if (gameClock < 1) {
-            loadGameState();
-          }
-        }
 
         if ($form.find('input#showNetwork')[0].checked) {
                 displayGenome(genome);
@@ -93,6 +109,7 @@ function asyncMainLoop () { // infinite, async equivalent
                         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
                         writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
+                        writeFile("autobackup.pool");
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);
@@ -122,6 +139,8 @@ function asyncMainLoop () { // infinite, async equivalent
         $aigui.find('#banner #maxFitness').text( Math.floor(pool.maxFitness) );
 
         pool.currentFrame++;
+
+        manageGameStates();
 
         self.nes.frame();
 }
