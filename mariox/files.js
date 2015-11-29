@@ -56,13 +56,13 @@ function loadIndexedDB (filename, callback) {
 function writeFile (filename) { // using indexedDB for the win! :)
         // `poolContent` rather than `pool` for strict lua adaptation
         var poolContent = {};
-        poolContent.duration = [].push(pool.duration);
-        poolContent.generation = [].push(pool.generation);
-        poolContent.maxFitness = [].push(pool.maxFitness);
-        poolContent.species = [].push(pool.species);
-        //poolContent.gameState = [].push(pool.gameState);
+        poolContent.duration = pool.duration;
+        poolContent.generation = pool.generation;
+        poolContent.maxFitness = pool.maxFitness;
+        poolContent.species = pool.species;
+        //poolContent.gameState = pool.gameState;
         saveIndexedDB(filename, poolContent);
-        pool.state = [].push(poolContent);
+        pool.state = poolContent;
         //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
         //console.log('writing file '+ filename);// +' - pool size: '+ fileSize);
 }
@@ -72,10 +72,10 @@ function savePool () {
         writeFile(filename);
 }
 
-function grabPoolContent (name) {
-  while (pool.state[name].length > 0) {
-    pool[name] = pool.state[name].pop();
-  }
+function grabPoolContent (name) { // leaving commented code to justify function, for now
+  //while (pool.state[name].length > 0) {
+    pool[name] = pool.state[name];//.pop()
+  //}
 }
 function loadFile (filename) {
         loadIndexedDB(filename, loadFileCallback);
@@ -89,7 +89,6 @@ function loadFileCallback (poolContent) {
           pool.maxFitness = poolContent.pop();
           pool.generation = poolContent.pop();
           pool.duration = poolContent.pop();
-          pool.currentSpecies = 0;
         } else {
           pool.state = poolContent;
           //grabPoolContent('gameState');
@@ -99,6 +98,7 @@ function loadFileCallback (poolContent) {
           grabPoolContent('duration');
           pool.state = [].push(poolContent);
         }
+        pool.currentSpecies = 0;
 
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
