@@ -2,10 +2,11 @@ if ( isEmpty(pool) ) {
         initializePool();
 }
 
-writeFile("temp.pool")
 //loadIndexedDB('gameState', loadGameStateCallback);
 
 createAiGUI();
+
+loadFile("autobackup.pool");
 
 self.nes.stop();
 self.nes.isRunning = true;
@@ -106,6 +107,7 @@ function asyncMainLoop () { // infinite, async equivalent
                         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
                         writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
+                        writeFile("autobackup.pool");
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);

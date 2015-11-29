@@ -622,6 +622,7 @@ function newGeneration () {
         pool.generation++;
 
         writeFile("autobackup.gen." + pool.generation + "." + $form.find('input#saveLoadFile').val());
+        writeFile("autobackup.pool");
 }
 
 function initializePool () {
