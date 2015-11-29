@@ -15,6 +15,7 @@ function newPool () {
         pool.maxFitness = 0;
         pool.duration = 0;
         pool.gameState = null;
+        pool.state = null;
 
         return pool;
 }

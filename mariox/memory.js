@@ -1,4 +1,15 @@
-// review - maybe there's nothing more to adapt here! :o
+function loadGameStateCallback (filedata) {
+  pool.gameState = filedata;
+}
+
+function loadGameState () {
+  self.nes.cpu.mem = pool.gameState;
+}
+
+function saveGameState () {
+  saveIndexedDB('gameState', self.nes.cpu.mem);
+  loadIndexedDB('gameState', loadGameStateCallback);
+}
 
 function getPositions () {
           marioX = self.nes.cpu.mem[0x6D]*0x100 + self.nes.cpu.mem[0x86];

@@ -1,10 +1,9 @@
-//loadState(); // for now, it can be called just once, or else there's a risk of pause
-
 if ( isEmpty(pool) ) {
         initializePool();
 }
 
 writeFile("temp.pool")
+//loadIndexedDB('gameState', loadGameStateCallback);
 
 createAiGUI();
 
@@ -34,11 +33,6 @@ $('#emulator .nes-pause').click(function(){
   }
 });
 
-loadIndexedDB('gameState', loadGameStateCallback);
-function loadGameStateCallback (filedata) {
-  pool.gameState = filedata;
-}
-
 function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
@@ -54,14 +48,13 @@ function asyncMainLoop () { // infinite, async equivalent
 
         // ... beginning of a new game?
         if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
-          saveIndexedDB('gameState', self.nes.cpu.mem);
-          loadIndexedDB('gameState', loadGameStateCallback);
+          saveGameState();
         }
 
         // ... dead?
         if (isPlayerPlaying() && isPlayerObjPause()) {
           if (gameClock < 1) {
-            self.nes.cpu.mem = pool.gameState;
+            loadGameState();
           }
         }
 
