@@ -19,7 +19,9 @@ var fpsinterval = 0;
 var mainLoopInterval = null;
 var markDurationInterval = null;
 
-var badFixStartBug = setInterval(function(){
+// review bug
+// without this, start button wasn't being activated for some reason
+var badFixStartBug = setInterval(function(){ // review bad fix
   $('#emulator .nes-pause').click();
   if (self.nes.isRunning) clearInterval(badFixStartBug);
 }, 100); // wait a bit to start main loop
