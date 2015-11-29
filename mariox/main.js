@@ -23,6 +23,8 @@ var markDurationInterval = setInterval(function () {
   $aigui.find('#banner #duration').text( Math.round(pool.duration * 10000) / 10000 +' hours' );
 }, 1000);
 
+$('#emulator .nes-pause').attr('disabled', 'disabled');
+
 function asyncMainLoop () { // infinite, async equivalent
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
