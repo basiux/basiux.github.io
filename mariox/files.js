@@ -1,3 +1,34 @@
+function addSaveFileLink (filename) {
+  var openDB = openIndexedDB();
+
+  openDB.onsuccess = function() {
+    var db = getStoreIndexedDB(openDB, "readonly");
+
+    var getAll = [];
+
+    $poolStateLink.text('generating . . . please wait');
+    var req = db.store.openCursor();
+    req.onsuccess = function (event) {
+      var cursor = event.target.result;
+      if (cursor) {
+        getAll.push(cursor.value);
+        cursor.continue();
+      } else {
+        var url = window.URL.createObjectURL(
+          new Blob(getAll, {'type': 'application/octet-stream'})
+        );
+        $poolStateLink.attr('href', url);
+        $poolStateLink.text('download '+ filename +'.marioxPoolState');
+        $poolStateLink.trigger('click');
+      }
+    };
+    req.onerror = function () {
+      $poolStateLink.text('error. please try again.'); // review - remember to add js notification
+      console.error('error generating download file', this.error);
+    }
+  }
+}
+
 // indexedDB code all based on https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
 
 function openIndexedDB () {
@@ -16,10 +47,11 @@ function openIndexedDB () {
   return openDB;
 }
 
-function getStoreIndexedDB (openDB) {
+function getStoreIndexedDB (openDB, mode) {
+  if (!mode) mode = "readwrite";
   var db = {};
   db.result = openDB.result;
-  db.tx = db.result.transaction("marioxOBJ", "readwrite");
+  db.tx = db.result.transaction("marioxOBJ", mode);
   db.store = db.tx.objectStore("marioxOBJ");
   //db.index = db.store.index("NameIndex");
 
@@ -118,13 +150,17 @@ function savePool () {
         writeFile(filename);
 }
 
-function savePoolArea () {
-  var poolContent = writeFile( autobackupFilename() +".poolArea."+ $form.find('input#saveLoadFile').val() );
-  //var poolStateArea = JSON.stringify(poolContent); // freaking slow, throws Uncaught RangeError: Invalid string length
-  var fileSize = roughSizeOfObject(poolContent);
-  //var fileSize = sizeof(poolContent); // much slower and apparently less precise than Zheng's
-  console.log('trying to stringify '+ fileSize +'bytes of pool file');
-  $poolStateArea.val('not implemented yet');//poolStateArea);
+function generateStateLink () {
+  addSaveFileLink($form.find('input#saveLoadFile').val());
+}
+
+function savePoolArea () { // maybe this will still come back over download links
+  //3rd attempt: var poolContent = writeFile( autobackupFilename() +".poolArea."+ $form.find('input#saveLoadFile').val() );
+  //1st attempt: var poolStateArea = JSON.stringify(poolContent); // freaking slow, throws Uncaught RangeError: Invalid string length
+  //var fileSize = roughSizeOfObject(poolContent);
+  //2nd attempt: var fileSize = sizeof(poolContent); // much slower and apparently less precise than Zheng's
+  //console.log('trying to stringify '+ fileSize +'bytes of pool file');
+  //$poolStateArea.val('not implemented yet');//poolStateArea);
 }
 
 function grabPoolContent (name) { // leaving commented code to justify function, for now

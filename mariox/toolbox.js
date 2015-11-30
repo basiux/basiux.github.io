@@ -7,6 +7,7 @@ var rightmost;
 var timeout;
 
 var $poolStateArea;
+var $poolStateLink;
 
 // from getPositions
 var marioX;
