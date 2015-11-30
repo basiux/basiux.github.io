@@ -116,6 +116,6 @@ function loadPool () {
 }
 
 function restartPool () {
-  savePool();
+  writeFile( "autobackup.restart." + $form.find('input#saveLoadFile').val()) );
   initializePool();
 }
