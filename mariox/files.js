@@ -64,7 +64,7 @@ function writeFile (filename) { // using indexedDB for the win! :)
         saveIndexedDB(filename, poolContent);
         pool.state = poolContent;
         //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
-        //console.log('writing file '+ filename);// +' - pool size: '+ fileSize);
+        console.log('writing file '+ filename);// +' - pool size: '+ fileSize);
 }
 
 function savePool () {
