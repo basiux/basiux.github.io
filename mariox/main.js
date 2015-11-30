@@ -45,9 +45,7 @@ $('#emulator .nes-pause').click(function(){
   }
 });
 
-function manageGameStates () {
-  var gameClock = getTime();
-
+function manageGameStates (gameClock) {
   // is it in the ...
   // ... demo screen?
   if (!isPlayerPlaying() && gameClock == 401) {
@@ -71,6 +69,8 @@ function manageGameStates () {
 }
 
 function asyncMainLoop () { // infinite, async equivalent
+        var gameClock = getTime();
+
         var species = pool.species[pool.currentSpecies];
         var genome = species.genomes[pool.currentGenome];
 
@@ -94,7 +94,7 @@ function asyncMainLoop () { // infinite, async equivalent
 
 
         var timeoutBonus = pool.currentFrame / 4;
-        if (timeout + timeoutBonus <= 0) {
+        if (timeout + timeoutBonus <= 0) {// && gameClock < 401) { // review - adding this will make START stop working
                 var fitness = rightmost - pool.currentFrame / 2;
                 if (rightmost > 3186) {
                         fitness = fitness + 1000;
@@ -140,7 +140,7 @@ function asyncMainLoop () { // infinite, async equivalent
 
         pool.currentFrame++;
 
-        manageGameStates();
+        manageGameStates(gameClock);
 
         self.nes.frame();
 }
