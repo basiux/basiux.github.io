@@ -57,6 +57,47 @@ function autobackupFilename () {
   return "autobackup"; // will probably need to add a timestamp for file list
 }
 
+function roughSizeOfObject( value, level ) {
+    // awesome piece of code from Liangliang Zheng http://stackoverflow.com/a/6367736/274502
+    // but still probably giving way far off object size for our usage case here
+
+    if(level == undefined) level = 0;
+    var bytes = 0;
+
+    if ( typeof value === 'boolean' ) {
+        bytes = 4;
+    }
+    else if ( typeof value === 'string' ) {
+        bytes = value.length * 2;
+    }
+    else if ( typeof value === 'number' ) {
+        bytes = 8;
+    }
+    else if ( typeof value === 'object' ) {
+        if(value['__visited__']) return 0;
+        value['__visited__'] = 1;
+        for( i in value ) {
+            bytes += i.length * 2;
+            bytes+= 8; // an assumed existence overhead
+            bytes+= roughSizeOfObject( value[i], 1 )
+        }
+    }
+
+    if(level == 0){
+        clear__visited__(value);
+    }
+    return bytes;
+}
+
+function clear__visited__(value){
+    if(typeof value == 'object'){
+        delete value['__visited__'];
+        for(var i in value){
+            clear__visited__(value[i]);
+        }
+    }
+}
+
 function writeFile (filename) { // using indexedDB for the win! :)
         // `poolContent` rather than `pool` for strict lua adaptation
         var poolContent = {};
@@ -79,9 +120,11 @@ function savePool () {
 
 function savePoolArea () {
   var poolContent = writeFile( autobackupFilename() +".poolArea."+ $form.find('input#saveLoadFile').val() );
-  var poolStateArea = JSON.stringify(poolContent); // freaking slow, throws Uncaught RangeError: Invalid string length
-  console.log('stringified '+ poolContent.length +'bytes of pool file')
-  $poolStateArea.val(poolStateArea);
+  //var poolStateArea = JSON.stringify(poolContent); // freaking slow, throws Uncaught RangeError: Invalid string length
+  var fileSize = roughSizeOfObject(poolContent);
+  //var fileSize = sizeof(poolContent); // much slower and apparently less precise than Zheng's
+  console.log('trying to stringify '+ fileSize +'bytes of pool file');
+  $poolStateArea.val('not implemented yet');//poolStateArea);
 }
 
 function grabPoolContent (name) { // leaving commented code to justify function, for now
