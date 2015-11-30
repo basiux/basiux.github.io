@@ -174,6 +174,6 @@ function createAiGUI () {
   //$form.append( $('<input id="savePoolArea" type="button" value="Save To Area">').click(savePoolArea) );
   //$form.append( $('<input id="loadPoolArea" type="button" value="Load From Area">').click(loadPoolArea) );
   //$poolStateArea = $('<textarea id="poolStateArea"></textarea>').appendTo($form);
-  $poolStateLink = $('<a id="clickGenerateStateLink">generate download link</a>').click(generateStateLink).appendTo($form);
-  $form.append('<a id="poolStateLink"></a>');
+  $('<input id="clickGenerateStateLink" type="button" value="generate download link">').click(generateStateLink).appendTo($form);
+  $poolStateLink = $('<a id="poolStateLink"></a>').appendTo($form);
 }

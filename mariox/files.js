@@ -14,11 +14,18 @@ function addSaveFileLink (filename) {
         getAll.push(cursor.value);
         cursor.continue();
       } else {
+        if ($poolStateLink.attr('href')) {
+          window.URL.revokeObjectURL($poolStateLink.attr('href'));
+        }
+        //var blobGetAll = JSON.stringify(getAll); // bad memory hung and crash, yet again
+        //console.log('blob size: '+ blobGetAll.length);
+        //var compressed = LZString.compressToUTF16(blobGetAll)
         var url = window.URL.createObjectURL(
+          // blob isn't serializing object! :(
           new Blob(getAll, {'type': 'application/octet-stream'})
         );
         $poolStateLink.attr('href', url);
-        $poolStateLink.text('download '+ filename +'.marioxPoolState');
+        $poolStateLink.text('download '+ filename +'.marioxPoolState (not working)');
         $poolStateLink.trigger('click');
       }
     };
