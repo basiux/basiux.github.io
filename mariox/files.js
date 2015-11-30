@@ -60,7 +60,7 @@ function writeFile (filename) { // using indexedDB for the win! :)
         poolContent.generation = pool.generation;
         poolContent.maxFitness = pool.maxFitness;
         poolContent.species = pool.species;
-        //poolContent.gameState = pool.gameState;
+        poolContent.gameState = pool.gameState;
         saveIndexedDB(filename, poolContent);
         pool.state = poolContent;
         //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
@@ -70,6 +70,12 @@ function writeFile (filename) { // using indexedDB for the win! :)
 function savePool () {
         var filename = $form.find('input#saveLoadFile').val();
         writeFile(filename);
+}
+
+function savePoolArea () {
+  writeFile( autobackupFilename() +".poolArea."+ $form.find('input#saveLoadFile').val() );
+  var poolStateArea = JSON.stringify(poolContent); // freaking slow - may not work
+  $poolStateArea.val(poolStateArea);
 }
 
 function grabPoolContent (name) { // leaving commented code to justify function, for now
@@ -84,20 +90,25 @@ function loadFile (filename) {
 }
 function loadFileCallback (poolContent) {
         if ( poolContent.length == 4 || ( poolContent.length == 5 && isEmpty(poolContent[4]) ) ) {
+          // legacy load for cregox's local machiine only (where old save were ever done)
           if (poolContent.length == 5) poolContent.pop();
           pool.species = poolContent.pop();
           pool.maxFitness = poolContent.pop();
           pool.generation = poolContent.pop();
           pool.duration = poolContent.pop();
+          // don't need to worry about legacy, should delete this soon
         } else {
           pool.state = poolContent;
-          //grabPoolContent('gameState');
-          grabPoolContent('species');
-          grabPoolContent('maxFitness');
-          grabPoolContent('generation');
-          grabPoolContent('duration');
-          pool.state = [].push(poolContent);
         }
+        finishLoading();
+}
+function finishLoading () {
+        grabPoolContent('gameState');
+        grabPoolContent('species');
+        grabPoolContent('maxFitness');
+        grabPoolContent('generation');
+        grabPoolContent('duration');
+
         pool.currentSpecies = 0;
 
         $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
@@ -115,7 +126,12 @@ function loadPool () {
         loadFile(filename);
 }
 
+function loadPoolArea () {
+  pool.state = $poolStateArea.val();
+  finishLoading();
+}
+
 function restartPool () {
-  writeFile( "autobackup.restart." + $form.find('input#saveLoadFile').val()) );
+  writeFile( "autobackup.restart." + $form.find('input#saveLoadFile').val() );
   initializePool();
 }

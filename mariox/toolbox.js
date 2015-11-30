@@ -6,6 +6,8 @@ var $aigui;
 var rightmost;
 var timeout;
 
+var $poolStateArea;
+
 // from getPositions
 var marioX;
 var marioY;
