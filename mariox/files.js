@@ -53,6 +53,10 @@ function loadIndexedDB (filename, callback) {
   }
 }
 
+function autobackupFilename () {
+  return "autobackup"; // will probably need to add a timestamp for file list
+}
+
 function writeFile (filename) { // using indexedDB for the win! :)
         // `poolContent` rather than `pool` for strict lua adaptation
         var poolContent = {};
