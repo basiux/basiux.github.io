@@ -69,6 +69,7 @@ function writeFile (filename) { // using indexedDB for the win! :)
         pool.state = poolContent;
         //var fileSize = JSON.stringify(poolContent).length; // couldn't figure out a fast way, just for log
         console.log('writing file '+ filename);// +' - pool size: '+ fileSize);
+        return poolContent;
 }
 
 function savePool () {
@@ -77,8 +78,9 @@ function savePool () {
 }
 
 function savePoolArea () {
-  writeFile( autobackupFilename() +".poolArea."+ $form.find('input#saveLoadFile').val() );
-  var poolStateArea = JSON.stringify(poolContent); // freaking slow - may not work
+  var poolContent = writeFile( autobackupFilename() +".poolArea."+ $form.find('input#saveLoadFile').val() );
+  var poolStateArea = JSON.stringify(poolContent); // freaking slow, throws Uncaught RangeError: Invalid string length
+  console.log('stringified '+ poolContent.length +'bytes of pool file')
   $poolStateArea.val(poolStateArea);
 }
 
