@@ -106,7 +106,6 @@ function asyncMainLoop () { // infinite, async equivalent
 
                 if (fitness > pool.maxFitness) {
                         pool.maxFitness = fitness;
-                        $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
 
                         writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
                         writeFile("autobackup.pool");

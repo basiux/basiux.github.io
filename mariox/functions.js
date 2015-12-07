@@ -714,7 +714,6 @@ function playTop () {
         pool.currentSpecies = maxSpecies;
         pool.currentGenome = maxGenome;
         pool.maxFitness = maxFitness;
-        $form.find('input#maxFitness').val(Math.floor(pool.maxFitness));
         initializeRun();
         pool.currentFrame++;
         return;
