@@ -105,10 +105,15 @@ function asyncMainLoop () { // infinite, async equivalent
                 genome.fitness = fitness;
 
                 if (fitness > pool.maxFitness) {
-                        pool.maxFitness = fitness;
+                        if (pool.maxFitness > FitnessMinFilter
+                           && fitness > pool.maxFitness * FitnessMaximumRateFilterNewOne) {
+                                console.error("Error: Max Fitness can't double overnight!");
+                        } else {
+                                pool.maxFitness = fitness;
 
-                        writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
-                        writeFile("autobackup.pool");
+                                writeFile( "autobackup.fitness." + fitness + "." + $form.find('input#saveLoadFile').val() );
+                                writeFile("autobackup.pool");
+                        }
                 }
 
                 //console.log("Gen " + pool.generation + " species " + pool.currentSpecies + " genome " + pool.currentGenome + " fitness: " + fitness);

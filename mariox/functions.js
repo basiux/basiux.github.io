@@ -704,9 +704,14 @@ function playTop () {
                 for (var g in species.genomes) { // in pairs
                         var genome = species.genomes[g];
                         if (genome.fitness > maxFitness) {
-                                maxFitness = genome.fitness;
-                                maxSpecies = s;
-                                maxGenome = g;
+                                if (genome.fitness > FitnessMinFilter
+                                   && genome.fitness > maxFitness * FitnessMaximumRateFilterNewOne) {
+                                        console.error("Error: Max Fitness can't double overnight!");
+                                } else {
+                                        maxFitness = genome.fitness;
+                                        maxSpecies = s;
+                                        maxGenome = g;
+                                }
                         }
                 }
         }

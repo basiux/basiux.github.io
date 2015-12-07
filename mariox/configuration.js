@@ -40,3 +40,6 @@ EnableMutationChance = 0.2;
 TimeoutConstant = 20;
 
 MaxNodes = 1000000;
+
+FitnessMinFilter = 1000;
+FitnessMaximumRateFilterNewOne = 2;
