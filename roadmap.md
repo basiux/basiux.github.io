@@ -1,5 +1,5 @@
 # Current concurrent plans
-Analyse how humans work and try to replicate. Most of other A.I. groups are doing a variation of this.
+Analyze how humans work and try to replicate. Most of other A.I. groups are doing a variation of this.
 
 That's an attempt to create the so called "General Intelligence", AGI. But our intelligence was build in a complete different reality, non binary. Over millions of iterations over it and interactions with it.
 
@@ -16,7 +16,7 @@ There would be a regular shell terminal to interact with it, and it will take co
 Of course this is no trivial quest.
 
 # A.k.a. singularity
-The plan still must be dissected into many parts, and that's basically the main goal of everyone here at basiux. We believe from there, it will be a quick climb up to the **technological singularity**. 
+The plan still must be dissected into many parts, and that's basically the main goal of everyone here at basiux. We believe from there, it will be a quick climb up to the **technological singularity**.
 
 Think of a brain trying to connect with the internet and nothing else. No sense of sight, smell, touch, hearing, or all of other 20 or so senses. Movement above all, which is what most of our brain processing power must be used for.
 
