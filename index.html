@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html>
   <head>
@@ -108,95 +110,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div id="detail-carousel" class="carousel slide">
 
-					  <!-- Wrapper for slides -->
-					  <div class="carousel-inner">
-					    <div class="item active">
-					      	<div class="row">
-					      		<div class="col-md-offset-1 col-md-10">
-					      			<h1>Current concurrent plans</h1>
-					      			<p>
-                        Analyse how humans work and try to replicate.
-                        Most of other A.I. groups are doing a variation of this.
-                        <br><br>
-                        That's an attempt to create the so called "General Intelligence", AGI.
-                        But our intelligence was build in a complete different reality, non binary.
-                        Over millions of iterations over it and interactions with it.
-                        <br><br>
-                        <a href="#detail-carousel" data-slide="next">Our plan here at <i>basiux</i> is quite <b>different</b></a>.
-                      </p>
-					      		</div>
-					      		<!--div class="col-sm-12 col-md-5">
-					      			<div class="app-screenshot">
-					      				<img src="img/screenshots/app-1.png" class="img-responsive" alt="App Screen 1">
-					      			</div>
-					      		</div-->
-					      	</div>
-					    </div>
-					    <div class="item">
-					    	<div class="row">
-					    		<div class="col-md-offset-1 col-md-10">
-					    			<h1>Go straight to Super Intelligence</h1>
-					    			<p>
-                      Sublimation with an algorithm capable of generic learning, which:
-                      <br>- should be able to learn english;
-                      <br>- must ask questions before taking any action, and;
-                      <br>- do act upon any orders given to it.
-                      <br><br>
-                      There would be a regular shell terminal to interact with it,
-                      and it will take commands at first. "What should I do now?" is
-                      the question it will ask the most, in parallel with its own
-                      never-sleeping "sponge brain".
-                      <br><br>
-                      <a href="#detail-carousel" data-slide="next">Of course this is no trivial quest.</a>
-                    </p>
-					    		</div>
-					    		<!--div class="col-sm-12 col-md-5">
-					    			<div class="app-screenshot">
-					    				<img src="img/screenshots/app-2.png" class="img-responsive" alt="App Screen 2">
-					    			</div>
-					    		</div-->
-					    	</div>
-						  </div>
-					    <div class="item">
-					      <div class="row">
-					      	<div class="col-md-offset-1 col-md-10">
-					      		<h1>A.k.a. singularity</h1>
-					      		<p>
-                      The plan still must be dissected into many parts, and
-                      that's basically the main goal of everyone here at <i>basiux</i>.
-                      We believe from there, it will be a quick climb up to the <b>technological singularity</b>.
-                      <br><br>
-                      Think of a brain trying to connect with the internet and nothing else.
-                      No sense of sight, smell, touch, hearing, or all of other 20 or so senses.
-                      Movement above all, which is what most of our brain processing power must be used for.
-                      <br><br>
-                      Then we'd still need to teach it
-                      how it can grow exponentially by replicating itself and
-                      by exploring every means available, not just what we give it.
-                      Yeah, initially it wouldn't know about the internet.
-                      <br><br>
-                      Now, at this point... Could it turn evil and quickly exterminate us all?
-                      We believe <b>we will never know the true answer until we try</b>.
-                    </p>
-					      	</div>
-					      	<!--div class="col-sm-12 col-md-5">
-					      		<div class="app-screenshot">
-					      			<img src="img/screenshots/app-3.png" class="img-responsive" alt="App Screen 3">
-					      		</div>
-					      	</div-->
-					      </div>
-					    </div>
-					  </div>
-
-					  <!-- Indicators -->
-					  <ol class="carousel-indicators">
-					    <li data-target="#detail-carousel" data-slide-to="0" class="active"></li>
-					    <li data-target="#detail-carousel" data-slide-to="1"></li>
-					    <li data-target="#detail-carousel" data-slide-to="2"></li>
-					  </ol>
+	      	<div class="row">
+	      		<div class="col-md-offset-1 col-md-10">
+              {% capture roadmap %}{% include_relative roadmap.md %}{% endcapture %}
+              {{ roadmap | markdownify }}
+	      		</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
