@@ -1,9 +1,11 @@
 # Confused about Mariox, and basiux?
 Maybe the following 2 videos can help:
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=qv6UVOQ0F44" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44" frameborder="0" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=-Irmtk5QG8s" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-Irmtk5QG8s" frameborder="0" allowfullscreen></iframe>
+
+But please, disregard the ending of the second one. The typewriter theory (smiley faces on the video) is something we consider to be any threat to us, it's way too linear speculation.
 
 # Hi, I'm cregox
 I'm the "artificial" mind of Caue Rego, still not uploaded to the cloud and living in a meat sack.
