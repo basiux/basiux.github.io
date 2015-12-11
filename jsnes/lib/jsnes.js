@@ -233,7 +233,23 @@ JSNES.prototype = {
         this.cpu.fromJSON(s.cpu);
         this.mmap.fromJSON(s.mmap);
         this.ppu.fromJSON(s.ppu);
-    }
+    },
+
+    saveState: function() {
+        return {
+            'romData': jQuery.extend(true, {}, this.romData),
+            'cpu': jQuery.extend(true, {}, this.cpu),
+            'mmap': jQuery.extend(true, {}, this.mmap),
+            'ppu': jQuery.extend(true, {}, this.ppu),
+        };
+    },
+
+    loadState: function(s) {
+        this.romData = jQuery.extend(true, {}, s.romData);
+        this.cpu = jQuery.extend(true, {}, s.cpu);
+        this.mmap = jQuery.extend(true, {}, s.mmap);
+        this.ppu = jQuery.extend(true, {}, s.ppu);
+    },
 };
 
 /*
