@@ -40,7 +40,9 @@ Analyze how humans work and try to replicate. Most of other A.i. groups are doin
 
 An attempt to create the so called "General Intelligence", AGI. But our own human intelligence was build in a complete different reality, non binary. Over millions of iterations over it and interactions with it.
 
-So, our plan here at basiux is quite **different**.
+So, our plan here at basiux is quite **different**, except...
+
+Our plan does look exactly the same as Elon Musk's [openai](http://openai.com), just [announced in December](https://web.archive.org/web/20151211215507/https://openai.com/blog/introducing-openai/), few months [after basiux](https://github.com/basiux/basiux.github.io/commit/4cde7b704e6906049e1db87a709d4ca93dd79d25).
 
 # Go straight to Super Intelligence
 Sublimation with an algorithm capable of generic learning, which:
