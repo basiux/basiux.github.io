@@ -1,14 +1,19 @@
 function loadGameStateCallback (filedata) {
-  pool.gameState = filedata;
+  poolGameState = filedata;
 }
 
 function loadGameState () {
-  self.nes.cpu.mem = pool.gameState;
+  if ( !isEmpty(poolGameState) ) {
+    self.nes.loadState(poolGameState);
+  }
 }
 
-function saveGameState () {
-  saveIndexedDB('gameState', self.nes.cpu.mem);
-  loadIndexedDB('gameState', loadGameStateCallback);
+function saveGameStateOnce () {
+  if ( isEmpty(poolGameState) ) {
+    poolGameState = self.nes.saveState();
+    //saveIndexedDB('gameState', self.nes.saveState());
+    //loadIndexedDB('gameState', loadGameStateCallback);
+  }
 }
 
 function getPositions () {

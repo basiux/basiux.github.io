@@ -14,8 +14,9 @@ function newPool () {
         pool.currentFrame = 0;
         pool.maxFitness = 0;
         pool.duration = 0;
-        pool.gameState = null;
+        pool.gameState = null;//{};
         pool.state = null;
+        poolGameState = null;
 
         return pool;
 }
@@ -646,7 +647,7 @@ function clearJoypad () {
 
 function initializeRun () {
         // review - something like savestate will be much needed
-        //loadState(Filename);
+        loadGameState();
         rightmost = 0;
         pool.currentFrame = 0;
         timeout = TimeoutConstant;

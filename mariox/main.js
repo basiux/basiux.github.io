@@ -56,8 +56,8 @@ function manageGameStates (gameClock) {
   }
 
   // ... beginning of a new game?
-  if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
-    saveGameState();
+  if (isPlayerPlaying() && gameClock < 401) {
+    saveGameStateOnce();
   }
 
   // ... dead?

@@ -5,6 +5,7 @@ var $form; // jQuery's
 var $aigui;
 var rightmost;
 var timeout;
+var poolGameState;
 
 var $poolStateArea;
 var $poolStateLink;
