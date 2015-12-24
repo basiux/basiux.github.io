@@ -7,8 +7,6 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="favicon.ico">
-    <!-- CSS
-        ================================================== -->
     <!-- Bootstrap 3-->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <!-- Google Fonts -->
@@ -21,8 +19,6 @@
   </head>
   <body>
 
-	  <!-- NAVBAR
-	      ================================================== -->
 	  <nav class="navbar navbar-default" role="navigation">
 	  	  <div class="container">
 			  <div class="navbar-header">
@@ -40,6 +36,8 @@
 			  <div class="collapse navbar-collapse navbar-ex1-collapse">
 			    <ul class="nav navbar-nav">
 			      <li><a onclick="$('header').animatescroll({padding:71});">Start</a></li>
+            <li><a onclick="$('.mariox').animatescroll({padding:71});">mariox</a></li>
+            <li><a onclick="$('.goal').animatescroll({padding:71});">Goal</a></li>
 			      <li><a onclick="$('.detail').animatescroll({padding:71});">Details</a></li>
 			      <li><a onclick="$('.features').animatescroll({padding:71});">Features</a></li>
 			      <li><a onclick="$('.social').animatescroll({padding:71});">Social	</a></li>
@@ -49,8 +47,6 @@
 	  </nav>
 
 
-	   <!-- HEADER
-	   ================================================== -->
 	  <header>
 		 <div class="container">
 			 <div class="row">
@@ -65,9 +61,7 @@
 	 </header>
 
 
-	  <!-- PURCHASE
-	      ================================================== -->
-	  <section class="purchase">
+	  <section class="mariox">
 		  <div class="container">
 			  <div class="row">
 				  <div class="col-md-offset-2 col-md-8">
@@ -84,9 +78,7 @@
 	  </section>
 
 
-	  <!-- PAYOFF
-	      ================================================== -->
-	  <section class="payoff">
+	  <section class="goal">
 		  <div class="container">
 			  <div class="row">
 				  <div class="col-md-12">
@@ -99,9 +91,9 @@
             <form action="http://talk.cregox.com/c/basiux" method="get" novalidate>
               <button type="submit" class="btn btn-default">Sign up on cregox</button>
             </form>
-            
+
             <br><br>
-            
+
             Or, if you're in Lisbon, go to one of our <a href="http://meetup.com/basiux-lisbon/">MondAi School meetups</a>!
           </div>
 			  </div>
@@ -109,8 +101,6 @@
 	  </section>
 
 
-	  <!-- DETAILS
-	      ================================================== -->
 	  <section class="detail">
 		<div class="container">
 			<div class="row">
@@ -130,8 +120,6 @@
 	</section>
 
 
-	  <!-- FEATURES
-	      ================================================== -->
 	  <section class="features">
 		  <div class="container">
 			  <div class="row">
@@ -168,8 +156,6 @@
 	  </section>
 
 
-	 <!-- SOCIAL
-	     ================================================== -->
 	  <section class="social">
 	  	<div class="container">
 	  		  <div class="row">
@@ -184,9 +170,7 @@
 	  </section>
 
 
-	 <!-- GET IT
-	     ================================================== -->
-	  <section class="get-it">
+	  <section class="bottom">
 	  	<div class="container">
 	  		<div class="row">
 	  			<!--div class="col-md-12">
@@ -226,8 +210,6 @@
 	  </section>
 
 
-	 <!-- JAVASCRIPT
-	     ================================================== -->
     <script src="js/jquery.js"></script>
     <script src="js/fix-jquery-getscript.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -245,8 +227,6 @@
       ga('send', 'pageview');
     </script>
 
-    <!-- MARIOX
-         ================================================== -->
     <!--script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script-->
     <script src="jsnes/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
     <script src="jsnes/source/nes.js" type="text/javascript" charset="utf-8"></script>
@@ -258,7 +238,7 @@
     <script src="jsnes/source/ppu.js" type="text/javascript" charset="utf-8"></script>
     <script src="jsnes/source/rom.js" type="text/javascript" charset="utf-8"></script>
     <script src="jsnes/source/ui.js" type="text/javascript" charset="utf-8"></script>
-    <script src="jsnes/lib/jsnes.min.js"></script>
+    <script src="jsnes/lib/jsnes.js"></script>
     <script type="text/javascript" charset="utf-8">
         var nes;
         $(function() {

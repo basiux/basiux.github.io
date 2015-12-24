@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	$('header').addClass('visibility');
 	$('.carousel-iphone').addClass('visibility');
-	$('.payoff h1').addClass('visibility');
+	$('.goal h1').addClass('visibility');
 	$('.features .col-md-4').addClass('visibility');
 	$('.social .col-md-12').addClass('visibility');
 });
@@ -30,7 +30,7 @@ var scrollTop = $(window).scrollTop();
 
 
 //animations
-	$('.payoff h1').each(function(){
+	$('.goal h1').each(function(){
 
 		var imagePos = $(this).offset().top;
 		var topOfWindow = $(window).scrollTop();
@@ -41,7 +41,7 @@ var scrollTop = $(window).scrollTop();
 
 	});
 
-	$('.purchase button.app-store').each(function(){
+	$('.mariox button.app-store').each(function(){
 
 		var imagePos = $(this).offset().top;
 		var topOfWindow = $(window).scrollTop();
@@ -74,7 +74,7 @@ var scrollTop = $(window).scrollTop();
 
 	});
 
-	$('.get-it button.app-store').each(function(){
+	$('.bottom button.app-store').each(function(){
 
 		var imagePos = $(this).offset().top;
 		var topOfWindow = $(window).scrollTop();
@@ -105,7 +105,7 @@ function parallax() {
 		var scaleBg = -$(window).scrollTop() / 3;
 
         if (iOS === false) {
-            $('.payoff').css('background-position-y', scaleBg - 150);
+            $('.goal').css('background-position-y', scaleBg - 150);
             $('.social').css('background-position-y', scaleBg + 200);
         }
 
