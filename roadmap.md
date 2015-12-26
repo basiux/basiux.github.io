@@ -21,41 +21,47 @@ For practical purposes, we do have a roadmap.
 # Roadmap
 First, what's being currently built:
 
-- **Mariox** will be a Seth's Mar i/o port to run in any web browser and beat Super Mario 1 - beta engine is already up and running ​on the website! :)
+- **Mariox** will be a Seth's Mar i/o port to run in any web browser and beat Super Mario 1 - beta engine is already up and running ​on this very website! :)
 
 - **Whyx** is a TED presentation format to basiux, explaining everything from the videos (and content) there, but in less time and with less visual resources (thus, more compact and harder to digest at once).
 
 ​​Then, what might be the next steps:
 
-- **Tamagotchix** would be able to play, at least, Mariox, in the palm of your hands, so anyone can see a neural network learning through genetic evolution and even teach them as an assisted deep learning.
+- **Tamagotchix** would allow us to play Mariox (only this 1 game at first), so anyone can see a neural network learning through genetic evolution and enable understanding its inner workings.
 
-- **Marioxx** should use basiux engine to make Mario talk, with a secret twist
+- **Marioxx** should use basiux engine to make Mario talk, with a secret twist.
 
-- **Hutter** might get off the roadmap, but it could be the first basiux engine made to compress data
+- **Hutter** might get off the roadmap, but it could be the first basiux engine made to compress data.
 
 Help us by make this a reality by moving! [Participate](http://talk.basiux.org), [contribute](http://patreon.com/cregox), etc.
 
-# Current concurrent plans
+# Previous roadmap (set around August)
+
+## Current concurrent plans
 Analyze how humans work and try to replicate. Most of other A.i. groups are doing a variation of this.
 
-An attempt to create the so called "General Intelligence", AGI. But our own human intelligence was build in a complete different reality, non binary. Over millions of iterations over it and interactions with it.
+An attempt to create the so called "General Intelligence", AGI. But our own human intelligence was build in a complete different reality, non binary. Over millions of iterations and interactions with the environment.
 
-So, our plan here at basiux is quite **different**, except...
+Our plan here at basiux is quite **different**, except... (edited in December)
 
-Our plan does look exactly the same as Elon Musk's [openai](http://openai.com), just [announced in December](https://web.archive.org/web/20151211215507/https://openai.com/blog/introducing-openai/), few months [after basiux](https://github.com/basiux/basiux.github.io/commit/4cde7b704e6906049e1db87a709d4ca93dd79d25).
+It does look exactly the same as Elon Musk's [openai](http://openai.com), just [announced in December](https://web.archive.org/web/20151211215507/https://openai.com/blog/introducing-openai/), few months [after basiux](https://github.com/basiux/basiux.github.io/commit/4cde7b704e6906049e1db87a709d4ca93dd79d25). There are a few differences, currently we:
 
-# Go straight to Super Intelligence
+- have a simple roadmap which anyone can simply join and contribute.
+- welcome anyone to join and even encourage you're not any kind of "world-class" researcher at all. That thing could get into your head...
+- don't really want to "change the world", we just want to enjoy life! ;P
+
+## Go straight to Super Intelligence
 Sublimation with an algorithm capable of generic learning, which:
 - should be able to learn english;
 - must ask questions before taking any action, and;
 - do act upon any orders given to it.
 
-There would be a regular shell terminal to interact with it, and it will take commands at first. "What should I do now?" is the question it will ask the most, in parallel with its own never-sleeping "sponge brain".
+There could be a regular shell terminal to interact with it, and it would take commands at first. "What should I do now?" is the question it will ask the most, in parallel with its own never-sleeping "sponge brain".
 
 Of course this is no trivial quest.
 
-# A.k.a. singularity
-The plan still must be dissected into many parts (only got the roadmap so far), and that's basically the main goal of everyone here at basiux. We believe from there, it will be a quick climb up to the **technological singularity**.
+## A.k.a. singularity
+The plan still must be dissected into many parts, and that's basically the main goal of everyone here at basiux. We believe from there, it will be a quick climb up to the **technological singularity**.
 
 Think of a brain trying to connect with the internet and nothing else. No sense of sight, smell, touch, hearing, or all of other 20 or so senses. Movement above all, which is what most of our brain processing power must be used for.
 
