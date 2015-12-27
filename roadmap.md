@@ -47,14 +47,18 @@ Our plan here at basiux is quite **different**, except... (edited in December)
 It does look exactly the same as Elon Musk's [openai](http://openai.com), just [announced in December](https://web.archive.org/web/20151211215507/https://openai.com/blog/introducing-openai/), few months [after basiux](https://github.com/basiux/basiux.github.io/commit/4cde7b704e6906049e1db87a709d4ca93dd79d25). There are a few differences, currently we:
 
 - have a simple roadmap which anyone can simply join and contribute.
+
 - welcome anyone to join and even encourage you're not any kind of "world-class" researcher at all. That thing could get into your head...
+
 - don't really want to "change the world", we just want to enjoy life! ;P
 
 ## Go straight to Super Intelligence
 Sublimation with an algorithm capable of generic learning, which:
 
 - should be able to learn english;
+
 - must ask questions before taking any action, and;
+
 - do act upon any orders given to it.
 
 There could be a regular shell terminal to interact with it, and it would take commands at first. "What should I do now?" is the question it will ask the most, in parallel with its own never-sleeping "sponge brain".
