@@ -52,6 +52,7 @@ It does look exactly the same as Elon Musk's [openai](http://openai.com), just [
 
 ## Go straight to Super Intelligence
 Sublimation with an algorithm capable of generic learning, which:
+
 - should be able to learn english;
 - must ask questions before taking any action, and;
 - do act upon any orders given to it.
