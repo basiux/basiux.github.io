@@ -1,7 +1,9 @@
 # Confused about Mariox, and basiux?
-Maybe the following 2 videos can help. The important times for Mario are `1:48` and `2:35`:
+Maybe the following 2 videos can help:
 
 <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44?start=108" frameborder="0" allowfullscreen></iframe></div>
+
+**For understanding the Neural Network**, the important times for Mario are `1:48` and `2:35`.
 
 Look up. That's the best neural network representation we've seen so far. And it's still not that good for the lay viewer.
 
