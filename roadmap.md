@@ -1,7 +1,15 @@
 # Confused about Mariox, and basiux?
-Maybe the following 2 videos can help:
+Maybe the following 2 videos can help. The important times for Mario are `1:48` and `2:35`:
 
-<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44" frameborder="0" allowfullscreen></iframe></div>
+<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44?start=108" frameborder="0" allowfullscreen></iframe></div>
+
+Look up. That's the best neural network representation we've seen so far. And it's still not that good for the lay viewer.
+
+You've got to pay attention to the exact spot where the green line is connecting on the small screen, and how it relates to the white blocks.
+
+Then watch the part from `2:35` many times until you get what he means.
+
+Finally, try making an analogy of this to your brain. The **left side** is everything outside of your brain. The environment, your body, your eyes. The **right side** is everything you can act upon, which includes your consciousness.
 
 <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/-Irmtk5QG8s" frameborder="0" allowfullscreen></iframe></div>
 
