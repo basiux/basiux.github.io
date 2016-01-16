@@ -9,7 +9,7 @@ You've got to pay attention to the exact spot where the green line is connecting
 
 Then watch the part from `2:35` many times until you get what he means.
 
-Finally, try making an analogy of this to your brain. The **left side** is everything outside of your brain. The environment, your body, your eyes. The **right side** is everything you can act upon, which includes your consciousness.
+Finally, try making an analogy of this to your brain. The **left side** is everything outside of your brain. The environment, your body, your eyes. The **right side** is everything the brain can act upon, which includes your consciousness (i.e. yourself) and your arms.
 
 <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/-Irmtk5QG8s" frameborder="0" allowfullscreen></iframe></div>
 
