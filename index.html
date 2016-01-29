@@ -61,7 +61,7 @@
 	 </header>
 
 
-	  <section class="mariox">
+	  <section class="mariox" id="mariox">
 		  <div class="container">
 			  <div class="row">
 				  <div class="col-md-offset-2 col-md-8">
@@ -78,7 +78,7 @@
 	  </section>
 
 
-	  <section class="goal">
+	  <section class="goal" id="goal">
 		  <div class="container">
 			  <div class="row">
 				  <div class="col-md-12">
@@ -97,26 +97,26 @@
 	  </section>
 
 
-	  <section class="detail">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
+	  <section class="detail" id="details">
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-md-12">
 
-	      	<div class="row">
-	      		<div class="col-md-offset-1 col-md-10">
-              {% capture roadmap %}{% include_relative roadmap.md %}{% endcapture %}
-              {{ roadmap | markdownify }}
-              <br><br>
-	      		</div>
-					</div>
+  	      	<div class="row">
+  	      		<div class="col-md-offset-1 col-md-10">
+                {% capture roadmap %}{% include_relative roadmap.md %}{% endcapture %}
+                {{ roadmap | markdownify }}
+                <br><br>
+  	      		</div>
+  					</div>
 
-				</div>
-			</div>
-		</div>
-	</section>
+  				</div>
+  			</div>
+  		</div>
+  	</section>
 
 
-	  <section class="features">
+	  <section class="features" id="features">
 		  <div class="container">
 			  <div class="row">
 
