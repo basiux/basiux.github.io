@@ -582,3 +582,19 @@ header, .social{
     	color: white;
     }
 }
+
+
+.playescape {
+	padding: 150px 0px 0px 0px;
+	background: url('../img/werewolf-playing-table-screenshot.jpg');
+	background-color: white!important;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	color: white;
+}
+.playescape	h1 {
+	color: white;
+}
+.playescape .container>div {
+	background-image: linear-gradient(rgba(40, 29, 21, 0.247059), rgba(40, 29, 21, 0.74902));
+}
