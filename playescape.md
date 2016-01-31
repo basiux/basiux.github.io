@@ -1,6 +1,6 @@
 # Play Escape - Coming [Soon](https://thegrid.ai/playescape/)
 
-We are making a new kind of **detective** / [**werewolf**](http://www.playwerewolf.co/rules/) mixed with [**escape game**](https://www.youtube.com/watch?v=TjXAXnacKMc). People playing together in circles and more, also with a game master / narrator guiding the quests.
+We are making a new kind of [**party game**](https://en.wikipedia.org/wiki/Party_game) (such as [**werewolf**](http://www.playwerewolf.co/rules/)) mixed with a [**escape game**](https://www.youtube.com/watch?v=TjXAXnacKMc). People playing together in circles and more, also with a game master / narrator guiding the quests.
 
 3 hours is the *time limit and winning goal* - do it in less and you'll have to stay in a *limbo* and more is simply not allowed, as the game will end while everyone is be invited to the after hours dinner party (or whatever).
 
