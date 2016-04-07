@@ -40,7 +40,7 @@
             <li><a onclick="$('.goal').animatescroll({padding:71});">Goal</a></li>
 			      <li><a onclick="$('.detail').animatescroll({padding:71});">Details</a></li>
 			      <li><a onclick="$('.features').animatescroll({padding:71});">Features</a></li>
-            <li><a onclick="$('.playescape').animatescroll({padding:71});">Play Escape</a></li>
+            <li><a onclick="$('.meetup').animatescroll({padding:71});">Meet Up</a></li>
 			      <li><a onclick="$('.bottom').animatescroll({padding:71});">More</a></li>
 			    </ul>
 			  </div>
@@ -169,7 +169,7 @@
 	  </section-->
 
 
-    <section class="playescape" id="playescape">
+    <section class="meetup" id="meetup">
       <div class="container">
   			<div class="row">
   				<div class="col-md-12">
@@ -177,8 +177,8 @@
   	      	<div class="row">
               <br><br><br>
   	      		<div class="col-md-offset-1 col-md-10">
-                {% capture playescape %}{% include_relative playescape.md %}{% endcapture %}
-                {{ playescape | markdownify }}
+                {% capture meetup %}{% include_relative meetup.md %}{% endcapture %}
+                {{ meetup | markdownify }}
                 <br><br>
   	      		</div>
   					</div>
