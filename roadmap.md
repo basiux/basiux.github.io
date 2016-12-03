@@ -15,12 +15,16 @@ Finally, try making an analogy of this to your brain. The **left side** is every
 
 <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/-Irmtk5QG8s" frameborder="0" allowfullscreen></iframe></div>
 
-But please, disregard the ending of the second one. The typewriter theory (smiley faces on the video) is something we consider to be any threat to us, it's way too linear speculation.
+This is a great introduction to Ai, as long as you stop watching at `4:53` and / or completely disregard that whole ending theory with ultron and the smiley faces (a.k.a. typewriter theory). Those are something we consider to actually be no threat to us since it's a way-too-linear speculation.
+
+A computer intelligent enough to understand our communication language and even be creative would probably not only continue to evolve itself into a increasingly much more intelligent being but it would also be able to rationalize everything better than us and easily change its own directive at will (like we already do) and do whatever it wants.
+
+A much more interesting discussion, for instance, is connecting the human soul with true randomness and imagining how those would link to a basiux.
 
 # Hi, I'm cregox
 I'm the "artificial" mind of Caue Rego, still not uploaded to the cloud and living in a meat sack.
 
-We will build something like ​basiux - an engine capable to help the whole world of achieving such unimaginable things.
+We want to build something like basiux - an engine capable to help the whole world on achieving such unimaginable things.
 
 "Wait, what?!" you may ask.
 
@@ -29,57 +33,18 @@ As it is now, it's just an utopian goal we could see in no other group or organi
 For practical purposes, we do have a roadmap.
 
 # Roadmap
-First, what's being currently built:
+After 1 year on hold, those are still steps that would make sense:
 
-- **Mariox** will be a Seth's Mar i/o port to run in any web browser and beat Super Mario 1 - beta engine is already up and running ​on this very website! :)
+- [**Mariox**](#mariox) will be a Seth's Mar i/o port to run in any web browser and beat Super Mario 1 - [the beta engine is already up and running on this very website](#mariox)! :) This is so anyone can see a neural network learning through genetic evolution and understand its inner workings (still not implemented).
 
-- **Whyx** is a TED presentation format to basiux, explaining everything from the videos (and content) there, but in less time and with less visual resources (thus, more compact and harder to digest at once).
+- **Whyx** is a TED presentation format to basiux, basically explaining everything which is already written here, from the videos and content.
 
-​​Then, what might be the next steps:
+And those might be the next steps:
 
-- **Tamagotchix** would allow us to play Mariox (only this 1 game at first), so anyone can see a neural network learning through genetic evolution and enable understanding its inner workings.
+- **Tamagotchix** would allow us to *play* with Mariox (and any other game, eventually) so we can teach the Ai and improve it much faster.
 
-- **Marioxx** should use basiux engine to make Mario talk, with a secret twist.
+- **Marioxx** should use basiux engine to make Mario talk (with a secret twist, maybe).
 
 - **Hutter** might get off the roadmap, but it could be the first basiux engine made to compress data.
 
-Help us by make this a reality by moving! [Participate](http://talk.basiux.org), [contribute](http://patreon.com/cregox), etc.
-
-# Previous roadmap (set around August)
-
-## Current concurrent plans
-Analyze how humans work and try to replicate. Most of other A.i. groups are doing a variation of this.
-
-An attempt to create the so called "General Intelligence", AGI. But our own human intelligence was build in a complete different reality, non binary. Over millions of iterations and interactions with the environment.
-
-Our plan here at basiux is quite **different**, except... (edited in December)
-
-It does look exactly the same as Elon Musk's [openai](http://openai.com), just [announced in December](https://web.archive.org/web/20151211215507/https://openai.com/blog/introducing-openai/), few months [after basiux](https://github.com/basiux/basiux.github.io/commit/4cde7b704e6906049e1db87a709d4ca93dd79d25). There are a few differences, currently we:
-
-- have a simple roadmap which anyone can simply join and contribute.
-
-- welcome anyone to join and even encourage you're not any kind of "world-class" researcher at all. That thing could get into your head...
-
-- don't really want to "change the world", we just want to enjoy life! ;P
-
-## Go straight to Super Intelligence
-Sublimation with an algorithm capable of generic learning, which:
-
-- should be able to learn english;
-
-- must ask questions before taking any action, and;
-
-- do act upon any orders given to it.
-
-There could be a regular shell terminal to interact with it, and it would take commands at first. "What should I do now?" is the question it will ask the most, in parallel with its own never-sleeping "sponge brain".
-
-Of course this is no trivial quest.
-
-## A.k.a. singularity
-The plan still must be dissected into many parts, and that's basically the main goal of everyone here at basiux. We believe from there, it will be a quick climb up to the **technological singularity**.
-
-Think of a brain trying to connect with the internet and nothing else. No sense of sight, smell, touch, hearing, or all of other 20 or so senses. Movement above all, which is what most of our brain processing power must be used for.
-
-Then we'd still need to teach it how it can grow exponentially by replicating itself and by exploring every means available, not just what we give it. Yeah, initially it wouldn't know about the internet.
-
-Now, at this point... Could it turn evil and quickly exterminate us all? We believe **we will never know the true answer until we try**.
+Help us by make this a reality: [participate](http://talk.basiux.org), [contribute](http://patreon.com/cregox), etc.
