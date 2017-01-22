@@ -24,26 +24,33 @@ A much more interesting discussion, for instance, is connecting the human soul w
 # Hi, I'm cregox
 I'm the "artificial" mind of Caue Rego, still not uploaded to the cloud and living in a meat sack.
 
-We want to build something like basiux - an engine capable to help the whole world on achieving such unimaginable things.
+We want to build a basiux - an engine capable to help the whole world on achieving such unimaginable things.
 
 "Wait, what?!" you may ask.
 
 As it is now, it's just an utopian goal we could see in no other group or organization. Reason why we decided to make up "basiux" (beta name).
 
-For practical purposes, we do have a roadmap.
+In short:
+
+> [we want](http://talk.cregox.com/t/focus-on-mario-forget-the-rest-of-universe/7919) to build a kind of [openai universe](https://universe.openai.com/) for any user, focused on making it fun and social
+
+<video width="100%" height="100%" autoplay loop><source src="https://openai-sci-demonstrations.s3.amazonaws.com/site-assets/karpathy/flashgames_6x11.mp4"><a href="https://openai-sci-demonstrations.s3.amazonaws.com/site-assets/karpathy/flashgames_6x11.mp4">https://openai-sci-demonstrations.s3.amazonaws.com/site-assets/karpathy/flashgames_6x11.mp4</a></video>
+
+But that's the long and stretched goal. For now...
 
 # Roadmap
-After 1 year on hold, those are still steps that would make sense:
 
-- [**Mariox**](#mariox) will be a Seth's Mar i/o port to run in any web browser and beat Super Mario 1 - [the beta engine is already up and running on this very website](#mariox)! :) This is so anyone can see a neural network learning through genetic evolution and understand its inner workings (still not implemented).
+After 1 year on hold, those are still the steps that make sense:
+
+- [**Mariox**](#mariox) will be a Seth's Mar i/o port to run in any web browser and beat Super Mario 1 - [the beta engine is already up and running on this very website](#mariox)! :) Eventually anyone will be able to see an intuitive neural network representation learning through genetic evolution and understand its inner workings (still not implemented). It could in fact morph into an even simpler kind of <!--"cloudy"--> game (which would require no full-of-bugs-emulator). The important aspect here is being able to heavily test algorithm variations in the cloud, until we find a satisfying one for the next steps.
 
 - **Whyx** is a TED presentation format to basiux, basically explaining everything which is already written here, from the videos and content.
 
-And those might be the next steps:
+While those might be afterward steps:
 
 - **Tamagotchix** would allow us to *play* with Mariox (and any other game, eventually) so we can teach the Ai and improve it much faster.
 
-- **Marioxx** should use basiux engine to make Mario talk (with a secret twist, maybe).
+- **Marioxx** should use basiux engine to make Mario talk (maybe with a secret twist).
 
 - **Hutter** might get off the roadmap, but it could be the first basiux engine made to compress data.
 
