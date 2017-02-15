@@ -29,7 +29,7 @@ function getTile (dx, dy) {
                   return 0;
           }
 
-          if (self.nes.cpu.mem[addr] != 0) {
+          if (self.nes.cpu.mem[addr] !== 0) {
                   return 1;
           } else {
                   return 0;
@@ -40,7 +40,7 @@ function getSprites () {
         var sprites = [];
         for (var slot=0; slot<=4; slot++) {
                 var enemy = self.nes.cpu.mem[0xF+slot];
-                if (enemy != 0) {
+                if (enemy !== 0) {
                         var ex = self.nes.cpu.mem[0x6E+slot]*0x100 + self.nes.cpu.mem[0x87+slot];
                         var ey = self.nes.cpu.mem[0xCF+slot] + 24;
                         sprites.push( {"x":ex,"y":ey} );

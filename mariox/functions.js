@@ -241,7 +241,7 @@ function randomNeuron (genes, nonInput) {
         for (var k in neurons) { // in pairs
                 var v = neurons[k];
                 n = n-1;
-                if (n == 0) {
+                if (n === 0) {
                         return k;
                 }
         }
@@ -303,7 +303,7 @@ function linkMutate (genome, forceBias) {
 }
 
 function nodeMutate (genome) {
-        if (genome.genes.length == 0) {
+        if (genome.genes.length === 0) {
                 return;
         }
 
@@ -338,7 +338,7 @@ function enableDisableMutate (genome, enable) {
                 }
         }
 
-        if (candidates.length == 0) {
+        if (candidates.length === 0) {
                 return;
         }
 

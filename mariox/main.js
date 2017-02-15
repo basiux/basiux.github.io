@@ -78,7 +78,7 @@ function asyncMainLoop () { // infinite, async equivalent
                 displayGenome(genome);
         }
 
-        if (pool.currentFrame%5 == 0) {
+        if (pool.currentFrame%5 === 0) {
                 evaluateCurrent();
         }
 
@@ -99,7 +99,7 @@ function asyncMainLoop () { // infinite, async equivalent
                 if (rightmost > 3186) {
                         fitness = fitness + 1000;
                 }
-                if (fitness == 0) {
+                if (fitness === 0) {
                         fitness = -1;
                 }
                 genome.fitness = fitness;
@@ -124,11 +124,11 @@ function asyncMainLoop () { // infinite, async equivalent
         var measured = 0;
         var total = 0;
         for (var s in pool.species) { // in pairs
-                var species = pool.species[s];
-                for (var g in species.genomes) { // in pairs
-                        var genome = species.genomes[g];
+                var pairSpecies = pool.species[s];
+                for (var g in pairSpecies.genomes) { // in pairs
+                        var pairGenome = pairSpecies.genomes[g];
                         total++;
-                        if (genome.fitness != 0) {
+                        if (pairGenome.fitness !== 0) {
                                 measured++;
                         }
                 }
