@@ -102,3 +102,7 @@ function isPlayerObjPause () {
 function isPlayerPlaying () {
   return (self.nes.cpu.mem[0x770] == 1);
 }
+
+function isMarioReady (gameTime) {
+  return isPlayerPlaying() && !isPlayerObjPause() && gameTime < 401;
+}

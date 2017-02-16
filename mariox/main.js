@@ -45,9 +45,7 @@ $('#emulator .nes-pause').click(function(){
   }
 });
 
-function manageGameStates () {
-  var gameClock = getTime();
-
+function manageGameLoop (gameClock) {
   // is it in the ...
   // ... demo screen?
   if (!isPlayerPlaying() && gameClock == 401) {
@@ -57,6 +55,15 @@ function manageGameStates () {
     }, 200);
   }
 
+  // ... actual game, with mario alive and ready?
+  if (!isMarioReady(gameClock)) {
+    return false;
+  }
+
+  return true;
+}
+
+function manageGameStates (gameClock) {
   // ... beginning of a new game?
   if (isPlayerPlaying() && gameClock < 401 && pool.gameState === null) {
     saveGameState();
@@ -71,12 +78,23 @@ function manageGameStates () {
 }
 
 function asyncMainLoop () { // infinite, async equivalent
-        var species = pool.species[pool.currentSpecies];
-        var genome = species.genomes[pool.currentGenome];
+        var gameClock = getTime();
 
         if ($form.find('input#showNetwork')[0].checked) {
-                displayGenome(genome);
+                displayGenome(pool.species[pool.currentSpecies].genomes[pool.currentGenome]);
         }
+
+        if (manageGameLoop(gameClock)) {
+                aiMainLoop();
+                manageGameStates(gameClock);
+        }
+
+        self.nes.frame();
+}
+
+function aiMainLoop () {
+        var species = pool.species[pool.currentSpecies];
+        var genome = species.genomes[pool.currentGenome];
 
         if (pool.currentFrame%5 === 0) {
                 evaluateCurrent();
@@ -139,8 +157,4 @@ function asyncMainLoop () { // infinite, async equivalent
         $aigui.find('#banner #maxFitness').text( Math.floor(pool.maxFitness) );
 
         pool.currentFrame++;
-
-        manageGameStates();
-
-        self.nes.frame();
 }
