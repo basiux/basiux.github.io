@@ -49,6 +49,7 @@ function manageGameLoop (gameClock) {
   // is it in the ...
   // ... demo screen?
   if (!isPlayerPlaying() && gameClock == 401) {
+    clearJoypad(); // took me some time to come up with this new line!!
     simulate.keyUp(self.nes.keyboard.state1_keys.KEY_START); // make sure it's released
     setTimeout(function () {
       simulate.keyPress(self.nes.keyboard.state1_keys.KEY_START);
