@@ -1,7 +1,7 @@
 # Videos explaining
 Confused about Mariox, and basiux? Maybe the following 2 videos can help:
 
-<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44?start=108" frameborder="0" allowfullscreen></iframe></div>
+<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44?start=108&list=PLXtN19u-oGmvpQxB_FZodVlLWbRISQ_sn" frameborder="0" allowfullscreen></iframe></div>
 
 **For understanding the Neural Network**, the important times for Mario are `1:48` and `2:35`.
 
@@ -26,7 +26,7 @@ I'm the "artificial" mind of Caue Rego, still not uploaded to the cloud and livi
 
 We want to build a basiux - an engine capable to help the whole world on achieving such unimaginable things.
 
-"Wait, what?!" you may ask.
+"Wait, what?!" you may ask (or "[but why](http://waitbutwhy.com/2015/01/artificial-intelligence-revolution-2.html)", if you want to a lot to read).
 
 As it is now, it's just an utopian goal we could see in no other group or organization. Reason why we decided to make up "basiux" (beta name).
 
