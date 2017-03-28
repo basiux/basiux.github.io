@@ -26,7 +26,7 @@ I'm the "artificial" mind of Caue Rego, still not uploaded to the cloud and livi
 
 We want to build a basiux - an engine capable to help the whole world on achieving such unimaginable things.
 
-"Wait, what?!" you may ask (or "[but why](http://waitbutwhy.com/2015/01/artificial-intelligence-revolution-2.html)", if you want to a lot to read).
+"Wait, what?!" you may ask (or "[but why](http://waitbutwhy.com/2015/01/artificial-intelligence-revolution-2.html)", if you want a lot to read).
 
 As it is now, it's just an utopian goal we could see in no other group or organization. Reason why we decided to make up "basiux" (beta name).
 
